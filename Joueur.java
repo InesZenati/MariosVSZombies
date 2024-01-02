@@ -63,11 +63,11 @@ public class Joueur {
 
     public static void main(String[] args) {
          List<Mario> MArioDisponibles =new ArrayList<>();
-        MArioDisponibles.add(new BasicMario( 0, 0));
-        MArioDisponibles.add(new WallBrick( 0, 0));
-        MArioDisponibles.add(new FireMario(0, 0));
-        MArioDisponibles.add(new BigMario(0, 0));
-        MArioDisponibles.add(new StarMario(0, 0));
+        MArioDisponibles.add(new BasicMario());
+        MArioDisponibles.add(new WallBrick( ));
+        MArioDisponibles.add(new FireMario());
+        MArioDisponibles.add(new BigMario());
+        MArioDisponibles.add(new StarMario());
         Joueur joueur = new Joueur("joueur", 30, 0);
         joueur.afficherMArioDisponibles(MArioDisponibles);
         
