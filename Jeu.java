@@ -1,17 +1,17 @@
+import java.util.ArrayList;
 import java.util.List;
-
 public class Jeu {
     private Plateau plato;
     private String niveauDeDifficulté;
     private List<Zombie> ennemis;
-    private List<Mario> ListeMario;
-    public Joueur joueur;
+    private List<Mario> listeMario;
+    private Joueur joueur;
 
-    public Jeu(Plateau plato, String niveauDeDifficulté, List<Zombie> ennemis, List<Mario> ListeMario , Joueur joueur) {
+    public Jeu(Plateau plato, String niveauDeDifficulté, List<Zombie> ennemis, List<Mario> listeMario, Joueur joueur) {
         this.plato = plato;
         this.niveauDeDifficulté = niveauDeDifficulté;
         this.ennemis = ennemis;
-        this.ListeMario = ListeMario;
+        this.listeMario = listeMario;
         this.joueur = joueur;
     }
 
@@ -24,32 +24,108 @@ public class Jeu {
     public List<Zombie> getEnnemis() {
         return ennemis;
     }
-    public List<Mario> getListeMario() {
-        return ListeMario;
+    public List<Mario> getlisteMario() {
+        return listeMario;
     }
 
-    public void setPlato(Plateau plato) {
-        this.plato = plato;
-    }
-
-   public void placerMario(Mario m, int li, int col , Joueur joueur) {
-        if(joueur.getArgent()>=m.getPrix()){
-              plato.placeMario(m, li, col);
+    public void placerMario(String tour){
+            switch (tour.charAt(0)) {
+                case 'B':
+                    plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
+                    break;
+                case'W':
+                    plato.placeMario(listeMario.get(1), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
+                    break;
+                case'F':
+                    plato.placeMario(listeMario.get(2), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
+                    break;
+                case'G':
+                    plato.placeMario(listeMario.get(3), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
+                    break;
+                case'S':
+                    plato.placeMario(listeMario.get(4), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
+                    break;
+            }
         }
-        joueur.decrementerArgent(m.getPrix()); 
+/* 
+    public void zombieSurPlato(){
+        for (int i = 0; i < ennemis.size(); i++) {
+            Zombie zombie = ennemis.get(i);
+            plato.spawnZombie(zombie);
+            plato.affiche();
+            sleep(1000);
+            plato.moveZombie(zombie);
+            plato.affiche();
+        }
     }
 
+    public void jouerPartieSimple(){
+        joueur.afficherMArioDisponibles(listeMario);  
+        plato.affiche();
+        placerMario(joueur.demanderPersoPosition());
+
+    }
+
+    */
+
+    public void jouerPartieSimple() {
+        joueur.afficherMArioDisponibles(listeMario);
+        plato.affiche();
+    
+        while (true) {
+            // Phase d'achat et placement des Marios
+            for (int i = 0; i < listeMario.size(); i++) {
+                 for (Zombie zombie : ennemis) {
+                String choix = joueur.demanderPersoPosition();
+                placerMario(choix);
+                plato.affiche();
+                      
+                plato.spawnZombie(zombie);
+                plato.affiche();
+                sleep(1000);
+                plato.moveZombie(zombie);
+                plato.affiche();
+            }
+            }
+    
+            // Phase d'apparition et déplacement des Zombies
+     
+        }
+    }
+    
+    private static void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+
+    public void jouerPartieMoyen(){
+        
+    }
+
+    public void jouerPartieDifficile(){
+        
+    }
 
     public static void main(String[] args) {
-        Plateau p = new Plateau(7, 10);
-        Zombie zombie = new Zombie("zombie1", 10,5, new Information(2, 0, 0, 0, 10));
-        p.affiche();
-        zombie.spawn(p);
-        p.affiche();
-        p.spawnZombie(zombie);
-        p.affiche();
-       // zombie.deplacerZ(p);
-        //p.affiche();
-
-    }
+        Plateau p = new Plateau(6, 10);
+        List<Mario> MArioDisponibles =new ArrayList<>();
+        MArioDisponibles.add(new BasicMario( 0, 0));
+        MArioDisponibles.add(new WallBrick( 0, 0));
+        MArioDisponibles.add(new FireMario(0, 0));
+        MArioDisponibles.add(new BigMario(0, 0));
+        MArioDisponibles.add(new StarMario(0, 0));
+        Joueur joueur = new Joueur("joueur", 30, 0);
+        List<Zombie> ennemis = new ArrayList<>();
+        ennemis.add(new Zombie("Z1", 10, 0, new Information(40, 100,9,5,30)));
+        ennemis.add(new Zombie("Z2", 10, 0, new Information(40, 100,9,5,30)));
+        ennemis.add(new Zombie("Z3", 10, 0, new Information(40, 100,9,5,30)));
+        ennemis.add(new Zombie("Z4", 10, 0, new Information(40, 100,9,5,30)));
+        ennemis.add(new Zombie("Z5", 10, 0, new Information(40, 100,9,5,30)));
+        Jeu a = new Jeu(p, "simple", ennemis, MArioDisponibles, joueur);
+        a.jouerPartieSimple();
+        }
 }
