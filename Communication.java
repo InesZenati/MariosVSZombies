@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,22 +23,18 @@ public class Communication {
         return scanner.nextInt();
     }
 
-    public void afficherMArioDisponibles(List<Mario> MArioDisponibles) {
-        afficherMessage("Mario disponibles :");
+    public String demanderPersoPosition(){
+        afficherMessage("Tour: ");
+        String position = scanner.nextLine();
+        return position;
+    }
 
-        for (int i = 0; i < MArioDisponibles.size(); i++) {
-            Mario mario = MArioDisponibles.get(i);
-            afficherMessage((i + 1) + ". " + mario.toString());
-        }
+    public static void main(String[] args) {
+        Communication communication = new Communication();
+        int niveauDifficulte = communication.demanderNiveauDifficulte();
+        int typeMario = communication.demanderTypeMario();
+        System.out.println("niveauDifficulte = " + niveauDifficulte);
+        System.out.println("typeMario = " + typeMario);
     }
-/* 
-    public int demanderPlacementMario() {
-        afficherMessage("Où souhaitez-vous placer votre Mario ? x : \n");
-        int ligne = scanner.nextInt();
-        afficherMessage("y: \n ");
-        int colonne = scanner.nextInt();
-        return (ligne << 16) | colonne; 
-    }
-    */
 
 }
