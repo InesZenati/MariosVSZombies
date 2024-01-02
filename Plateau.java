@@ -47,77 +47,75 @@ public class Plateau {
     }
 
     public void spawnZombie(Zombie z) {
-        int li = 1+ (int) (Math.random() * numLi);
+        int li = 1+ (int) (Math.random() * numLi-1);
         int col = numCols - 1;
         while (plato[li][col].contientZombie()) {
-            li = (int) (Math.random() * numLi);
+            li = (int) (Math.random() * numLi -1);
             col = numCols - 1;
         }
         placeZombie(z, li, col);
+        z.getInfoActuelle().setPosX(li);
+        z.getInfoActuelle().setPosY(col);
     }
-/* 
+
     public void affiche() {
         System.out.print("  ");
         for (int col = 0; col < numCols; col++) {
-            System.out.print(col + " ");
+            System.out.print("  "+col+" " ); 
         }
         System.out.println();   
     
-        for (int row = 0; row < numLi; row++) {
-            System.out.print(row + " ");
-    
+        for (int li = 0; li < numLi; li++) {
+            System.out.print(" "+li + " ");
             for (int col = 0; col < numCols; col++) {
-                if (col >= plato.length || row >= plato[col].length) {
-                    System.out.print(". "); // Affiche un point si en dehors des limites
-                } else {
-                    Case currentCase = plato[col][row];
-                    if (currentCase.contientMario()) {
-                        System.out.print("X ");
-                    } else if (currentCase.contientZombie()) {
-                        System.out.print("Z ");
-                    } else {
-                        System.out.print(". "); 
+                if (plato[li][col].contientMario()) {
+                    if(plato[li][col].getPersonnage().getName()=="BasicMario"){
+                    System.out.print("|B_|");
                     }
-                }
-            }
-            System.out.println(); 
-        }
-    }
-    
-   */ 
-    public void affiche(){
-        System.out.print("  ");
-       for (int row = 0; row < numLi; row++) {
-            System.out.print(row + " ");
-        }
-        System.out.println();   
-        for (int col = 0; col < numCols; col++) {
-            System.out.print(col + " ");
-
-            for (int row = 0; row < numLi; row++) {
-                Case currentCase = plato[col][row];
-                if (currentCase.contientMario()) {
-                    System.out.print("X ");
-                } else if (currentCase.contientZombie()) {
-                    System.out.print("Z ");
+                    else if(plato[li][col].getPersonnage().getName()=="FireMario"){
+                    System.out.print("|F_|");
+                    }
+                    else if(plato[li][col].getPersonnage().getName()=="WallBrick"){
+                    System.out.print("|W_|");
+                    }
+                    else if(plato[li][col].getPersonnage().getName()=="BigtMario"){
+                    System.out.print("|G_|");
+                    }
+                    else if(plato[li][col].getPersonnage().getName()=="SuperMario"){
+                    System.out.print("|S_|");
+                    }
+                } else if (plato[li][col].contientZombie()) {
+                    System.out.print("|_Z|");
                 } else {
-                    System.out.print(". "); 
+                    System.out.print("|__|");
                 }
             }
-            
-            System.out.println(); 
+            System.out.println();
         }
     }
 
+    public void moveZombie(Zombie z) {
+        int li = z.getInfoActuelle().getPosX();
+        int col = z.getInfoActuelle().getPosY();
+            if (plato[li][col-1].contientZombie()) {
+            } else {
+                removeZombie(li, col);
+                placeZombie(z, li, col-1);
+                z.getInfoActuelle().setPosY(col-1);
+            }
+    }
 
-
-
-        public boolean horsLimite(int li, int col) {
-            return li < 0 || li >= numLi || col < 0 || col >= numCols;
-        }
-
+  
     public static void main(String[] args) {
-        Plateau p = new Plateau(7, 10);
+        Plateau p = new Plateau(6, 12);
+        Zombie z = new Zombie("zombie1", 10,5, new Information(2, 0, 0, 0, 10));
         p.affiche();
+        p.spawnZombie(z);
+        p.affiche();
+      p.moveZombie(z);
+      p.affiche();
+      //p.placeZombie(z, 4, 10);
+      //p.affiche();
+
     }
 }
