@@ -113,11 +113,11 @@ public class Jeu {
     public static void main(String[] args) {
         Plateau p = new Plateau(6, 10);
         List<Mario> MArioDisponibles =new ArrayList<>();
-        MArioDisponibles.add(new BasicMario( 0, 0));
-        MArioDisponibles.add(new WallBrick( 0, 0));
-        MArioDisponibles.add(new FireMario(0, 0));
-        MArioDisponibles.add(new BigMario(0, 0));
-        MArioDisponibles.add(new StarMario(0, 0));
+        MArioDisponibles.add(new BasicMario());
+        MArioDisponibles.add(new WallBrick());
+        MArioDisponibles.add(new FireMario());
+        MArioDisponibles.add(new BigMario());
+        MArioDisponibles.add(new StarMario());
         Joueur joueur = new Joueur("joueur", 30, 0);
         List<Zombie> ennemis = new ArrayList<>();
         ennemis.add(new Zombie("Z1", 10, 0, new Information(40, 100,9,5,30)));
