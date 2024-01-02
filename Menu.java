@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -26,7 +24,8 @@ public class Menu {
                 afficherReglesDuJeu();
                     break;
                 case 2:
-                    afficherCatalogue(initialiserListeMario());
+                    afficherCatalogue();
+                    // Initialiser le jeu ici
                     break;
                 case 3:
                     afficherMessage("Démarrage d'une nouvelle partie...");
@@ -41,7 +40,7 @@ public class Menu {
 
     }
         }
-        while (choix != 4);
+        while (choix != 3);
     }                       
 
     public void afficherReglesDuJeu(){
@@ -62,42 +61,41 @@ public class Menu {
 
     }
 
-public void afficherCatalogue(List<Mario> catalogueMario) {
-        afficherMessage("=== Catalogue des Tours ===");
-        for (int i = 0; i < catalogueMario.size(); i++) {
-            Mario m = catalogueMario.get(i);
-            afficherMessage((i + 1) + ". " + m.toString());
-        }
-        afficherMessage("==========================");
+    public void afficherCatalogue(){
+        BasicMario BasicMario0= new BasicMario(-1,-1);
+        WallBrick WallBrick0= new WallBrick(-1,-1);
+        FireMario FireMario0 = new FireMario(-1,-1);
+        BigMario BigMario0 =new BigMario(-1,-1);
+        StarMario StarMario0 = new StarMario(-1, -1);
+        afficherMessage("=== Catalogue des personnages ===");
+        afficherMessage("1. BasicMario "+BasicMario0.toString() );
+        afficherMessage("2. WallBrick"+WallBrick0.toString() );
+        afficherMessage("3. FireMario"+FireMario0.toString() );
+        afficherMessage("4. BigMario"+BigMario0.toString() );
+        afficherMessage("5. StarMario"+StarMario0.toString());
+        afficherMessage("=================================");
     }
 
-        private List<Mario> initialiserListeMario() {
-        List<Mario> catalogue = new ArrayList<>();
-        catalogue.add(new BasicMario(0,0));
-        catalogue.add(new FireMario(0, 0));
-        catalogue.add(new WallBrick(0, 0));
-        catalogue.add(new BigMario(0, 0));
-        catalogue.add(new StarMario(0, 0));
-        
-        return catalogue;
-    }
- public void afficherMessage(String message) {
+    
+
+    public void afficherMessage(String message) {
         System.out.println(message);
     }
 
-    public int demanderChoixUtilisateur(int min, int max) {
-        afficherMessage("Choisissez une option : ");
+       public int demanderChoixUtilisateur(int min, int max) {
+        afficherMessage("Choisissez une option: ");
         return scanner.nextInt();
     }
 
-    public int demanderChoixNiveau(int min, int max) {
+
+    public int demanderChoixNivezu(int min, int max) {
         afficherMessage("Choisissez le niveau de difficulté (1 facile, 2 moyen, 3 difficile): ");
         return scanner.nextInt();
     }
 
     public static void main(String[] args) {
-        Menu m = new Menu();
-        m.afficheMenuPrincipal();
+        Menu a = new Menu();
+        a.afficheMenuPrincipal();
     }
     
 }
