@@ -62,11 +62,11 @@ public class Menu {
     }
 
     public void afficherCatalogue(){
-        BasicMario BasicMario0= new BasicMario(-1,-1);
-        WallBrick WallBrick0= new WallBrick(-1,-1);
-        FireMario FireMario0 = new FireMario(-1,-1);
-        BigMario BigMario0 =new BigMario(-1,-1);
-        StarMario StarMario0 = new StarMario(-1, -1);
+        BasicMario BasicMario0= new BasicMario();
+        WallBrick WallBrick0= new WallBrick();
+        FireMario FireMario0 = new FireMario();
+        BigMario BigMario0 =new BigMario();
+        StarMario StarMario0 = new StarMario();
         afficherMessage("=== Catalogue des personnages ===");
         afficherMessage("1. BasicMario "+BasicMario0.toString() );
         afficherMessage("2. WallBrick"+WallBrick0.toString() );
