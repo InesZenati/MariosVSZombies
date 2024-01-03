@@ -14,8 +14,9 @@ public class ZombieThread extends Thread {
             for (Zombie zombie : ennemis) {
                 plato.spawnZombie(zombie);
                 plato.affiche();
-                sleep(10);
+                sleep(100);
                 plato.moveZombie(zombie);
+                sleep(100);
                 plato.affiche();
             }
         }

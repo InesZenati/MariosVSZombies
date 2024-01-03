@@ -107,14 +107,26 @@ public class Plateau {
                     System.out.print("|S_|");
                     }
                 } else if (plato[li][col].contientZombie()) {
-                    System.out.print("|_Z|");
-                } else {
-                    System.out.print("|__|");
+
+                if(plato[li][col].getPersonnage().getName()=="ZombieSimple"){ 
+                    System.out.print("|ZS|");
+                } 
+                else if( plato[li][col].getPersonnage().getName()=="ZombieAmélioré"){
+                    System.out.print("|ZA|");
                 }
+                else if (plato[li][col].getPersonnage().getName()=="SuperZombie") {
+                    System.out.print("|SZ|");
+                }
+                else if (plato[li][col].getPersonnage().getName()=="SuperMegaUltraZombie") {
+                    System.out.print("|MZ|");
+                }
+            }else{
+                System.out.print("|__|");
             }
-            System.out.println();
         }
+         System.out.println();
     }
+}
 
     public void moveZombie(Zombie z) {
         Plateau plato = this;                          
@@ -123,6 +135,7 @@ public class Plateau {
         while(z.getInfoActuelle().getPosY()>0){ 
       
            if (z.peutAttaquer(plato)) {
+
 
            } else {
                 removeZombie(li, col);
@@ -145,14 +158,14 @@ public class Plateau {
   //  }
   
     public static void main(String[] args) {
-        Plateau p = new Plateau(6, 12);
+        Plateau p = new Plateau(6, 11);
         Zombie1 z = new Zombie1(1000);
         p.affiche();
-        p.spawnZombie(z);
-        p.affiche();
-        System.out.println("mvmt");
-        p.moveZombie(z);
-         p.affiche();
+      //  p.spawnZombie(z);
+       // p.affiche();
+        //System.out.println("mvmt");
+        //p.moveZombie(z);
+         //p.affiche();
       //p.placeZombie(z, 4, 10);
       //p.affiche();
 
