@@ -11,9 +11,15 @@ public class Plateau {
     }
 
     private void creePLato() {
+        WallBrick w = new WallBrick();
         for (int li = 0; li < numLi; li++) {
             for (int col = 0; col < numCols; col++) {
-                plato[li][col] = new Case(li, col);
+                //place WallBrick dès la creation du plateau
+                if(col==0){
+                    plato[li][col]= new Case(li,col,w);
+                }else{
+                    plato[li][col] = new Case(li, col);
+                }
             }
         }
     }
@@ -34,9 +40,25 @@ public class Plateau {
     }
 
     public void placeMario(Mario m, int li, int col) {
-        plato[li][col].setMario(m);
+        if(this.plato[li][col].contientZombie()){
+            System.out.println("Impossible !Un Zombie se trouve dans la case ["+li+","+col+"]");
+        }
+        //A voir si on garde ou pas
+        if(this.plato[li][col].contientMario()){
+            System.out.println("Il y a déjà une tour placé dans la case ["+li+","+col+"]");
+        }
+        if(!this.plato[li][col].contientZombie()&&!this.plato[li][col].contientMario()){
+            m.getInfoActuelle().setPosX(li);
+            m.getInfoActuelle().setPosY(col);
+            plato[li][col].setMario(m);
+        }
+        
+
+        
     }
     public void placeZombie(Zombie z, int li, int col) {
+        z.getInfoActuelle().setPosX(li);
+        z.getInfoActuelle().setPosY(col); 
         plato[li][col].setZombie(z);
     }
     public void removeMario(int li, int col) {
@@ -108,7 +130,6 @@ public class Plateau {
             }
         }
     }
-
   
     public static void main(String[] args) {
         Plateau p = new Plateau(6, 12);
