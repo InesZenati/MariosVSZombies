@@ -73,19 +73,19 @@ public class Jeu {
         plato.affiche();
     
         while (true) {
-            // Phase d'achat et placement des Marios
             for (int i = 0; i < listeMario.size(); i++) {
-                 for (Zombie zombie : ennemis) {
+
                 String choix = joueur.demanderPersoPosition();
                 placerMario(choix);
                 plato.affiche();
-                      
+                 }
+    for (Zombie zombie : ennemis) {
                 plato.spawnZombie(zombie);
                 plato.affiche();
-                sleep(1000);
+                sleep(10);
                 plato.moveZombie(zombie);
                 plato.affiche();
-            }
+            
             }
     
             // Phase d'apparition et déplacement des Zombies

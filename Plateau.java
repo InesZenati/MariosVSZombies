@@ -117,19 +117,32 @@ public class Plateau {
     }
 
     public void moveZombie(Zombie z) {
-        Plateau plato = this;                           
+        Plateau plato = this;                          
         int li = z.getInfoActuelle().getPosX();
         int col = z.getInfoActuelle().getPosY();
         while(z.getInfoActuelle().getPosY()>0){ 
-            if (z.peutAttaquer(plato)) {
+      
+           if (z.peutAttaquer(plato)) {
 
-            } else {
+           } else {
                 removeZombie(li, col);
-                placeZombie(z, li, col-1);
-                z.getInfoActuelle().setPosY(col-1);
+                col=col-1;
+                sleep(1000);
+                placeZombie(z, li, col);
+                plato.affiche();
+                z.getInfoActuelle().setPosY(col);
             }
         }
+       }
+
+       private static void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+  //  }
   
     public static void main(String[] args) {
         Plateau p = new Plateau(6, 12);
@@ -137,8 +150,9 @@ public class Plateau {
         p.affiche();
         p.spawnZombie(z);
         p.affiche();
-      p.moveZombie(z);
-      p.affiche();
+        System.out.println("mvmt");
+        p.moveZombie(z);
+         p.affiche();
       //p.placeZombie(z, 4, 10);
       //p.affiche();
 

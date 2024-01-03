@@ -70,7 +70,5 @@ public class Joueur {
         MArioDisponibles.add(new StarMario());
         Joueur joueur = new Joueur("joueur", 30, 0);
         joueur.afficherMArioDisponibles(MArioDisponibles);
-        
-
     }
 }
