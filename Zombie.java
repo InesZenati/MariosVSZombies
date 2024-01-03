@@ -14,9 +14,6 @@ public class Zombie extends Personnage {
     public void setVitesse(int v){
         this.vitesse=v;
     }
-    public Information getInfoInitiale(){
-        return this.InfoInitiale;
-    }
     @Override
     public String toString(){
         String v;

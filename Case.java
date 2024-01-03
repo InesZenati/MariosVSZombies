@@ -8,6 +8,11 @@ public class Case {
         this.col = col;
         this.p=null;
     }
+    public Case(int li, int col, Personnage p){
+        this.li = li;
+        this.col = col;
+        this.p=p; 
+    }
 
     public boolean contientMario() {
             //return p.getTour();

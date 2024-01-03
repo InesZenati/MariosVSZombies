@@ -10,9 +10,7 @@ public abstract class Mario extends Personnage {
     public int getPrix(){
         return this.prix;
     }
-    public Information getInfoInitale(){
-        return this.InfoInitiale;
-    }
+
     @Override
     public String toString(){
         return this.getName() + " \n Point de vie :" + this.getInfoActuelle().getvie() + " \n Attaque :" + this.getInfoActuelle().getAttaque() + " \n Defense :" + this.getInfoActuelle().getDefense()+ " \n Prix :" + this.prix;
