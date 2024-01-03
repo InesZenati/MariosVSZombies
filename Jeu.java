@@ -68,8 +68,8 @@ public class Jeu {
 
     */
 
-    public void jouerPartieSimple() {
-        joueur.afficherMArioDisponibles(listeMario);
+   /*  public void jouerPartieSimple() {
+       joueur.afficherMArioDisponibles(listeMario);
         plato.affiche();
     
         while (true) {
@@ -90,9 +90,19 @@ public class Jeu {
     
             // Phase d'apparition et déplacement des Zombies
      
-        }
+        } */
+
+         public void jouerPartieSimple() {
+            joueur.afficherMArioDisponibles(listeMario);
+            plato.affiche();
+        
+            MarioThread marioThread = new MarioThread(plato, joueur, listeMario);
+            ZombieThread zombieThread = new ZombieThread(plato, ennemis);
+        
+            marioThread.start();
+            zombieThread.start();
     }
-    
+
     private static void sleep(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
