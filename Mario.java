@@ -1,11 +1,9 @@
 public abstract class Mario extends Personnage {
     private final int prix;
-    private final Information InfoInitiale ;
 
     Mario(String n, int x, Information i){
        super(true,n);
        this.prix=x; 
-       this.InfoInitiale=i;
        this.setInfoActuelle(i);
     }
 

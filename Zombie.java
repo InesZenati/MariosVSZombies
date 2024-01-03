@@ -1,13 +1,11 @@
 public class Zombie extends Personnage {
     private final int gain;
     private int vitesse;
-    private final Information InfoInitiale;
 
     Zombie(String name,int g, int v, Information i){
         super(false,name);
         this.gain=g;
         this.vitesse=v;
-        this.InfoInitiale=i;
         this.setInfoActuelle(i);
     }
     public int getVitesse(){
