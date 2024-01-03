@@ -64,7 +64,7 @@ public class Joueur {
     public static void main(String[] args) {
          List<Mario> MArioDisponibles =new ArrayList<>();
         MArioDisponibles.add(new BasicMario());
-        MArioDisponibles.add(new WallBrick( ));
+        MArioDisponibles.add(new WallBrick());
         MArioDisponibles.add(new FireMario());
         MArioDisponibles.add(new BigMario());
         MArioDisponibles.add(new StarMario());

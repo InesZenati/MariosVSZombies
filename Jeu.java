@@ -120,11 +120,11 @@ public class Jeu {
         MArioDisponibles.add(new StarMario());
         Joueur joueur = new Joueur("joueur", 30, 0);
         List<Zombie> ennemis = new ArrayList<>();
-        ennemis.add(new Zombie("Z1", 10, 0, new Information(40, 100,9,5,30)));
-        ennemis.add(new Zombie("Z2", 10, 0, new Information(40, 100,9,5,30)));
-        ennemis.add(new Zombie("Z3", 10, 0, new Information(40, 100,9,5,30)));
-        ennemis.add(new Zombie("Z4", 10, 0, new Information(40, 100,9,5,30)));
-        ennemis.add(new Zombie("Z5", 10, 0, new Information(40, 100,9,5,30)));
+        ennemis.add(new Zombie1(1000));
+        ennemis.add(new Zombie1(1000));
+        ennemis.add(new Zombie1(1000));
+        ennemis.add(new Zombie1(1000));
+        ennemis.add(new Zombie1(1000));
         Jeu a = new Jeu(p, "simple", ennemis, MArioDisponibles, joueur);
         a.jouerPartieSimple();
         }

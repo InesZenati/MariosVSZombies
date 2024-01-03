@@ -95,20 +95,24 @@ public class Plateau {
     }
 
     public void moveZombie(Zombie z) {
+        Plateau plato = this;                           
         int li = z.getInfoActuelle().getPosX();
         int col = z.getInfoActuelle().getPosY();
-            if (plato[li][col-1].contientZombie()) {
+        while(z.getInfoActuelle().getPosY()>0){ 
+            if (z.peutAttaquer(plato)) {
+
             } else {
                 removeZombie(li, col);
                 placeZombie(z, li, col-1);
                 z.getInfoActuelle().setPosY(col-1);
             }
+        }
     }
 
   
     public static void main(String[] args) {
         Plateau p = new Plateau(6, 12);
-        Zombie z = new Zombie("zombie1", 10,5, new Information(2, 0, 0, 0, 10));
+        Zombie1 z = new Zombie1(1000);
         p.affiche();
         p.spawnZombie(z);
         p.affiche();

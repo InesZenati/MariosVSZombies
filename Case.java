@@ -8,25 +8,24 @@ public class Case {
         this.col = col;
         this.p=null;
     }
+    public Case(int li, int col, Personnage p) {
+        this.li = li;
+        this.col = col;
+        this.p=p;
+    }
 
     public boolean contientMario() {
-            //return p.getTour();
-            if(p !=null && p.getTour()==true){
-                return true;
-            }
-            else{
-                return false;
-            }
+        if(p!=null){
+            return p.getTour();
+        }
+        return false;
     }
 
     public boolean contientZombie() {
-            //return !p.getTour();
-            if(p !=null && p.getTour()==false){
-                return true;
-            }
-            else{
-                return false;
-            }
+        if (p!=null){
+            return !p.getTour();
+        }
+        return false;
     }
 
     public Personnage getPersonnage() {
@@ -37,9 +36,6 @@ public class Case {
     }
     public int getCol() {
         return col;
-    }
-    public Personnage getPerso(){
-        return this.p;
     }
     public void setMario (Mario newM) {
         p=newM;
