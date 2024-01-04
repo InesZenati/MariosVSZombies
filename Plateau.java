@@ -13,7 +13,6 @@ public class Plateau {
     }
 
     private void creePLato() {
-        WallBrick w = new WallBrick();
         for (int li = 0; li < numLi; li++) {
             for (int col = 0; col < numCols; col++) {
                     plato[li][col] = new Case(li, col);
@@ -160,7 +159,7 @@ public class Plateau {
             e.printStackTrace();
         }
     }
-  //  }
+  //
   
     public static void main(String[] args) {
         Plateau p = new Plateau(6, 11);

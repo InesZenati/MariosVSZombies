@@ -1,4 +1,4 @@
-public class Personnage {
+public abstract class Personnage {
     private boolean tour;
     private String name;
     private Information InfoActuelle;
