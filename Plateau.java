@@ -16,12 +16,8 @@ public class Plateau {
         WallBrick w = new WallBrick();
         for (int li = 0; li < numLi; li++) {
             for (int col = 0; col < numCols; col++) {
-                //place WallBrick dès la creation du plateau
-                if(col==0){
-                    plato[li][col]= new Case(li,col,w);
-                }else{
                     plato[li][col] = new Case(li, col);
-                }
+                
             }
         }
     }
