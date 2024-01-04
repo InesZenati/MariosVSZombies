@@ -30,7 +30,7 @@ public class Personnage {
         int [] position = { this.InfoActuelle.getPosX() , this.InfoActuelle.getPosY()};
         return position;
     }
-
+    /*
     public String attaque(Personnage p){
         int attaque = this.getInfoActuelle().getAttaque();
         int defense =p.getInfoActuelle().getDefense();
@@ -40,7 +40,7 @@ public class Personnage {
             attaque=attaque/2;
         }
         return(this.name+" inflige "+attaque+" de degat a "+ p.getName());
-    }
+    }*/
     
     
     public boolean getTour(){
