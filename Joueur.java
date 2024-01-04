@@ -45,6 +45,10 @@ public class Joueur {
         System.out.println(message);
     }
 
+    public void afficheArgent(){
+        System.out.println(this.argent);
+    }
+
         public void afficherMArioDisponibles(List<Mario> MArioDisponibles) {
         afficherMessage("Mario disponibles :");
         for (int i = 0; i < MArioDisponibles.size(); i++) {

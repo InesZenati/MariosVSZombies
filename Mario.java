@@ -15,8 +15,8 @@ public abstract class Mario extends Personnage {
     public String toString(){
         return this.getName() + " \n Point de vie :" + this.getInfoActuelle().getvie() + " \n Attaque :" + this.getInfoActuelle().getAttaque() + " \n Defense :" + this.getInfoActuelle().getDefense()+ " \n Prix :" + this.prix;
     }
-
-    /*public boolean peutAttaquer(Plateau p){
+/* 
+    public boolean peutAttaquer(Plateau p){
         int [] pos = this.getPosition();
         if(pos[0]!=0){
             for(int i=pos[1]; i<p.getNumCols()-1;i++){
@@ -26,6 +26,28 @@ public abstract class Mario extends Personnage {
             }
         }
         return false;
-    }*/
+    }
+    */
 
+    public boolean peutAttaquer(Plateau p){
+        int [] pos = this.getPosition();
+        if(p.getCase(pos[0],pos[1]+1).contientZombie()){
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public boolean aGagner(Plateau p){
+        int [] pos = this.getPosition();
+        if(pos[1]==p.getNumCols()-1){
+            return true;
+        }
+        return false;
+    }
 }
+
+
+
+

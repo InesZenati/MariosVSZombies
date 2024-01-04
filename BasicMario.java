@@ -11,7 +11,7 @@ public class BasicMario extends Mario{
 
     public void attaque (Plateau p){
         int[] pos = this.getPosition();
-        if(p.getCase(pos[0],pos[1]+1).contientMario()){
+        if(p.getCase(pos[0],pos[1]+1).contientZombie()){
             if(p.getCase(pos[0],pos[1]+1).getPersonnage().getName()=="ZombieSimple"){
                 Zombie1 m = (Zombie1) p.getCase(pos[0],pos[1]+1).getPersonnage();
                 if(m.getInfoActuelle().getDefense()>this.getInfoActuelle().getAttaque()){

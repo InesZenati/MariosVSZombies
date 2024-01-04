@@ -22,27 +22,65 @@ import java.util.List;
     private void placerMario(String tour) {
         switch (tour.charAt(0)) {
             case 'B':
+             if (listeMario.get(0).getPrix() <= this.joueur.getArgent()){ 
+                System.out.println(0);
+                plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
+                System.out.println(1);
+                this.joueur.decrementerArgent(listeMario.get(0).getPrix());
+                System.out.println(2);
+                 if(listeMario.get(0).estVivant()){ 
+                if(listeMario.get(0).peutAttaquer(plato)){
+                   System.out.println(4);
+                    BasicMario mario = (BasicMario) listeMario.get(0);
+                    System.out.println(5);
+                        System.out.println("BasicMario attaque !");
+                    mario.attaque(plato);
+                }
+                }
+                break;   
+                }
+                System.out.println("Solde insuffisant");
+                break;
+            case 'W':
                 plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
                 this.joueur.decrementerArgent(listeMario.get(0).getPrix());
                 break;
-            case 'W':
-                plato.placeMario(listeMario.get(1), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
-                this.joueur.decrementerArgent(listeMario.get(1).getPrix());
-                break;
             case 'F':
-                plato.placeMario(listeMario.get(2), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
-                this.joueur.decrementerArgent(listeMario.get(2).getPrix());
+             if (listeMario.get(0).getPrix() <= this.joueur.getArgent()){ 
+                plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
+                this.joueur.decrementerArgent(listeMario.get(0).getPrix());
+                if(listeMario.get(0).peutAttaquer(plato)){
+                    FireMario mario = (FireMario) listeMario.get(0);
+                    mario.attaque(plato);
+                }
+            }
+            System.out.println("Solde insuffisant");
                 break;
             case 'G':
-                plato.placeMario(listeMario.get(3), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
-                this.joueur.decrementerArgent(listeMario.get(3).getPrix());
+                 if (listeMario.get(0).getPrix() <= this.joueur.getArgent()){ 
+                plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
+                this.joueur.decrementerArgent(listeMario.get(0).getPrix());
+                if(listeMario.get(0).peutAttaquer(plato)){
+                    BigMario mario = (BigMario) listeMario.get(0);
+                    mario.attaque(plato);
+                }
+            }
+            System.out.println("Solde insuffisant");
                 break;
             case 'S':
-                plato.placeMario(listeMario.get(4), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
-                this.joueur.decrementerArgent(listeMario.get(4).getPrix());
+                if (listeMario.get(0).getPrix() <= this.joueur.getArgent()){ 
+                plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
+                this.joueur.decrementerArgent(listeMario.get(0).getPrix());
+                if(listeMario.get(0).peutAttaquer(plato)){
+                    StarMario mario = (StarMario) listeMario.get(0);
+                    mario.attaque(plato);
+                }
+            }
+            System.out.println("Solde insuffisant");
                 break;
         }
     }
 }
+
 
 

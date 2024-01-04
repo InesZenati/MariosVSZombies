@@ -1,3 +1,5 @@
+import java.util.List;
+import java.util.Random;
 public class Plateau {
     private int numLi;
     private int numCols;
@@ -45,15 +47,13 @@ public class Plateau {
         }
         //A voir si on garde ou pas
         if(this.plato[li][col].contientMario()){
-            System.out.println("Il y a déjà une tour placé dans la case ["+li+","+col+"]");
+            System.out.println("Il y a déjà un Mario placé dans la case ["+li+","+col+"]");
         }
         if(!this.plato[li][col].contientZombie()&&!this.plato[li][col].contientMario()){
             m.getInfoActuelle().setPosX(li);
             m.getInfoActuelle().setPosY(col);
             plato[li][col].setMario(m);
         }
-        
-
         
     }
     public void placeZombie(Zombie z, int li, int col) {
@@ -79,6 +79,16 @@ public class Plateau {
         z.getInfoActuelle().setPosX(li);
         z.getInfoActuelle().setPosY(col);
     }
+
+    public void spawnRandomZombies(List<Zombie> listeZombies) {
+        Random rd = new Random();
+        int zombie = rd.nextInt(listeZombies.size()-0+1)+0;
+        for (int i = 0; i < listeZombies.size(); i++) {
+            spawnZombie(listeZombies.get(zombie));
+        }
+    }
+
+
 
     public void affiche() {
         System.out.print("  ");
@@ -135,7 +145,6 @@ public class Plateau {
         while(z.getInfoActuelle().getPosY()>0){ 
       
            if (z.peutAttaquer(plato)) {
-
 
            } else {
                 removeZombie(li, col);
