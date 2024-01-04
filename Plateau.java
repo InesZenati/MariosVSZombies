@@ -165,19 +165,19 @@ public class Plateau {
             e.printStackTrace();
         }
     }
-  //  }
+  //
   
     public static void main(String[] args) {
         Plateau p = new Plateau(6, 11);
         Zombie1 z = new Zombie1(1000);
         p.affiche();
-      //  p.spawnZombie(z);
-       // p.affiche();
-        //System.out.println("mvmt");
-        //p.moveZombie(z);
-         //p.affiche();
-      //p.placeZombie(z, 4, 10);
-      //p.affiche();
+        p.spawnZombie(z);
+        p.affiche();
+        System.out.println("mvmt");
+        p.moveZombie(z);
+        p.affiche();
+        p.placeZombie(z, 4, 10);
+        p.affiche();
 
     }
 }

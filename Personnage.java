@@ -1,4 +1,4 @@
-public class Personnage {
+public abstract class Personnage {
     private boolean tour;
     private String name;
     private Information InfoActuelle;
@@ -15,9 +15,7 @@ public class Personnage {
         this.getInfoActuelle().setvie(this.getInfoActuelle().getvie() - degat);
     }
 
-   public String toString(){
-        return this.name + " \n Point de vie :" + this.InfoActuelle.getvie() + " \n Attaque :" + this.InfoActuelle.getAttaque() + " \n Defense :" + this.InfoActuelle.getDefense();
-    }
+   public abstract String toString();
 
     public boolean estVivant(){
         if(this.InfoActuelle.getvie() > 0){
@@ -32,7 +30,7 @@ public class Personnage {
         int [] position = { this.InfoActuelle.getPosX() , this.InfoActuelle.getPosY()};
         return position;
     }
-/* 
+
     public String attaque(Personnage p){
         int attaque = this.getInfoActuelle().getAttaque();
         int defense =p.getInfoActuelle().getDefense();
@@ -43,7 +41,7 @@ public class Personnage {
         }
         return(this.name+" inflige "+attaque+" de degat a "+ p.getName());
     }
-    */
+    
     
     public boolean getTour(){
         return this.tour;
