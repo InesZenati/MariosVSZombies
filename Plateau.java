@@ -37,6 +37,7 @@ public class Plateau {
         plato[li][col] = newCase;
     }
 
+
     public void placeMario(Mario m, int li, int col) {
         if(this.plato[li][col].contientZombie()){
             System.out.println("Impossible !Un Zombie se trouve dans la case ["+li+","+col+"]");
@@ -53,10 +54,13 @@ public class Plateau {
         
     }
     public void placeZombie(Zombie z, int li, int col) {
+        //(!plato[li][col].contientZombie() && !plato[li][col].contientMario()){    
         z.getInfoActuelle().setPosX(li);
-        z.getInfoActuelle().setPosY(col); 
+        z.getInfoActuelle().setPosY(col);
         plato[li][col].setZombie(z);
+        //}
     }
+
     public void removeMario(int li, int col) {
         plato[li][col].setMario(null);
     }
@@ -64,7 +68,10 @@ public class Plateau {
         plato[li][col].setZombie(null);
     }
 
-    public Zombie spawnZombie(Zombie z) {
+   
+
+
+    public void spawnZombie(Zombie z) {
         int li = 1+ (int) (Math.random() * numLi-1);
         int col = numCols - 1;
         while (plato[li][col].contientZombie()) {
@@ -74,14 +81,36 @@ public class Plateau {
         placeZombie(z, li, col);
         z.getInfoActuelle().setPosX(li);
         z.getInfoActuelle().setPosY(col);
-        return z;
+        moveZombie(z);
+    }
+
+        public void moveZombie(Zombie z) {
+        Plateau plato = this;                          
+        int li = z.getInfoActuelle().getPosX();
+        int col = z.getInfoActuelle().getPosY();
+        while(z.peutDeplacer(plato)){ 
+                removeZombie(li, col);
+                col=col-1;
+                sleep(1000);
+                placeZombie(z, li, col);
+                plato.affiche();
+            }
+        }
+
+    public void moveRandomZombies(List<Zombie> listeZombies) {
+        for (int i = 0; i < listeZombies.size(); i++) {
+            sleep(1000);
+            moveZombie(listeZombies.get(i));
+            sleep(1000);
+        }
+        sleep(1000);
     }
 
     public void spawnRandomZombies(List<Zombie> listeZombies) {
         Random rd = new Random();
         int zombie = rd.nextInt(listeZombies.size()-0+1)+0;
         for (int i = 0; i < listeZombies.size(); i++) {
-            moveZombie(spawnZombie(listeZombies.get(zombie)));
+            spawnZombie(listeZombies.get(zombie));
         }
     }
 
@@ -134,28 +163,6 @@ public class Plateau {
     }
 }
 
-    public void moveZombie(Zombie z) {
-        Plateau plato = this;                          
-        int li = z.getInfoActuelle().getPosX();
-        int col = z.getInfoActuelle().getPosY();
-        while(z.getInfoActuelle().getPosY()>0){ 
-                removeZombie(li, col);
-                col=col-1;
-                sleep(1000);
-                placeZombie(z, li, col);
-                plato.affiche();
-                z.getInfoActuelle().setPosY(col);
-            }
-        }
-
-    public void moveRandomZombies(List<Zombie> listeZombies) {
-        for (int i = 0; i < listeZombies.size(); i++) {
-            sleep(1000);
-            moveZombie(listeZombies.get(i));
-            sleep(1000);
-        }
-        sleep(1000);
-    }
 
 
        private static void sleep(int milliseconds) {

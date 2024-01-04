@@ -48,4 +48,14 @@ public class BasicMario extends Mario{
             }
         }
 }
+
+public boolean aGagner(Plateau p){
+    int [] pos = this.getPosition();
+    if((p.getCase(pos[0],pos[1]+1).contientZombie())){
+       if(p.getCase(pos[0],pos[1]+1).getPersonnage().getInfoActuelle().getvie()<=0)
+        return true;
+     }
+    return false;
+    }
+
 }

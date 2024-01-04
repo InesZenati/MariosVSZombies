@@ -35,6 +35,9 @@ import java.util.List;
                     System.out.println(5);
                         System.out.println("BasicMario attaque !");
                     mario.attaque(plato);
+                    if(mario.aGagner(plato)){
+                        plato.removeZombie(mario.getPosition()[0], mario.getPosition()[1]+1);
+                    }
                 }
                 }
                 break;   
