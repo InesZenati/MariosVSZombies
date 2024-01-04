@@ -12,16 +12,12 @@ public class Plateau {
         creePLato();
     }
 
+    
     private void creePLato() {
-        WallBrick w = new WallBrick();
         for (int li = 0; li < numLi; li++) {
             for (int col = 0; col < numCols; col++) {
-                //place WallBrick dès la creation du plateau
-                if(col==0){
-                    plato[li][col]= new Case(li,col,w);
-                }else{
                     plato[li][col] = new Case(li, col);
-                }
+                
             }
         }
     }
@@ -68,7 +64,7 @@ public class Plateau {
         plato[li][col].setZombie(null);
     }
 
-    public void spawnZombie(Zombie z) {
+    public Zombie spawnZombie(Zombie z) {
         int li = 1+ (int) (Math.random() * numLi-1);
         int col = numCols - 1;
         while (plato[li][col].contientZombie()) {
@@ -78,16 +74,16 @@ public class Plateau {
         placeZombie(z, li, col);
         z.getInfoActuelle().setPosX(li);
         z.getInfoActuelle().setPosY(col);
+        return z;
     }
 
     public void spawnRandomZombies(List<Zombie> listeZombies) {
         Random rd = new Random();
         int zombie = rd.nextInt(listeZombies.size()-0+1)+0;
         for (int i = 0; i < listeZombies.size(); i++) {
-            spawnZombie(listeZombies.get(zombie));
+            moveZombie(spawnZombie(listeZombies.get(zombie)));
         }
     }
-
 
 
     public void affiche() {
@@ -143,10 +139,6 @@ public class Plateau {
         int li = z.getInfoActuelle().getPosX();
         int col = z.getInfoActuelle().getPosY();
         while(z.getInfoActuelle().getPosY()>0){ 
-      
-           if (z.peutAttaquer(plato)) {
-
-           } else {
                 removeZombie(li, col);
                 col=col-1;
                 sleep(1000);
@@ -155,7 +147,16 @@ public class Plateau {
                 z.getInfoActuelle().setPosY(col);
             }
         }
-       }
+
+    public void moveRandomZombies(List<Zombie> listeZombies) {
+        for (int i = 0; i < listeZombies.size(); i++) {
+            sleep(1000);
+            moveZombie(listeZombies.get(i));
+            sleep(1000);
+        }
+        sleep(1000);
+    }
+
 
        private static void sleep(int milliseconds) {
         try {

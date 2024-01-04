@@ -12,6 +12,7 @@ public class ZombieThread extends Thread {
 
     @Override
     public void run() {
+        
                 plato.spawnRandomZombies(generateEnemies(10));
                 plato.affiche();
                 sleep(100);   

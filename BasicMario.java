@@ -5,9 +5,7 @@ public class BasicMario extends Mario{
     public void attaque(Zombie z){
        
     }
-    public void takeDamage(int degat){
-        this.getInfoActuelle().setvie(this.getInfoActuelle().getvie() - degat);
-    }
+
 
     public void attaque (Plateau p){
         int[] pos = this.getPosition();

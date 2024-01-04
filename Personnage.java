@@ -11,7 +11,9 @@ public class Personnage {
     public Personnage(boolean t){
         this(t,null);
     }
-
+    public void takeDamage(int degat){
+        this.getInfoActuelle().setvie(this.getInfoActuelle().getvie() - degat);
+    }
 
    public String toString(){
         return this.name + " \n Point de vie :" + this.InfoActuelle.getvie() + " \n Attaque :" + this.InfoActuelle.getAttaque() + " \n Defense :" + this.InfoActuelle.getDefense();
@@ -30,7 +32,7 @@ public class Personnage {
         int [] position = { this.InfoActuelle.getPosX() , this.InfoActuelle.getPosY()};
         return position;
     }
-
+/* 
     public String attaque(Personnage p){
         int attaque = this.getInfoActuelle().getAttaque();
         int defense =p.getInfoActuelle().getDefense();
@@ -41,7 +43,7 @@ public class Personnage {
         }
         return(this.name+" inflige "+attaque+" de degat a "+ p.getName());
     }
-    
+    */
     
     public boolean getTour(){
         return this.tour;
