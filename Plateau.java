@@ -63,7 +63,7 @@ public class Plateau {
         plato[li][col].setZombie(null);
     }
 
-    public void spawnZombie(Zombie z) {
+    public Zombie spawnZombie(Zombie z) {
         int li = 1+ (int) (Math.random() * numLi-1);
         int col = numCols - 1;
         while (plato[li][col].contientZombie()) {
@@ -73,13 +73,14 @@ public class Plateau {
         placeZombie(z, li, col);
         z.getInfoActuelle().setPosX(li);
         z.getInfoActuelle().setPosY(col);
+        return z;
     }
 
     public void spawnRandomZombies(List<Zombie> listeZombies) {
         Random rd = new Random();
         int zombie = rd.nextInt(listeZombies.size()-0+1)+0;
         for (int i = 0; i < listeZombies.size(); i++) {
-            spawnZombie(listeZombies.get(zombie));
+            moveZombie(spawnZombie(listeZombies.get(zombie)));
         }
     }
 
@@ -165,13 +166,13 @@ public class Plateau {
         Plateau p = new Plateau(6, 11);
         Zombie1 z = new Zombie1(1000);
         p.affiche();
-      //  p.spawnZombie(z);
-       // p.affiche();
-        //System.out.println("mvmt");
-        //p.moveZombie(z);
-         //p.affiche();
-      //p.placeZombie(z, 4, 10);
-      //p.affiche();
+        p.spawnZombie(z);
+        p.affiche();
+        System.out.println("mvmt");
+        p.moveZombie(z);
+        p.affiche();
+        p.placeZombie(z, 4, 10);
+        p.affiche();
 
     }
 }

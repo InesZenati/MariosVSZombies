@@ -13,9 +13,7 @@ public abstract class Personnage {
     }
 
 
-   public String toString(){
-        return this.name + " \n Point de vie :" + this.InfoActuelle.getvie() + " \n Attaque :" + this.InfoActuelle.getAttaque() + " \n Defense :" + this.InfoActuelle.getDefense();
-    }
+   public abstract String toString();
 
     public boolean estVivant(){
         if(this.InfoActuelle.getvie() > 0){
