@@ -29,6 +29,14 @@ public class Case {
         return false;
     }
 
+        public boolean contientZombie2() {
+      if (p!=null){
+            System.out.println(!p.getTour());
+            return !p.getTour();
+       }
+       return false;
+    }
+
     public Personnage getPersonnage() {
         return this.p;
     }

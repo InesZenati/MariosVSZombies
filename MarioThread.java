@@ -18,22 +18,23 @@ import java.util.List;
             plato.affiche();
         }
     }
-
+// ajoue try catch
     private void placerMario(String tour) {
         switch (tour.charAt(0)) {
             case 'B':
              if (listeMario.get(0).getPrix() <= this.joueur.getArgent()){ 
                 System.out.println(0);
-                plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
-                System.out.println(1);
-                this.joueur.decrementerArgent(listeMario.get(0).getPrix());
-                System.out.println(2);
-                 if(listeMario.get(0).estVivant()){ 
-                if(listeMario.get(0).peutAttaquer(plato)){
+                BasicMario mario = new BasicMario();
+                plato.placeMario(mario, Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
+                System.out.println(mario.toString());
+                this.joueur.decrementerArgent(mario.getPrix());
+                System.out.println(2); 
+               while(mario.estVivant()){
+             //   System.out.println(3);
+                if(mario.peutAttaquer(plato)){
                    System.out.println(4);
-                    BasicMario mario = (BasicMario) listeMario.get(0);
                     System.out.println(5);
-                        System.out.println("BasicMario attaque !");
+                    System.out.println("BasicMario attaque !");
                     mario.attaque(plato);
                     if(mario.aGagner(plato)){
                         plato.removeZombie(mario.getPosition()[0], mario.getPosition()[1]+1);
