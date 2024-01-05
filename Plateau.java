@@ -68,9 +68,6 @@ public class Plateau {
         plato[li][col].setZombie(null);
     }
 
-   
-
-
     public void spawnZombie(Zombie z) {
         int li = 1+ (int) (Math.random() * numLi-1);
         int col = numCols - 1;

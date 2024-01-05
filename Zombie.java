@@ -64,7 +64,9 @@ public boolean peutDeplacer(Plateau p){
 }
     return false;
 }
-    
+
+
+
 } 
     
 
