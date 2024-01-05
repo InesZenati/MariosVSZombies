@@ -53,6 +53,19 @@ public abstract class Zombie extends Personnage {
         }
     }
 
+    public boolean aGagner(Plateau p){
+        int [] pos = this.getPosition();
+        int li = pos[0];
+        int coll = pos[1]-1;
+        if (p.getCase(li, coll).contientMario()&&this.estVivant()){
+            if(p.getCase(li, coll).getPersonnage().estVivant()){
+                p.removeMario(li, coll);
+                return true;
+            }
+        }
+        return false;
+    }
+
 public boolean peutDeplacer(Plateau p){ 
     int [] pos = this.getPosition();
     int col = pos[1];
