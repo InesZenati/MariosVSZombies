@@ -12,7 +12,7 @@ public class ZombieThread extends Thread {
 
     @Override
     public void run() {
-        
+
                 plato.spawnRandomZombies(generateEnemies(10));
                 plato.affiche();
                 sleep(100);   
@@ -27,9 +27,9 @@ public class ZombieThread extends Thread {
         List<Zombie> ennemis = new ArrayList<>();
         Random random = new Random();
 
-        // Définir la proportion de zombies de type 1 et type 2
+        // Définir la proportion de zombies 
         int zombieType1Percentage = 70;
-        int zombieType2Percentage = 30;
+       // int zombieType2Percentage = 30;
 
         for (int i = 0; i < n; i++) {
             int randomNumber = random.nextInt(100) + 1; // Générer un nombre entre 1 et 100 inclus

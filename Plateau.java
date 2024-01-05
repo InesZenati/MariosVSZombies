@@ -170,6 +170,10 @@ public class Plateau {
             e.printStackTrace();
         }
     }
+
+    public boolean partieFinish(){
+        
+    }
   //
   
     public static void main(String[] args) {
