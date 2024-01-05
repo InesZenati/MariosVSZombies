@@ -91,8 +91,11 @@ public class BigMario extends Mario{
             p.removeZombie(pos[0],pos[1]+1);
             p.removeZombie(pos[0],pos[1]+2);
            }
-           
-
+            else if(p.getCase(pos[0],pos[1]+1).getPersonnage().getInfoActuelle().getvie()<=0){
+            p.removeZombie(pos[0],pos[1]+1);
+           } else if(p.getCase(pos[0],pos[1]+2).getPersonnage().getInfoActuelle().getvie()<=0){
+            p.removeZombie(pos[0],pos[1]+2);
+              }
             return true;
          }
         return false;
