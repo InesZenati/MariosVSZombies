@@ -43,7 +43,7 @@ public class MenuGUI extends JFrame {
         JButton startGameButton = new JButton("Démarrer une nouvelle partie");
         startGameButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                menu.afficherMessage("Démarrage d'une nouvelle partie...");
+                afficherMessage("Démarrage d'une nouvelle partie...");
             }
         });
         panel.add(startGameButton);
