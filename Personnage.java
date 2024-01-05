@@ -32,7 +32,7 @@ public abstract class Personnage {
     }
 
     public abstract void attaque (Plateau p);
-    
+    public abstract boolean peutAttaquer(Plateau p);
     
     public boolean getTour(){
         return this.tour;

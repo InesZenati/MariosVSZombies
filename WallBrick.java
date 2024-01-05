@@ -4,4 +4,7 @@ public class WallBrick extends Mario{
     }
     public void attaque(Plateau p){
     }
+    public boolean peutAttaquer(Plateau p){
+        return false;
+    }
 }
