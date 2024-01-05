@@ -113,12 +113,13 @@ public class Jeu {
             System.out.print("Argent : ");
             joueur.afficheArgent();
             plato.affiche();
-        
             MarioThread marioThread = new MarioThread(plato, joueur, listeMario);
             ZombieThread zombieThread = new ZombieThread(plato, ennemis);
+            AttaqueThread attaqueThread = new AttaqueThread(plato);
         
             marioThread.start();
             zombieThread.start();
+            attaqueThread.start();
     }
 
     

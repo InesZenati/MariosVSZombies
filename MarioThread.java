@@ -29,17 +29,6 @@ import java.util.List;
                 System.out.println(mario.toString());
                 this.joueur.decrementerArgent(mario.getPrix());
                 System.out.println(2); 
-               while(mario.estVivant()){
-             //   System.out.println(3);
-                if(mario.peutAttaquer(plato)){
-                   System.out.println(4);
-                    System.out.println(5);
-                    System.out.println("BasicMario attaque !");
-                    mario.attaque(plato);
-                    mario.aGagner(plato);
-                }
-                //sleep(1000);
-                }
                 break;   
                 }
                 System.out.println("Solde insuffisant");
