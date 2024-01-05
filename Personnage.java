@@ -31,16 +31,7 @@ public abstract class Personnage {
         return position;
     }
 
-    public String attaque(Personnage p){
-        int attaque = this.getInfoActuelle().getAttaque();
-        int defense =p.getInfoActuelle().getDefense();
-        if(attaque>defense){
-            p.InfoActuelle.setvie(p.getInfoActuelle().getvie()-attaque);
-        }else{
-            attaque=attaque/2;
-        }
-        return(this.name+" inflige "+attaque+" de degat a "+ p.getName());
-    }
+    public abstract void attaque (Plateau p);
     
     
     public boolean getTour(){
