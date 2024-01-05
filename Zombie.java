@@ -64,6 +64,18 @@ public boolean peutDeplacer(Plateau p){
 }
     return false;
 }
+    public boolean aGagner(Plateau p){
+        int [] pos = this.getPosition();
+        int li = pos[0];
+        int col = pos[1];
+        if(p.getCase(li, col-1).contientMario()&&this.estVivant()){
+            if(!p.getCase(li, col-1).getPersonnage().estVivant()){
+                p.removeMario(li, col-1);
+                return true;
+            }
+        }
+        return false;
+    }
     
 } 
     
