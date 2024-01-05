@@ -88,8 +88,9 @@ public class Plateau {
         while(z.peutDeplacer(plato)){ 
                 removeZombie(li, col);
                 col=col-1;
-                sleep(1000);
+                sleep(100);
                 placeZombie(z, li, col);
+                sleep(1000);
                 plato.affiche();
             }
         }
@@ -105,8 +106,8 @@ public class Plateau {
 
     public void spawnRandomZombies(List<Zombie> listeZombies) {
         Random rd = new Random();
-        int zombie = rd.nextInt(listeZombies.size()-0+1)+0;
-        for (int i = 0; i < listeZombies.size(); i++) {
+        int zombie = rd.nextInt(listeZombies.size());
+        for (int i = 0; i < listeZombies.size()-1; i++) {
             spawnZombie(listeZombies.get(zombie));
         }
     }

@@ -36,10 +36,9 @@ import java.util.List;
                     System.out.println(5);
                     System.out.println("BasicMario attaque !");
                     mario.attaque(plato);
-                    if(mario.aGagner(plato)){
-                        plato.removeZombie(mario.getPosition()[0], mario.getPosition()[1]+1);
-                    }
+                    mario.aGagner(plato);
                 }
+                //sleep(1000);
                 }
                 break;   
                 }
@@ -82,6 +81,13 @@ import java.util.List;
             }
             System.out.println("Solde insuffisant");
                 break;
+        }
+    }
+    private static void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

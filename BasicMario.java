@@ -28,6 +28,7 @@ public class BasicMario extends Mario{
              return true;
          }else{
              System.out.println("non");
+             p.affiche();
          }
       //   System.out.println(5);
          return false;

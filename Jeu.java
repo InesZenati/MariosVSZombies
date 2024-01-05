@@ -121,13 +121,7 @@ public class Jeu {
             zombieThread.start();
     }
 
-    private static void sleep(int milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+    
     
 
     public void jouerPartieMoyen(){

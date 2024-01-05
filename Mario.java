@@ -16,6 +16,14 @@ public abstract class Mario extends Personnage {
         return this.getName() + " \n Point de vie :" + this.getInfoActuelle().getvie() + " \n Attaque :" + this.getInfoActuelle().getAttaque() + " \n Defense :" + this.getInfoActuelle().getDefense()+ " \n Prix :" + this.prix;
     }
 
+    public boolean superAttaque(Plateau p){
+        if(this.peutAttaquer(p)){
+            this.attaque(p);
+            return true;
+        }
+        return false;
+    }
+
     public boolean aGagner(Plateau p){
         int [] pos = this.getPosition();
         if(pos[1]==p.getNumCols()-1){
