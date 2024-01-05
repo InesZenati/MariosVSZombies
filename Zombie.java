@@ -46,17 +46,17 @@ public abstract class Zombie extends Personnage {
         return false;
     }
 
-    public void attaquer(Plateau p){
+    public void attaque(Plateau p){
         int [] pos = this.getPosition();
         if(p.getCase(pos[0],pos[1]-1).contientMario()){
-              if(p.getCase(pos[0], pos[1]-1).getPersonnage().getInfoActuelle().getDefense()>this.getInfoActuelle().getAttaque()){;
-                    p.getCase(pos[0], pos[1]-1).getPersonnage().takeDamage(this.getInfoActuelle().getAttaque()/2);
-                }
-                else{
-                    p.getCase(pos[0], pos[1]-1).getPersonnage().takeDamage(this.getInfoActuelle().getAttaque());
-                }
+            Personnage m = p.getCase(pos[0],pos[1]-1).getPersonnage();
+            if(m.getInfoActuelle().getDefense()>this.getInfoActuelle().getAttaque()){;
+                m.takeDamage(this.getInfoActuelle().getAttaque()/2);
+            }else{
+                m.takeDamage(this.getInfoActuelle().getAttaque());
+            }
+        }
     }
-}
 
 public boolean peutDeplacer(Plateau p){ 
     int [] pos = this.getPosition();
