@@ -30,5 +30,23 @@ public class FireMario  extends Mario{
             }
         }       
     }
+
+    public boolean peutAttaquer(Plateau p){
+        // System.out.println(1);
+       int [] pos = this.getPosition();
+        int li = pos[0];
+        int col = pos[1];
+       //  System.out.println(2);
+       for(int i=1;i<4;i++){
+           if(p.getCase(li,col+i).contientZombie2()){
+             System.out.println(3);
+               return true;
+         }else{
+             System.out.println("non");
+         }
+      //   System.out.println(5);
+     } 
+     return false;
+    }
    
 }
