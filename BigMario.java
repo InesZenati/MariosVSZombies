@@ -83,4 +83,18 @@ public class BigMario extends Mario{
             }
         }
     }  
+
+    public boolean aGagner(Plateau p){
+        int [] pos = this.getPosition();
+        if((p.getCase(pos[0],pos[1]+1).contientZombie() || p.getCase(pos[0],pos[1]+2).contientZombie())){
+           if(p.getCase(pos[0],pos[1]+1).getPersonnage().getInfoActuelle().getvie()<=0 && p.getCase(pos[0],pos[1]+2).getPersonnage().getInfoActuelle().getvie()<=0){
+            p.removeZombie(pos[0],pos[1]+1);
+            p.removeZombie(pos[0],pos[1]+2);
+           }
+           
+
+            return true;
+         }
+        return false;
+        }
 }
