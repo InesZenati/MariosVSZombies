@@ -4,7 +4,13 @@ public class BigMario extends Mario{
     }
     public void attaque(Plateau p){
         int [] pos = this.getPosition();
-        if(p.getCase(pos[0],pos[1]+1).contientZombie() && p.getCase(pos[0],pos[1]+2).contientZombie()){
+        for(int i=1;i<3;i++){
+            if(p.getCase(pos[0], pos[1]+1).contientZombie()){
+                Personnage z1 = p.getCase(pos[0],pos[1]+i).getPersonnage();
+                z1.takeDamage(z1.getInfoActuelle().getvie()/2);
+            }
+        }
+        /*if(p.getCase(pos[0],pos[1]+1).contientZombie() && p.getCase(pos[0],pos[1]+2).contientZombie()){
                 Personnage z1 = p.getCase(pos[0],pos[1]+1).getPersonnage();
                 z1.takeDamage(z1.getInfoActuelle().getvie()/2);
                 Personnage z2 = p.getCase(pos[0],pos[1]+2).getPersonnage();
@@ -15,7 +21,7 @@ public class BigMario extends Mario{
         }else if(p.getCase(pos[0],pos[1]+2).contientZombie()){
             Personnage z2 = p.getCase(pos[0],pos[1]+2).getPersonnage();
             z2.takeDamage(z2.getInfoActuelle().getvie()/2);
-        }
+        }*/
     }  
     public boolean peutAttaquer(Plateau p){
         // System.out.println(1);

@@ -33,11 +33,6 @@ public abstract class Zombie extends Personnage {
         return this.getName() + " \n Point de vie :" + this.getInfoActuelle().getvie() + " \n Attaque :" + this.getInfoActuelle().getAttaque() + " \n Defense :" +
          this.getInfoActuelle().getDefense()+" \n Vitesse :"+v+" \n Gain :"+this.gain;
     }
-
-
-    public void takeDamage(int degat){
-        this.getInfoActuelle().setvie(this.getInfoActuelle().getvie() - degat);
-    }
     public boolean peutAttaquer(Plateau p){
         int [] pos = this.getPosition();
         if(p.getCase(pos[0],pos[1]-1).contientMario()){
