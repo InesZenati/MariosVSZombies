@@ -27,7 +27,8 @@ public class MenuGUI extends JFrame {
         JButton rulesButton = new JButton("Lire les règles du jeu");
         rulesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                menu.afficherReglesDuJeu();
+        JPanel regles = new JPanel();
+        regles.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
             }
         });
         panel.add(rulesButton);
@@ -43,7 +44,7 @@ public class MenuGUI extends JFrame {
         JButton startGameButton = new JButton("Démarrer une nouvelle partie");
         startGameButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                afficherMessage("Démarrage d'une nouvelle partie...");
+             //   afficherMessage("Démarrage d'une nouvelle partie...");
             }
         });
         panel.add(startGameButton);
