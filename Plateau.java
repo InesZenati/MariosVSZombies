@@ -135,7 +135,7 @@ public class Plateau {
                     else if(plato[li][col].getPersonnage().getName()=="WallBrick"){
                     System.out.print("|W_|");
                     }
-                    else if(plato[li][col].getPersonnage().getName()=="BigtMario"){
+                    else if(plato[li][col].getPersonnage().getName()=="BigMario"){
                     System.out.print("|G_|");
                     }
                     else if(plato[li][col].getPersonnage().getName()=="SuperMario"){
