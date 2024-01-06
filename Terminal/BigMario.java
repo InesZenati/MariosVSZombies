@@ -5,7 +5,7 @@ public class BigMario extends Mario{
     public void attaque(Plateau p){
         int [] pos = this.getPosition();
         for(int i=1;i<3;i++){
-            if(p.getCase(pos[0], pos[1]+1).contientZombie()){
+            if(p.getCase(pos[0], pos[1]+i).contientZombie()){
                 Personnage z1 = p.getCase(pos[0],pos[1]+i).getPersonnage();
                 z1.takeDamage(z1.getInfoActuelle().getvie()/2);
             }
@@ -41,21 +41,32 @@ public class BigMario extends Mario{
      return false;
     }
 
+    public String estDevant(Plateau p){
+        return"Bigmario";
+    }
+
 
     public boolean aGagner(Plateau p){
         int [] pos = this.getPosition();
-        if((p.getCase(pos[0],pos[1]+1).contientZombie() || p.getCase(pos[0],pos[1]+2).contientZombie())){
-           if(p.getCase(pos[0],pos[1]+1).getPersonnage().getInfoActuelle().getvie()<=0 && p.getCase(pos[0],pos[1]+2).getPersonnage().getInfoActuelle().getvie()<=0){
-            p.removeZombie(pos[0],pos[1]+1);
-            p.removeZombie(pos[0],pos[1]+2);
-           }
-            else if(p.getCase(pos[0],pos[1]+1).getPersonnage().getInfoActuelle().getvie()<=0){
-            p.removeZombie(pos[0],pos[1]+1);
-           } else if(p.getCase(pos[0],pos[1]+2).getPersonnage().getInfoActuelle().getvie()<=0){
-            p.removeZombie(pos[0],pos[1]+2);
-              }
-            return true;
-         }
-        return false;
+        if((p.getCase(pos[0],pos[1]+1).contientZombie()&&p.getCase(pos[0],pos[1]+2).contientZombie())){
+            if(p.getCase(pos[0],pos[1]+1).getPersonnage().getInfoActuelle().getvie()<=0 && p.getCase(pos[0],pos[1]+2).getPersonnage().getInfoActuelle().getvie()<=0){
+                p.removeZombie(pos[0],pos[1]+1);
+                p.removeZombie(pos[0],pos[1]+2);
+                return true;
+            }
+        }else if(p.getCase(pos[0],pos[1]+1).contientZombie()){
+            if(p.getCase(pos[0],pos[1]+1).getPersonnage().getInfoActuelle().getvie()<=0){
+                p.removeZombie(pos[0],pos[1]+1);
+                return true;
+            }
+        }else if(p.getCase(pos[0],pos[1]+2).contientZombie()){
+            if(p.getCase(pos[0],pos[1]+2).getPersonnage().getInfoActuelle().getvie()<=0){
+                p.removeZombie(pos[0],pos[1]+2);
+                return true;
+            }
         }
+        return false;
+    }
+        
 }
+

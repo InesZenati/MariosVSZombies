@@ -33,12 +33,13 @@ public class ZombieThread extends Thread {
 
         for (int i = 0; i < n; i++) {
             int randomNumber = random.nextInt(100) + 1; // Générer un nombre entre 1 et 100 inclus
-
+            Zombie1 b = new Zombie1(1000);
+            Zombie2 c = new Zombie2(1000);
             // Sélectionner le type de zombie en fonction de la proportion définie
             if (randomNumber <= zombieType1Percentage) {
-                ennemis.add(new Zombie1(1000));
+                ennemis.add(b);
             } else {
-                ennemis.add(new Zombie2(2000));
+                ennemis.add(c);
             }
         }
         return ennemis;

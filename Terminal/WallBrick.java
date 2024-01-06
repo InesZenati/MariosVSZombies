@@ -7,4 +7,7 @@ public class WallBrick extends Mario{
     public boolean peutAttaquer(Plateau p){
         return false;
     }
+    public String estDevant(Plateau p){
+        return"Wallmario";
+    }
 }

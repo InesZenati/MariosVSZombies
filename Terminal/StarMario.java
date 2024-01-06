@@ -18,6 +18,10 @@ public class StarMario extends Mario{
         }
     }
 
+    public String estDevant(Plateau p){
+        return"Starmario";
+    }
+
     public boolean peutAttaquer(Plateau p){
         // System.out.println(1);
        int [] pos = this.getPosition();
