@@ -172,7 +172,7 @@ public class Plateau {
     }
 
     public boolean partieFinish(){
-        
+        return true;
     }
   //
   
