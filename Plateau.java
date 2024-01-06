@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 public class Plateau {
     private int numLi;
     private int numCols;
     private Case[][] plato;
+    private List<Personnage> PersoDansPlato = new ArrayList<>();
 
     public Plateau(int numLi, int numCols) {
         this.numLi = numLi;
@@ -12,6 +14,21 @@ public class Plateau {
         creePLato();
     }
 
+    public List<Personnage> getListPerso(){
+        return this.PersoDansPlato;
+    }
+
+    public void ajouter(Personnage p){
+        this.PersoDansPlato.add(p);
+    }
+    public void retirer(Personnage p){
+        this.PersoDansPlato.remove(p);
+    } 
+    public void afficheList(){
+        for(int i =0;i<this.PersoDansPlato.size();i++){
+            System.out.println(this.PersoDansPlato.get(i).toString());
+        }
+    }
     
     private void creePLato() {
         for (int li = 0; li < numLi; li++) {
@@ -37,35 +54,43 @@ public class Plateau {
         plato[li][col] = newCase;
     }
 
-
-    public void placeMario(Mario m, int li, int col) {
+    //A AMELIORER
+    public boolean placeMario(Mario m, int li, int col) {
         if(this.plato[li][col].contientZombie()){
             System.out.println("Impossible !Un Zombie se trouve dans la case ["+li+","+col+"]");
+            return false;
         }
         //A voir si on garde ou pas
         if(this.plato[li][col].contientMario()){
             System.out.println("Il y a déjà un Mario placé dans la case ["+li+","+col+"]");
+            return false;
         }
         if(!this.plato[li][col].contientZombie()&&!this.plato[li][col].contientMario()){
             m.getInfoActuelle().setPosX(li);
             m.getInfoActuelle().setPosY(col);
+            this.ajouter(m);
             plato[li][col].setMario(m);
+            return true;
         }
+        return false;
         
     }
     public void placeZombie(Zombie z, int li, int col) {
         //(!plato[li][col].contientZombie() && !plato[li][col].contientMario()){    
         z.getInfoActuelle().setPosX(li);
         z.getInfoActuelle().setPosY(col);
+        this.ajouter(z);
         plato[li][col].setZombie(z);
         //}
     }
 
     public void removeMario(int li, int col) {
-        plato[li][col].setMario(null);
+        this.retirer(plato[li][col].getPersonnage());
+        plato[li][col].supprimerPerso();;
     }
     public void removeZombie(int li, int col) {
-        plato[li][col].setZombie(null);
+        this.retirer(plato[li][col].getPersonnage());
+        plato[li][col].supprimerPerso();
     }
 
     public void spawnZombie(Zombie z) {
@@ -75,9 +100,8 @@ public class Plateau {
             li = (int) (Math.random() * numLi -1);
             col = numCols - 1;
         }
+        
         placeZombie(z, li, col);
-        z.getInfoActuelle().setPosX(li);
-        z.getInfoActuelle().setPosY(col);
         moveZombie(z);
     }
 
@@ -105,15 +129,21 @@ public class Plateau {
     }
 
     public void spawnRandomZombies(List<Zombie> listeZombies) {
-        Random rd = new Random();
-        int zombie = rd.nextInt(listeZombies.size());
         for (int i = 0; i < listeZombies.size()-1; i++) {
-            spawnZombie(listeZombies.get(zombie));
+            spawnZombie(listeZombies.get(i));
         }
     }
 
 
     public void affiche() {
+        /*for(int li = 0;li<numLi;li++){
+            for(int col = 0; col<numCols; col++){
+                if(plato[li][col].contientZombie()){
+                    System.out.println(plato[li][col].getPersonnage().toString());
+                }
+            }
+        }*/
+
         System.out.print("  ");
         for (int col = 0; col < numCols; col++) {
             System.out.print("  "+col+" " ); 

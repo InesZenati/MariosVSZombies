@@ -48,5 +48,8 @@ public class FireMario  extends Mario{
      } 
      return false;
     }
+    public String estDevant(Plateau p){
+        return"Firemario";
+    }
    
 }

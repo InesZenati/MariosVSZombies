@@ -51,5 +51,7 @@ public abstract class Personnage {
         this.InfoActuelle=i;
     }
 
+    public abstract String estDevant(Plateau p);
+
     
 }

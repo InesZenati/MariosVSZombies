@@ -46,6 +46,10 @@ public class Case {
     public int getCol() {
         return col;
     }
+    public void supprimerPerso(){
+        this.p=null;
+    }
+
     public void setMario (Mario newM) {
         p=newM;
     }

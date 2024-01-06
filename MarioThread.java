@@ -18,57 +18,38 @@ import java.util.List;
             plato.affiche();
         }
     }
+
+    private void placerMarioAux(String tour, Mario m){
+        if(m.getPrix()<=this.joueur.getArgent()){
+            if(plato.placeMario(m, Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)))){
+                this.joueur.decrementerArgent(m.getPrix());
+            }
+        }else{
+            System.out.println("Solde insuffisant");
+        }
+    }
 // ajoue try catch
     private void placerMario(String tour) {
         switch (tour.charAt(0)) {
             case 'B':
-             if (listeMario.get(0).getPrix() <= this.joueur.getArgent()){ 
-                System.out.println(0);
                 BasicMario mario = new BasicMario();
-                plato.placeMario(mario, Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
-                System.out.println(mario.toString());
-                this.joueur.decrementerArgent(mario.getPrix());
-                System.out.println(2); 
-                break;   
-                }
-                System.out.println("Solde insuffisant");
+                placerMarioAux(tour, mario);
                 break;
             case 'W':
-                plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
-                this.joueur.decrementerArgent(listeMario.get(0).getPrix());
+                WallBrick W = new WallBrick();
+                placerMarioAux(tour, W);
                 break;
             case 'F':
-             if (listeMario.get(0).getPrix() <= this.joueur.getArgent()){ 
-                plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
-                this.joueur.decrementerArgent(listeMario.get(0).getPrix());
-                if(listeMario.get(0).peutAttaquer(plato)){
-                    FireMario mario = (FireMario) listeMario.get(0);
-                    mario.attaque(plato);
-                }
-            }
-            System.out.println("Solde insuffisant");
+                FireMario F = new FireMario();
+                placerMarioAux(tour, F);
                 break;
             case 'G':
-                 if (listeMario.get(0).getPrix() <= this.joueur.getArgent()){ 
-                plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
-                this.joueur.decrementerArgent(listeMario.get(0).getPrix());
-                if(listeMario.get(0).peutAttaquer(plato)){
-                    BigMario mario = (BigMario) listeMario.get(0);
-                    mario.attaque(plato);
-                }
-            }
-            System.out.println("Solde insuffisant");
+                BigMario G = new BigMario();
+                placerMarioAux(tour, G);
                 break;
             case 'S':
-                if (listeMario.get(0).getPrix() <= this.joueur.getArgent()){ 
-                plato.placeMario(listeMario.get(0), Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)));
-                this.joueur.decrementerArgent(listeMario.get(0).getPrix());
-                if(listeMario.get(0).peutAttaquer(plato)){
-                    StarMario mario = (StarMario) listeMario.get(0);
-                    mario.attaque(plato);
-                }
-            }
-            System.out.println("Solde insuffisant");
+                StarMario S = new StarMario();
+                placerMarioAux(tour, S);
                 break;
         }
     }
