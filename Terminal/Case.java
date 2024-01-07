@@ -31,7 +31,7 @@ public class Case {
 
         public boolean contientZombie2() {
       if (p!=null){
-            System.out.println(!p.getTour());
+            //System.out.println(!p.getTour());
             return !p.getTour();
        }
        return false;

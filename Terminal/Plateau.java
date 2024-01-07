@@ -208,8 +208,8 @@ public class Plateau {
   
     public static void main(String[] args) {
         Plateau p = new Plateau(6, 11);
-        Zombie1 z = new Zombie1(1000);
-        BasicMario m = new BasicMario();
+        Zombie2 z = new Zombie2(1000);
+        StarMario m = new StarMario();
        // p.affiche();
         //p.spawnZombie(z);
         //p.affiche();
@@ -219,6 +219,12 @@ public class Plateau {
         p.placeZombie(z, 0, 1);
         p.placeMario(m, 0, 0);
         p.affiche();
+        System.out.println(z.toString());
+        System.out.println(m.toString());
         System.out.println(m.peutAttaquer(p));
+        m.attaque(p);
+        System.out.println(z.toString());
+        System.out.println(m.toString());
+
     }
 }

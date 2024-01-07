@@ -8,6 +8,7 @@ public class BigMario extends Mario{
             if(p.getCase(pos[0], pos[1]+i).contientZombie()){
                 Personnage z1 = p.getCase(pos[0],pos[1]+i).getPersonnage();
                 z1.takeDamage(z1.getInfoActuelle().getvie()/2);
+                this.aGagner(p, z1);
             }
         }
         /*if(p.getCase(pos[0],pos[1]+1).contientZombie() && p.getCase(pos[0],pos[1]+2).contientZombie()){
@@ -46,7 +47,7 @@ public class BigMario extends Mario{
     }
 
 
-    public boolean aGagner(Plateau p){
+    /*public boolean aGagner(Plateau p){
         int [] pos = this.getPosition();
         if((p.getCase(pos[0],pos[1]+1).contientZombie()&&p.getCase(pos[0],pos[1]+2).contientZombie())){
             if(p.getCase(pos[0],pos[1]+1).getPersonnage().getInfoActuelle().getvie()<=0 && p.getCase(pos[0],pos[1]+2).getPersonnage().getInfoActuelle().getvie()<=0){
@@ -66,7 +67,7 @@ public class BigMario extends Mario{
             }
         }
         return false;
-    }
+    }*/
         
 }
 
