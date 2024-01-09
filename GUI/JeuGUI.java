@@ -44,7 +44,7 @@ public class JeuGUI extends JFrame {
         cardPanel.add(welcomePageGUI, "Welcome");
 
         // Menu Page
-        MenuGUI menuPageGUI = new MenuGUI(this;
+        MenuGUI menuPageGUI = new MenuGUI(this);
         cardPanel.add(menuPageGUI, "Menu");
 
         // Set Page
