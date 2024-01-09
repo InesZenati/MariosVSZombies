@@ -144,8 +144,28 @@ public class PlateauGUI extends JPanel{
         }
 
     }
+/* 
+    public void updatePlateau(){
+        for (int i = 0; i < 10; i++){
+            for (int j =0; j <6 ; j++){
+                JPanel casePanel = createCase(i, j);
+                casePanel.setPreferredSize(new Dimension(100, 100));
+            
+                if(jeuGUI.getPlateau().getCase(i, j).contientPersonnage()){
+                    try {
+                        ImageIcon icon = new ImageIcon(getClass().getResource(jeuGUI.getPlateau().getCase(i, j).getPersonnage().getImagePath()));
+                        JLabel label = new JLabel();
+                        label.setIcon(icon);
+                        casePanel.add(label);
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
 
-
+*/
         
 
 

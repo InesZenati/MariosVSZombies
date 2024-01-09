@@ -22,6 +22,7 @@ public class Case {
         return false;
     }
 
+
     public boolean contientZombie() {
         if (p!=null){
             return !p.getTour();
