@@ -36,7 +36,7 @@ public class PlateauGUI extends JPanel{
         add(plateauPanel, BorderLayout.CENTER);
 
         InfoPanel = createInfoPanel();
-        add(InfoPanel,BorderLayout.NORTH)
+        add(InfoPanel,BorderLayout.NORTH);
     }
 
     private JPanel createSideMenu() {
@@ -153,7 +153,7 @@ public class PlateauGUI extends JPanel{
             for (int j =0; j <6 ; j++){
                 JPanel casePanel = createCase(i, j);
                 casePanel.setPreferredSize(new Dimension(100, 100));
-            
+        
                 if(jeuGUI.getPlateau().getCase(i, j).contientPersonnage()){
                     try {
                         ImageIcon icon = new ImageIcon(getClass().getResource(jeuGUI.getPlateau().getCase(i, j).getPersonnage().getImagePath()));
