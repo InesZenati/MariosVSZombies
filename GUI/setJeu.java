@@ -213,7 +213,7 @@ add(centralPanel, BorderLayout.CENTER);
         if (selectedDecor != null && selectedDifficulty != null) {
 
             // Afficher je pense on ajoute ds attributs pour avoir que une page afficher
-            cardLayout.show(cardPanel, "Game"); 
+            cardLayout.show(cardPanel, "PlateauGUI"); 
         }
     }
 

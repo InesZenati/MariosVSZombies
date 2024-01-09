@@ -5,12 +5,10 @@ import java.util.Scanner;
 public class Joueur {
     private final String name;
     private int argent =30;
-    private int score;
+    private int score=0;
 
-    public Joueur(String name, int argent, int score) {
+    public Joueur(String name) {
         this.name = name;
-        this.argent = argent;
-        this.score = score;
     }
 
     public String getName() {
@@ -72,7 +70,7 @@ public class Joueur {
         MArioDisponibles.add(new FireMario());
         MArioDisponibles.add(new BigMario());
         MArioDisponibles.add(new StarMario());
-        Joueur joueur = new Joueur("joueur", 30, 0);
+        Joueur joueur = new Joueur("joueur");
         joueur.afficherMArioDisponibles(MArioDisponibles);
     }
 }

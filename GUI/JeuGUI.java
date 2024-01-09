@@ -8,15 +8,18 @@ public class JeuGUI extends JFrame {
     private Joueur joueur;
 
     public static void main(String[] args) {
-        new JeuGUI();
+        Joueur j = new Joueur("test");
+        new JeuGUI(j);
+       
     }
 
-    public JeuGUI() {
+    public JeuGUI(Joueur j) {
         frame = new JFrame("MariosVSZombies");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
+        j = new Joueur("test");
 
         // Initialisation du CardLayout
         cardLayout = new CardLayout();
@@ -35,8 +38,8 @@ public class JeuGUI extends JFrame {
         cardPanel.add(config, "Config");
 
         // Game Page
-        Game jeu = new Game(cardLayout, cardPanel);
-        cardPanel.add(jeu, "Game");
+        PlateauGUI plateau = new PlateauGUI(cardLayout, cardPanel, this);
+        cardPanel.add(plateau, "PlateauGUI");
 
         frame.add(cardPanel);
 
@@ -45,5 +48,9 @@ public class JeuGUI extends JFrame {
 
         // Afficher la fenêtre principale
         frame.setVisible(true);
+    }
+
+    public Joueur getJoueur(){
+        return this.joueur;
     }
 }

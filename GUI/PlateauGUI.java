@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +18,12 @@ public class PlateauGUI extends JPanel{
     private JPanel cardPanel;
     private JeuGUI jeuGUI;
 
+    public JeuGUI getJeuGUI(){
+        return this.jeuGUI;
+    }
 
-    public PlateauGUI(CardLayout cardLayout , JPanel cardPanel){
+    public PlateauGUI(CardLayout cardLayout , JPanel cardPanel, JeuGUI jeuGUI){
+        this.jeuGUI = jeuGUI;
         this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
 
@@ -28,6 +34,12 @@ public class PlateauGUI extends JPanel{
         // Création du plateauPanel au centre
     plateauPanel = createPlateau();
     add(plateauPanel, BorderLayout.CENTER);
+
+    InfoPanel = createInfoPanel();
+    add(InfoPanel,BorderLayout.NORTH);
+
+
+
 
     }
 
@@ -56,6 +68,8 @@ public class PlateauGUI extends JPanel{
 
         JLabel titre = new JLabel(name);
         JLabel price = new JLabel("$" +prix);
+
+        mario.setLayout(new FlowLayout(FlowLayout.CENTER));//fait en sorte que les composants soient centrés et pas tt petits
 
         mario.add(titre);
         mario.add(price);   
@@ -88,22 +102,48 @@ public class PlateauGUI extends JPanel{
     }
 
     public JPanel createPlateau(){
+        int taille = 100;
         JPanel Plateau = new JPanel();
+         Plateau.setLayout(new GridLayout(10, 6));
         for (int i = 0; i < 10; i++){
             for (int j =0; j <6 ; j++){
+                JPanel casePanel = createCase(i, j);
+                casePanel.setPreferredSize(new Dimension(taille, taille));
                 
 
             }
         }
-        bacJPanel.setLayout(new GridLayout(10, 6));
-
+        return Plateau;
     }
 
-    public JPanel creatCase(){
-        JPanel case = new JPanel();
+    public JPanel createCase(int col , int li){
+        JPanel casePanel = new JPanel();
 
+        casePanel.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                casePanelClic(li, col);
+            }
+        });
+
+        return casePanel;
     }
 
+    public void casePanelClic(int li , int col){
+
+
+    }
+    public JPanel createInfoPanel(){
+        JPanel infoJoueur = new JPanel();
+        infoJoueur.setLayout(new BoxLayout(infoJoueur, BoxLayout.X_AXIS));
+        JLabel joueurName = new JLabel(this.getJeuGUI().getJoueur().getName());
+        JLabel joueurArgent = new JLabel("$ : "+this.getJeuGUI().getJoueur().getArgent());
+        JLabel joeuurScore = new JLabel("Score :"+this.getJeuGUI().getJoueur().getScore());
+        infoJoueur.add(joueurName);
+        infoJoueur.add(joueurArgent);
+        infoJoueur.add(joeuurScore);
+        return infoJoueur;
+    }
 
         
 

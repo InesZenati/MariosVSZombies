@@ -18,6 +18,7 @@ public class Game extends JPanel {
     private Joueur joueur;
     private CardLayout cardLayout;
     private JPanel cardPanel;
+   
 
     public Game(CardLayout cardLayout, JPanel cardPanel) {
         this.cardLayout = cardLayout;
