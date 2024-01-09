@@ -38,28 +38,8 @@ public class BasicMario extends Mario{
          return false;
      }
 
-<<<<<<< HEAD
-public boolean aGagner(Plateau p){
-    int [] pos = this.getPosition();
-    if((p.getCase(pos[0],pos[1]+1).contientZombie())&&this.estVivant()){
-       if(!p.getCase(pos[0],pos[1]+1).getPersonnage().estVivant()){
-        //System.out.println("Le Zombie est mort");
-        p.removeZombie(pos[0],pos[1]+1);
-        return true;
-       }
-     }
-     /*if(!this.estVivant()){
-        p.removeMario(pos[0], pos[1]);
-        return false;
-     }*/
-     //System.out.println("Vie du Zombie :"+p.getCase(pos[0],pos[1]+1).getPersonnage().getInfoActuelle().getvie());
-    return false;
-    }
-
     public String getImagePath(){
-        return "BasicMario.png";
+        return "images/mario.png";
     }
 
-=======
->>>>>>> 6cba05872efadaa90ed348c776e6a2fafe3d1bf4
 }

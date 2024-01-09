@@ -67,15 +67,14 @@ public class BigMario extends Mario{
             }
         }
         return false;
-<<<<<<< HEAD
+
     }
+
+    }*/
+
 
     public String getImagePath(){
         return "BasicMario.png";
     }
-=======
-    }*/
->>>>>>> 6cba05872efadaa90ed348c776e6a2fafe3d1bf4
-        
 }
 
