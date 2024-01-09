@@ -5,6 +5,7 @@ public class JeuGUI extends JFrame {
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel cardPanel;
+    private Joueur joueur;
 
     public static void main(String[] args) {
         new JeuGUI();
