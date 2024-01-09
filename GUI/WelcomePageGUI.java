@@ -50,6 +50,12 @@ public class WelcomePageGUI extends JPanel {
         welcomeLabel.setFont(marioFont.deriveFont(Font.PLAIN, 20));
         welcomeLabel.setForeground(Color.WHITE);
         playerNameField = new JTextField(15);
+        playerNameField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { // Switches to the "Welcome" page when the "Back" button is clicked
+                jeu.setJoueur(new Joueur(playerNameField.getText()));
+            }
+        });
         playerNameField.setHorizontalAlignment(JTextField.CENTER);
         playerNamePanel.add(welcomeLabel);
         playerNamePanel.add(playerNameField);
@@ -59,7 +65,7 @@ public class WelcomePageGUI extends JPanel {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel, "Menu");
+                jeu.getCardLayout().show(jeu.getCardPanel(), "Menu");
             }
         });
 
