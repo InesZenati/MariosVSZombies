@@ -52,8 +52,11 @@ public class WelcomePageGUI extends JPanel {
         playerNameField = new JTextField(15);
         playerNameField.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { // Switches to the "Welcome" page when the "Back" button is clicked
-                jeu.setJoueur(new Joueur(playerNameField.getText()));
+            public void actionPerformed(ActionEvent e) { 
+                String l =playerNameField.getText();
+                jeu.setJoueur(new Joueur(l));
+                System.out.println("Prenom 1 ?");
+                System.out.println(j.toString());
             }
         });
         playerNameField.setHorizontalAlignment(JTextField.CENTER);
@@ -65,7 +68,11 @@ public class WelcomePageGUI extends JPanel {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jeu.setJoueur(new Joueur(playerNameField.getText()));
+                String l =playerNameField.getText();
+                Joueur j = new Joueur(l);
+                System.out.println("Prenom 2 ?");
+                System.out.println(j.toString());
+                jeu.setJoueur(j);
                 jeu.getCardLayout().show(jeu.getCardPanel(), "Menu");
             }
         });
