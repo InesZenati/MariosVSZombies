@@ -27,6 +27,8 @@ public class PlateauGUI extends JPanel{
     public PlateauGUI(JeuGUI jeuGUI){
         this.jeuGUI = jeuGUI;
 
+        setLayout(new BorderLayout());//pour que le panel soit divisé en 5 parties
+
           // Création du menuPanel à gauche
         menuPanel = createSideMenu();
         add(menuPanel, BorderLayout.WEST);
@@ -37,6 +39,12 @@ public class PlateauGUI extends JPanel{
 
         InfoPanel = createInfoPanel();
         add(InfoPanel,BorderLayout.NORTH);
+
+        // Création du plateauPanel au centre
+        plateauPanel = createPlateau();
+        add(plateauPanel, BorderLayout.CENTER);
+
+
     }
 
     private JPanel createSideMenu() {
@@ -112,22 +120,26 @@ public class PlateauGUI extends JPanel{
     public JPanel createPlateau(){
         int taille = 100;
         JPanel Plateau = new JPanel();
-         Plateau.setLayout(new GridLayout(10, 6));
+         Plateau.setLayout(new GridLayout(5, 9));
         for (int i = 0; i < 10; i++){
             for (int j =0; j <6 ; j++){
                 JPanel casePanel = createCase(i, j);
                 casePanel.setPreferredSize(new Dimension(taille, taille));
 
-
+             Plateau.add(casePanel);
             }
         }
-
+        int boardWidth = 9 * taille;
+        int boardHeight = 5 * taille;
+        Plateau.setPreferredSize(new Dimension(boardWidth, boardHeight));
+    
         return Plateau;
     }
 
 
-    public JPanel createCase(int col , int li){
+    public JPanel createCase(int li , int col){
         JPanel casePanel = new JPanel();
+        casePanel.setBorder(BorderFactory.createLineBorder(Color.RED));
 
         casePanel.addMouseListener(new MouseAdapter(){
             @Override
@@ -153,7 +165,7 @@ public class PlateauGUI extends JPanel{
             for (int j =0; j <6 ; j++){
                 JPanel casePanel = createCase(i, j);
                 casePanel.setPreferredSize(new Dimension(100, 100));
-        
+        for (int i = 0; i < plateau.PersoDansPlato.size(); i++) {
                 if(jeuGUI.getPlateau().getCase(i, j).contientPersonnage()){
                     try {
                         ImageIcon icon = new ImageIcon(getClass().getResource(jeuGUI.getPlateau().getCase(i, j).getPersonnage().getImagePath()));
