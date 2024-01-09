@@ -139,7 +139,10 @@ public class PlateauGUI extends JPanel{
     }
 
     public void casePanelClic(int li , int col){
+        if(selectedPersonnage != null && this.getJeuGUI().getJoueur().getArgent() >= selectedPersonnage.getPrix()){
+          Mario mario = getPersonnageByName(selectedPersonnage.getName());
 
+        }
 
     }
 
