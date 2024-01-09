@@ -5,13 +5,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class MenuGUI extends JPanel {
-
+    private JeuGUI jeu;
     private CardLayout cardLayout;
     private JPanel cardPanel;
 
-    public MenuGUI(CardLayout cardLayout, JPanel cardPanel) {
-        this.cardLayout = cardLayout;
-        this.cardPanel = cardPanel;
+    public MenuGUI(JeuGUI j) {
+        jeu = j;
+        this.cardLayout = j.getCardLayout();
+        this.cardPanel = j.getCardPanel();
 
         setLayout(new BorderLayout());
 

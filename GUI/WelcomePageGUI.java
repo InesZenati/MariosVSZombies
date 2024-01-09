@@ -5,10 +5,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class WelcomePageGUI extends JPanel {
-
+    private JeuGUI jeu;
     private JTextField playerNameField;
 
-    public WelcomePageGUI(CardLayout cardLayout, JPanel cardPanel) {
+    public WelcomePageGUI(JeuGUI j) {
+        jeu =j;
         setLayout(new BorderLayout());
 
         // police Mario
