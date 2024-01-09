@@ -7,6 +7,10 @@ public class JeuGUI extends JFrame {
     private JPanel cardPanel;
     private Joueur joueur;
 
+    public Joueur getJoueur(){
+        return this.joueur;
+    }
+
     public static void main(String[] args) {
         new JeuGUI();
     }
@@ -35,7 +39,7 @@ public class JeuGUI extends JFrame {
         cardPanel.add(config, "Config");
 
         // Game Page
-        Game jeu = new Game(cardLayout, cardPanel);
+        PlateauGUI jeu = new PlateauGUI(cardLayout, cardPanel);
         cardPanel.add(jeu, "Game");
 
         frame.add(cardPanel);
