@@ -58,4 +58,11 @@ public class Case {
         p=newZ;
     }
 
+    public boolean contientPersonnage() {
+        if(contientMario() || contientZombie()){
+            return true;
+        }
+        return false;
+    }
+
 }

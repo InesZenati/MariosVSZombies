@@ -43,6 +43,7 @@ public class PlateauGUI extends JPanel{
         // Création du plateauPanel au centre
         plateauPanel = createPlateau();
         add(plateauPanel, BorderLayout.CENTER);
+        plateauPanel.setBorder(BorderFactory.createEmptyBorder(50, 30, 50, 60));
 
 
     }
@@ -121,17 +122,17 @@ public class PlateauGUI extends JPanel{
         int taille = 100;
         JPanel Plateau = new JPanel();
          Plateau.setLayout(new GridLayout(5, 9));
-        for (int i = 0; i < 10; i++){
-            for (int j =0; j <6 ; j++){
+        for (int i = 0; i < 6; i++){
+            for (int j =0; j <10 ; j++){
                 JPanel casePanel = createCase(i, j);
                 casePanel.setPreferredSize(new Dimension(taille, taille));
 
              Plateau.add(casePanel);
             }
         }
-        int boardWidth = 9 * taille;
+       /* int boardWidth = 9 * taille;
         int boardHeight = 5 * taille;
-        Plateau.setPreferredSize(new Dimension(boardWidth, boardHeight));
+        Plateau.setPreferredSize(new Dimension(boardWidth, boardHeight)); */
     
         return Plateau;
     }
@@ -139,7 +140,7 @@ public class PlateauGUI extends JPanel{
 
     public JPanel createCase(int li , int col){
         JPanel casePanel = new JPanel();
-        casePanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+        casePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         casePanel.addMouseListener(new MouseAdapter(){
             @Override
@@ -155,20 +156,20 @@ public class PlateauGUI extends JPanel{
         if(selectedPersonnage != null && this.getJeuGUI().getJoueur().getArgent() >= selectedPersonnage.getPrix()){
           Mario mario = getPersonnageByName(selectedPersonnage.getName());
           jeuGUI.getPlateau().placeMario(mario,li,col);
+          updatePlateau();
 
         }
 
     }
-/* 
+
     public void updatePlateau(){
-        for (int i = 0; i < 10; i++){
-            for (int j =0; j <6 ; j++){
+        for (int i = 0; i < 6; i++){
+            for (int j =0; j <10 ; j++){
                 JPanel casePanel = createCase(i, j);
                 casePanel.setPreferredSize(new Dimension(100, 100));
-        for (int i = 0; i < plateau.PersoDansPlato.size(); i++) {
                 if(jeuGUI.getPlateau().getCase(i, j).contientPersonnage()){
                     try {
-                        ImageIcon icon = new ImageIcon(getClass().getResource(jeuGUI.getPlateau().getCase(i, j).getPersonnage().getImagePath()));
+                        ImageIcon icon = new ImageIcon(getClass().getResource(getPersonnageByName((jeuGUI.getPlateau().getCase(i, j).getPersonnage().getName())).getImagePath()));
                         JLabel label = new JLabel();
                         label.setIcon(icon);
                         casePanel.add(label);
@@ -180,7 +181,6 @@ public class PlateauGUI extends JPanel{
         }
     }
 
-*/
         
 
 
