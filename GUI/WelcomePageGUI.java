@@ -65,6 +65,7 @@ public class WelcomePageGUI extends JPanel {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                jeu.setJoueur(new Joueur(playerNameField.getText()));
                 jeu.getCardLayout().show(jeu.getCardPanel(), "Menu");
             }
         });
