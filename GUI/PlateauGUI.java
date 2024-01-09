@@ -19,6 +19,7 @@ public class PlateauGUI extends JPanel{
     private JeuGUI jeuGUI;
 
     public JeuGUI getJeuGUI(){
+        this.selectedPersonnage=null;
         return this.jeuGUI;
     }
 
@@ -31,9 +32,11 @@ public class PlateauGUI extends JPanel{
         add(menuPanel, BorderLayout.WEST);
 
         // Création du plateauPanel au centre
-    plateauPanel = createPlateau();
-    add(plateauPanel, BorderLayout.CENTER);
+        plateauPanel = createPlateau();
+        add(plateauPanel, BorderLayout.CENTER);
 
+        InfoPanel = createInfoPanel();
+        add(InfoPanel,BorderLayout.NORTH)
     }
 
     private JPanel createSideMenu() {
