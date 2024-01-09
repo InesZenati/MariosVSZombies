@@ -54,4 +54,8 @@ public boolean aGagner(Plateau p){
     return false;
     }
 
+    public String getImagePath(){
+        return "BasicMario.png";
+    }
+
 }

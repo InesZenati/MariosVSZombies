@@ -51,5 +51,7 @@ public class FireMario  extends Mario{
     public String estDevant(Plateau p){
         return"Firemario";
     }
-   
+    public String getImagePath(){
+        return "BasicMario.png";
+    }
 }

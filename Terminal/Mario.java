@@ -33,6 +33,8 @@ public abstract class Mario extends Personnage {
         return false;
     }
 
+    public abstract String getImagePath();
+
     
 }
 

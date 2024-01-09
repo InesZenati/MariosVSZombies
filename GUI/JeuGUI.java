@@ -33,11 +33,11 @@ public class JeuGUI extends JFrame {
         setJeu config = new setJeu(cardLayout, cardPanel);
         cardPanel.add(config, "Config");
 
-        frame.add(cardPanel);
-
         // Game Page
         Game jeu = new Game(cardLayout, cardPanel);
         cardPanel.add(jeu, "Game");
+
+        frame.add(cardPanel);
 
         // Afficher la page "Welcome" au démarrage
         cardLayout.show(cardPanel, "Welcome");

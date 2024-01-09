@@ -38,4 +38,8 @@ public class StarMario extends Mario{
          return false;
      }
 
+     public String getImagePath(){
+        return "BasicMario.png";
+    }
+
 }

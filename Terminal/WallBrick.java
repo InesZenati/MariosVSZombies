@@ -10,4 +10,8 @@ public class WallBrick extends Mario{
     public String estDevant(Plateau p){
         return"Wallmario";
     }
+
+    public String getImagePath(){
+        return "BasicMario.png";
+    }
 }
