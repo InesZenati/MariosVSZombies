@@ -7,9 +7,7 @@ public class JeuGUI extends JFrame {
     private JPanel cardPanel;
     private Joueur joueur;
 
-    public Joueur getJoueur(){
-        return this.joueur;
-    }
+
 
     public static void main(String[] args) {
         Joueur j = new Joueur("test");

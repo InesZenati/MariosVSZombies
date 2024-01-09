@@ -141,7 +141,7 @@ public class Jeu {
         MArioDisponibles.add(new FireMario());
         MArioDisponibles.add(new BigMario());
         MArioDisponibles.add(new StarMario());
-        Joueur joueur = new Joueur("joueur", 30000, 0);
+        Joueur joueur = new Joueur("joueur");
         List<Zombie> ennemis = new ArrayList<>();
         ennemis.add(new Zombie1(1000));
         ennemis.add(new Zombie1(1000));

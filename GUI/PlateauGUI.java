@@ -18,6 +18,10 @@ public class PlateauGUI extends JPanel{
     private JPanel cardPanel;
     private JeuGUI jeuGUI;
 
+    public JeuGUI getJeuGUI(){
+        return this.jeuGUI;
+    }
+
 
     public PlateauGUI(CardLayout cardLayout , JPanel cardPanel, JeuGUI jeuGUI){
         this.jeuGUI = jeuGUI;
@@ -105,19 +109,37 @@ public class PlateauGUI extends JPanel{
     }
 
     public JPanel createPlateau(){
+        int taille = 100;
         JPanel Plateau = new JPanel();
+         Plateau.setLayout(new GridLayout(10, 6));
         for (int i = 0; i < 10; i++){
             for (int j =0; j <6 ; j++){
-                
+                JPanel casePanel = createCase(i, j);
+                casePanel.setPreferredSize(new Dimension(taille, taille));
+
 
             }
         }
-        bacJPanel.setLayout(new GridLayout(10, 6));
 
+        return Plateau;
     }
 
-    public JPanel creatCase(){
-        JPanel case = new JPanel();
+
+    public JPanel createCase(int col , int li){
+        JPanel casePanel = new JPanel();
+
+        casePanel.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                casePanelClic(li, col);
+            }
+        });
+
+        return casePanel;
+    }
+
+    public void casePanelClic(int li , int col){
+
 
     }
 
