@@ -65,17 +65,18 @@ public class Game extends JPanel {
     
         // Création du plateauPanel au centre
         JPanel panel = new JPanel(new GridLayout(5, 9));
-    
+    /* 
         List<JButton> buttons = new ArrayList<>(); // Nouvelle liste pour stocker les boutons
     
         for (int li = 0; li < plateau.getNumLi(); li++) {
             for (int col = 0; col < plateau.getNumCols(); col++) {
-                JButton button = new JButton();
-                buttons.add(button); // Ajouter le bouton à la liste
-                int finalLi = li;
-                int finalCol = col;
+              //  JButton button = new JButton();
+            //    buttons.add(button); // Ajouter le bouton à la liste
+           //     int finalLi = li;
+             //   int finalCol = col;
     
                 // Ajoutez une action pour placer le personnage sur la case lorsque le bouton est cliqué
+              
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -88,10 +89,12 @@ public class Game extends JPanel {
                             selectedPersonnage = null;
                         }
                     }
+                    
                 });
-    
-                panel.add(button);
+    */
+                panel.add();
             }
+            
         }
     
         // Ajouter un espace autour du plateau
@@ -153,7 +156,7 @@ public class Game extends JPanel {
             System.out.println(2);
             for (int col = 0; col < plateau.getNumCols(); col++) {
                 System.out.println(3);
-                JButton button = buttons.get(li * plateau.getNumCols() + col);
+                JButton button = getButtonAt(li , plateau.getNumCols() );
                 System.out.println(4);
                 if (button != null) {
                     System.out.println(5);
@@ -165,7 +168,7 @@ public class Game extends JPanel {
                     if (contenuCase != null) {
                         System.out.println(7);
                         // Si la case est occupée par un personnage, mettez à jour le bouton en conséquence
-                        button.setText(""); // Effacez le texte
+                        button.setText("hffkhg"); // Effacez le texte
                         System.out.println(8);
                         String imagePath = contenuCase.getImagePath();
                         System.out.println(9);
