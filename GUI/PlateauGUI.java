@@ -55,10 +55,10 @@ public class PlateauGUI extends JPanel{
 
     public JPanel createInfoPanel(){
         JPanel infoJoueur = new JPanel();
-        infoJoueur.setLayout(new BoxLayout(infoJoueur, BoxLayout.X_AXIS));
-        JLabel joueurName = new JLabel(this.getJeuGUI().getJoueur().getName());
-        JLabel joueurArgent = new JLabel("$ : "+this.getJeuGUI().getJoueur().getArgent());
-        JLabel joeuurScore = new JLabel("Score :"+this.getJeuGUI().getJoueur().getScore());
+        infoJoueur.setLayout(new BoxLayout(infoJoueur, BoxLayout.Y_AXIS));
+        JLabel joueurName = new JLabel("Information de : "+this.getJeuGUI().getJoueur().getName()+" ");
+        JLabel joueurArgent = new JLabel("Argent : "+this.getJeuGUI().getJoueur().getArgent()+" coin ");
+        JLabel joeuurScore = new JLabel("Score : "+this.getJeuGUI().getJoueur().getScore()+" points");
         infoJoueur.add(joueurName);
         infoJoueur.add(joueurArgent);
         infoJoueur.add(joeuurScore);
