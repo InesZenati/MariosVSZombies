@@ -15,6 +15,7 @@ public class BasicMario extends Mario{
                 else{
                     m.takeDamage(this.getInfoActuelle().getAttaque());
                 }
+                m.aGagner(p, m);
         }
     }
     public String estDevant(Plateau p){
@@ -37,6 +38,7 @@ public class BasicMario extends Mario{
          return false;
      }
 
+<<<<<<< HEAD
 public boolean aGagner(Plateau p){
     int [] pos = this.getPosition();
     if((p.getCase(pos[0],pos[1]+1).contientZombie())&&this.estVivant()){
@@ -58,4 +60,6 @@ public boolean aGagner(Plateau p){
         return "BasicMario.png";
     }
 
+=======
+>>>>>>> 6cba05872efadaa90ed348c776e6a2fafe3d1bf4
 }

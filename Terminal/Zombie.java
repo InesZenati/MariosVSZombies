@@ -67,9 +67,10 @@ public abstract class Zombie extends Personnage {
             }else{
                 m.takeDamage(this.getInfoActuelle().getAttaque());
             }
+            this.aGagner(p, m);
     }
 
-    public boolean aGagner(Plateau p){
+    /*public boolean aGagner(Plateau p){
         int [] pos = this.getPosition();
         int li = pos[0];
         int coll = pos[1]-1;
@@ -83,7 +84,7 @@ public abstract class Zombie extends Personnage {
         }
         //System.out.println("Vie du mario"+p.getCase(li, coll).getPersonnage().getInfoActuelle().getvie());
         return false;
-    }
+    }*/
 
 public boolean peutDeplacer(Plateau p){ 
     int [] pos = this.getPosition();
