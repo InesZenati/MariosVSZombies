@@ -23,10 +23,8 @@ public class PlateauGUI extends JPanel{
     }
 
 
-    public PlateauGUI(CardLayout cardLayout , JPanel cardPanel, JeuGUI jeuGUI){
+    public PlateauGUI(JeuGUI jeuGUI){
         this.jeuGUI = jeuGUI;
-        this.cardLayout = cardLayout;
-        this.cardPanel = cardPanel;
 
           // Création du menuPanel à gauche
         menuPanel = createSideMenu();
@@ -141,6 +139,7 @@ public class PlateauGUI extends JPanel{
     public void casePanelClic(int li , int col){
         if(selectedPersonnage != null && this.getJeuGUI().getJoueur().getArgent() >= selectedPersonnage.getPrix()){
           Mario mario = getPersonnageByName(selectedPersonnage.getName());
+          jeuGUI.getPlateau().placeMario(mario,li,col);
 
         }
 
