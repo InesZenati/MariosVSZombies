@@ -7,6 +7,10 @@ public class JeuGUI extends JFrame {
     private JPanel cardPanel;
     private Joueur joueur;
 
+    public Joueur getJoueur(){
+        return this.joueur;
+    }
+
     public static void main(String[] args) {
         Joueur j = new Joueur("test");
         new JeuGUI(j);
@@ -38,8 +42,8 @@ public class JeuGUI extends JFrame {
         cardPanel.add(config, "Config");
 
         // Game Page
-        PlateauGUI plateau = new PlateauGUI(cardLayout, cardPanel, this);
-        cardPanel.add(plateau, "PlateauGUI");
+        Game jeu = new Game(cardLayout, cardPanel);
+        cardPanel.add(jeu, "Game");
 
         frame.add(cardPanel);
 

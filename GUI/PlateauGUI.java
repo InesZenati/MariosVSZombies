@@ -18,9 +18,6 @@ public class PlateauGUI extends JPanel{
     private JPanel cardPanel;
     private JeuGUI jeuGUI;
 
-    public JeuGUI getJeuGUI(){
-        return this.jeuGUI;
-    }
 
     public PlateauGUI(CardLayout cardLayout , JPanel cardPanel, JeuGUI jeuGUI){
         this.jeuGUI = jeuGUI;
@@ -28,18 +25,12 @@ public class PlateauGUI extends JPanel{
         this.cardPanel = cardPanel;
 
           // Création du menuPanel à gauche
-      menuPanel = createSideMenu();
-      add(menuPanel, BorderLayout.WEST);
+        menuPanel = createSideMenu();
+        add(menuPanel, BorderLayout.WEST);
 
         // Création du plateauPanel au centre
     plateauPanel = createPlateau();
     add(plateauPanel, BorderLayout.CENTER);
-
-    InfoPanel = createInfoPanel();
-    add(InfoPanel,BorderLayout.NORTH);
-
-
-
 
     }
 
@@ -55,6 +46,18 @@ public class PlateauGUI extends JPanel{
         sideMenu.add(createTowerButton("StarMario", "BasicMario.png", 100));
 
         return sideMenu;
+    }
+
+    public JPanel createInfoPanel(){
+        JPanel infoJoueur = new JPanel();
+        infoJoueur.setLayout(new BoxLayout(infoJoueur, BoxLayout.X_AXIS));
+        JLabel joueurName = new JLabel(this.getJeuGUI().getJoueur().getName());
+        JLabel joueurArgent = new JLabel("$ : "+this.getJeuGUI().getJoueur().getArgent());
+        JLabel joeuurScore = new JLabel("Score :"+this.getJeuGUI().getJoueur().getScore());
+        infoJoueur.add(joueurName);
+        infoJoueur.add(joueurArgent);
+        infoJoueur.add(joeuurScore);
+        return infoJoueur;
     }
 
     public JButton createTowerButton(String name , String imagePath, int prix){
@@ -102,48 +105,22 @@ public class PlateauGUI extends JPanel{
     }
 
     public JPanel createPlateau(){
-        int taille = 100;
         JPanel Plateau = new JPanel();
-         Plateau.setLayout(new GridLayout(10, 6));
         for (int i = 0; i < 10; i++){
             for (int j =0; j <6 ; j++){
-                JPanel casePanel = createCase(i, j);
-                casePanel.setPreferredSize(new Dimension(taille, taille));
                 
 
             }
         }
-        return Plateau;
-    }
-
-    public JPanel createCase(int col , int li){
-        JPanel casePanel = new JPanel();
-
-        casePanel.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                casePanelClic(li, col);
-            }
-        });
-
-        return casePanel;
-    }
-
-    public void casePanelClic(int li , int col){
-
+        bacJPanel.setLayout(new GridLayout(10, 6));
 
     }
-    public JPanel createInfoPanel(){
-        JPanel infoJoueur = new JPanel();
-        infoJoueur.setLayout(new BoxLayout(infoJoueur, BoxLayout.X_AXIS));
-        JLabel joueurName = new JLabel(this.getJeuGUI().getJoueur().getName());
-        JLabel joueurArgent = new JLabel("$ : "+this.getJeuGUI().getJoueur().getArgent());
-        JLabel joeuurScore = new JLabel("Score :"+this.getJeuGUI().getJoueur().getScore());
-        infoJoueur.add(joueurName);
-        infoJoueur.add(joueurArgent);
-        infoJoueur.add(joeuurScore);
-        return infoJoueur;
+
+    public JPanel creatCase(){
+        JPanel case = new JPanel();
+
     }
+
 
         
 
