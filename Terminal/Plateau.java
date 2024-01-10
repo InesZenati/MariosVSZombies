@@ -114,19 +114,20 @@ public class Plateau {
         
         placeZombie(z, li, col);
         moveZombie(z);
+        System.out.println(z.toString());
     } 
     
     public List<Zombie> generateZombies(String niveaudeDIfficulté){
         List<Zombie> ennemis = new ArrayList<>();
         switch (niveaudeDIfficulté) {
-            case "facile":
+            case "Facile":
                ennemis= generateEnemies(70, 30, 0, 0, 10);
                 break;
         
-            case"moyen":
+            case"Moyen":
                ennemis= generateEnemies(50, 30, 20, 0, 10);
                 break;
-            case "difficile":
+            case "Difficile":
                ennemis=  generateEnemies(10, 30, 40, 20, 10);
                 break;
             case "Marathon":

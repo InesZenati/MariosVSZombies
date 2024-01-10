@@ -14,6 +14,7 @@ public class ZombieThread extends Thread {
                 plato.spawnRandomZombies(plato.getVague());
                 plato.affiche();
                 sleep(100);   
+
            /* 
             plato.moveZombie(zombie);
                 sleep(100);
