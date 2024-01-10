@@ -3,16 +3,34 @@ import java.util.List;
 import java.util.Random;
 public class ZombieThread extends Thread {
     private Plateau plato;
+    private PlateauGUI pGui;
+    private int i;
+
 
     public ZombieThread(Plateau plato) {
-        this.plato = plato;
+                this.i=0;
+                this.plato = plato;    
+    }
+
+    public ZombieThread(PlateauGUI p){
+                this.i=1;
+                pGui=p;
     }
 
     @Override
     public void run() {
-
-                plato.spawnRandomZombies(plato.getVague());
-                plato.affiche();
+                switch (i) {
+                    case 0:
+                        plato.spawnRandomZombies(plato.getVague());
+                        plato.affiche();
+                        break;
+                    case 1:
+                        pGui.getJeuGUI().getPlateau().spawnRandomZombies(pGui.getJeuGUI().getPlateau().getVague());
+                        pGui.updatePlateau();
+                        break;
+                    default:
+                        break;
+                }
                 sleep(100);   
 
            /* 
