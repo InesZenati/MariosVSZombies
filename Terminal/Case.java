@@ -15,6 +15,8 @@ public class Case {
         this.p = p;
     }
 
+
+
     public boolean contientMario() {
         if(p!=null){
             return p.getTour();
@@ -64,5 +66,6 @@ public class Case {
         }
         return false;
     }
+
 
 }

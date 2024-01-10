@@ -26,7 +26,7 @@ public class JeuGUI extends JFrame {
     }
 
     public JeuGUI() {
-        plateau = new Plateau(5,9);
+        plateau = new Plateau(6,10);
         frame = new JFrame("MariosVSZombies");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);

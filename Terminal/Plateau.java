@@ -200,6 +200,10 @@ public class Plateau {
             e.printStackTrace();
         }
     }
+
+    public Personnage getPersonnageAt(int li, int col) {
+        return plato[li][col].getPersonnage();
+    }
 /* 
     public boolean partieFinish(){
         return true;

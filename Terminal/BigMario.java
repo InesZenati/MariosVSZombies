@@ -1,6 +1,6 @@
 public class BigMario extends Mario{
     public BigMario(){
-        super("BigMario",100,new Information(6,0,-1,-1,20));
+        super("BigMario",0,new Information(6,0,-1,-1,20));
     }
     public void attaque(Plateau p){
         int [] pos = this.getPosition();
@@ -74,7 +74,7 @@ public class BigMario extends Mario{
 
 
     public String getImagePath(){
-        return "BasicMario.png";
+        return "BigMario.png";
     }
 }
 

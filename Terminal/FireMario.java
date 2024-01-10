@@ -1,7 +1,7 @@
 public class FireMario  extends Mario{
 
     public FireMario(){
-        super("FireMario",200,new Information(10,0,-1,-1,100));
+        super("FireMario",0,new Information(10,0,-1,-1,100));
     }
 
     public void attaque(Plateau p){
@@ -50,10 +50,11 @@ public class FireMario  extends Mario{
      } 
      return false;
     }
+   
     public String estDevant(Plateau p){
         return"Firemario";
     }
     public String getImagePath(){
-        return "BasicMario.png";
+        return "FireMario.png";
     }
 }

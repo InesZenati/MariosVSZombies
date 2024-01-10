@@ -1,6 +1,6 @@
 public class BasicMario extends Mario{
     BasicMario(){
-        super("BasicMario",10,new Information(2,1,-1,-1,10));
+        super("BasicMario",0,new Information(2,1,-1,-1,10));
     }
 
 
@@ -39,7 +39,7 @@ public class BasicMario extends Mario{
      }
 
     public String getImagePath(){
-        return "images/mario.png";
+        return "BasicMario.png";
     }
 
 }

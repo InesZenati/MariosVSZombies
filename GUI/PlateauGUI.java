@@ -12,8 +12,8 @@ public class PlateauGUI extends JPanel{
     private JPanel plateauPanel;
     private JPanel menuPanel;
     private JPanel InfoPanel;
-    private int Argent = 100;
-    private Mario selectedPersonnage;
+    private int Argent = 10000;
+    private static Mario selectedPersonnage;
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private JeuGUI jeuGUI;
@@ -33,9 +33,6 @@ public class PlateauGUI extends JPanel{
         menuPanel = createSideMenu();
         add(menuPanel, BorderLayout.WEST);
 
-        // Création du plateauPanel au centre
-        plateauPanel = createPlateau();
-        add(plateauPanel, BorderLayout.CENTER);
 
         InfoPanel = createInfoPanel();
         add(InfoPanel,BorderLayout.NORTH);
@@ -54,10 +51,10 @@ public class PlateauGUI extends JPanel{
         sideMenu.setLayout(new BoxLayout(sideMenu, BoxLayout.Y_AXIS));
 
         sideMenu.add(createTowerButton("BasicMario", "BasicMario.png", 10)); 
-        sideMenu.add(createTowerButton("FireMario", "BasicMario.png", 20));
+        sideMenu.add(createTowerButton("FireMario", "FireMario.png", 20));
         sideMenu.add(createTowerButton("WallBrick", "BasicMario.png", 25)); 
-        sideMenu.add(createTowerButton("BigMario", "BasicMario.png", 50));
-        sideMenu.add(createTowerButton("StarMario", "BasicMario.png", 100));
+        sideMenu.add(createTowerButton("BigMario", "BigMario.png", 50));
+        sideMenu.add(createTowerButton("StarMario", "SuperMario.png", 100));
 
         return sideMenu;
     }
@@ -66,7 +63,7 @@ public class PlateauGUI extends JPanel{
         JPanel infoJoueur = new JPanel();
         infoJoueur.setLayout(new BoxLayout(infoJoueur, BoxLayout.Y_AXIS));
         JLabel joueurName = new JLabel("Information de : "+this.getJeuGUI().getJoueur().getName()+" ");
-        JLabel joueurArgent = new JLabel("Argent : "+this.getJeuGUI().getJoueur().getArgent()+" coin ");
+        JLabel joueurArgent = new JLabel("Argent : "+this.Argent+" coin ");
         JLabel joeuurScore = new JLabel("Score : "+this.getJeuGUI().getJoueur().getScore()+" points");
         infoJoueur.add(joueurName);
         infoJoueur.add(joueurArgent);
@@ -95,6 +92,7 @@ public class PlateauGUI extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 selectedPersonnage = getPersonnageByName(name);
+                System.out.println(selectedPersonnage.getName());
             }
         });
         return mario;
@@ -118,25 +116,22 @@ public class PlateauGUI extends JPanel{
         }
     }
 
-    public JPanel createPlateau(){
+    public JPanel createPlateau() {
         int taille = 100;
         JPanel Plateau = new JPanel();
-         Plateau.setLayout(new GridLayout(5, 9));
-        for (int i = 0; i < 6; i++){
-            for (int j =0; j <10 ; j++){
+        Plateau.setLayout(new GridLayout(5, 9));
+    
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
                 JPanel casePanel = createCase(i, j);
                 casePanel.setPreferredSize(new Dimension(taille, taille));
-
-             Plateau.add(casePanel);
+                Plateau.add(casePanel);
             }
         }
-       /* int boardWidth = 9 * taille;
-        int boardHeight = 5 * taille;
-        Plateau.setPreferredSize(new Dimension(boardWidth, boardHeight)); */
     
         return Plateau;
     }
-
+    
 
     public JPanel createCase(int li , int col){
         JPanel casePanel = new JPanel();
@@ -152,37 +147,63 @@ public class PlateauGUI extends JPanel{
         return casePanel;
     }
 
-    public void casePanelClic(int li , int col){
-        if(selectedPersonnage != null && this.getJeuGUI().getJoueur().getArgent() >= selectedPersonnage.getPrix()){
-          Mario mario = getPersonnageByName(selectedPersonnage.getName());
-          jeuGUI.getPlateau().placeMario(mario,li,col);
-          updatePlateau();
-
-        }
-
-    }
-
-    public void updatePlateau(){
-        for (int i = 0; i < 6; i++){
-            for (int j =0; j <10 ; j++){
-                JPanel casePanel = createCase(i, j);
-                casePanel.setPreferredSize(new Dimension(100, 100));
-                if(jeuGUI.getPlateau().getCase(i, j).contientPersonnage()){
-                    try {
-                        ImageIcon icon = new ImageIcon(getClass().getResource(getPersonnageByName((jeuGUI.getPlateau().getCase(i, j).getPersonnage().getName())).getImagePath()));
-                        JLabel label = new JLabel();
-                        label.setIcon(icon);
-                        casePanel.add(label);
-                    } catch (NullPointerException e) {
-                        e.printStackTrace();
-                    }
+    public void casePanelClic(int li, int col) {
+        if (selectedPersonnage != null) {
+            if (!jeuGUI.getPlateau().getCase(li, col).contientPersonnage()) {
+                Mario mario = getPersonnageByName(selectedPersonnage.getName());
+                System.out.println("mario creer");
+                if (this.getJeuGUI().getJoueur().getArgent() >= mario.getPrix()) {
+                    jeuGUI.getPlateau().placeMario(mario, li, col);
+                    System.out.println("mario place");
+                    updatePlateau();
+                } else {
+                    System.out.println("Argent insuffisant pour acheter ce Mario.");
                 }
+            } else {
+                System.out.println("La case est déjà occupée par un Mario.");
             }
         }
     }
+    
+    
 
-        
+    public void updatePlateau() {
+        if (plateauPanel != null) {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 9; j++) {
+                    JPanel casePanel = getCasePanel(i, j);
+                    casePanel.removeAll();
+    
+                    if (jeuGUI.getPlateau().getCase(i, j).contientPersonnage()) {
+                        try {
+                            ImageIcon icon = new ImageIcon(getClass().getResource(getPersonnageByName(jeuGUI.getPlateau().getPersonnageAt(i, j).getName()).getImagePath()));
+                            Image image = icon.getImage();
+                            JLabel label = new JLabel();
+                            label.setIcon(icon);
+                            casePanel.add(new JLabel(new ImageIcon(image)));
+                        } catch (NullPointerException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    casePanel.revalidate();
+                }
+            }
+        } else {
+            System.out.println("error");
+        }
+    }
 
+    
+    
+    private JPanel getCasePanel(int li, int col) {
+        return (JPanel) plateauPanel.getComponent(li * 9 + col);
+    }
+
+    public void spawnZombies(){
+        jeuGUI.getPlateau().spawnRandomZombies(ZombieThread.generateEnemies(10));
+        updatePlateau();
+    }
+    
 
     }
 

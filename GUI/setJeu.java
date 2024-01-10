@@ -36,7 +36,7 @@ public class setJeu extends JPanel {
         JPanel titlePanel = new JPanel();
         titlePanel.setOpaque(false);
         JLabel titleLabel = new JLabel("Configuration du Jeu");
-        titleLabel.setFont(marioFont.deriveFont(Font.BOLD, 30));
+        titleLabel.setFont(marioFont.deriveFont(Font.BOLD, 40));
         titleLabel.setForeground(Color.WHITE);
         titlePanel.add(titleLabel);
 
@@ -44,7 +44,7 @@ public class setJeu extends JPanel {
         JPanel decorsPanel = new JPanel();
         decorsPanel.setOpaque(false);
         JLabel decors = new JLabel("Decors :");
-        decors.setFont(marioFont.deriveFont(Font.PLAIN, 20));
+        decors.setFont(marioFont.deriveFont(Font.PLAIN, 30));
         decors.setForeground(Color.WHITE);
         decorsPanel.add(decors);
 
@@ -71,7 +71,7 @@ public class setJeu extends JPanel {
         JPanel difficultyPanel = new JPanel();
         difficultyPanel.setOpaque(false);
         JLabel difficulty = new JLabel("Mode de difficulte :");
-        difficulty.setFont(marioFont.deriveFont(Font.PLAIN, 20));
+        difficulty.setFont(marioFont.deriveFont(Font.PLAIN, 30));
         difficulty.setForeground(Color.WHITE);
         difficultyPanel.add(difficulty);
 
@@ -106,6 +106,17 @@ hardButton.addActionListener(new ActionListener() {
     }
 });
 
+JButtonStyled marathonMode = new JButtonStyled("Marathon");
+hardButton.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        selectedDifficulty = "Marathon";
+       // tryToShowNewPage(); 
+    }
+});
+
+
+
    JButtonStyled BackButton = new JButtonStyled("Retour au menu");
         BackButton.addActionListener(new ActionListener() {
             @Override
@@ -130,32 +141,52 @@ gbc.gridy = 0;
 gbc.weighty = 1.0;
 centralPanel.add(titlePanel, gbc);
 
-gbc.gridy = 4;
+// Decors
+gbc.gridy = 1;
+gbc.gridwidth = 3;
+centralPanel.add(decorsPanel, gbc);
+
+// Boutons de décors
+gbc.gridy = 2;
+gbc.gridwidth = 1;
+gbc.gridx = 0;
+centralPanel.add(BasicButton, gbc);
+
+gbc.gridx = 2;
+centralPanel.add(PlateauT, gbc);
+
+// Mode de difficulté
+gbc.gridy = 3;
+gbc.gridx = 0;
+gbc.gridwidth = 3;
 centralPanel.add(difficultyPanel, gbc);
 
-gbc.gridy = 5;
+// Boutons de difficulté
+gbc.gridy = 4;
+gbc.gridx = -1;
+gbc.gridwidth = 1;
 centralPanel.add(easyButton, gbc);
 
-gbc.gridy = 6;
+gbc.gridx = 1;
 centralPanel.add(mediumButton, gbc);
 
-gbc.gridy = 7;
+gbc.gridx = 3;
+gbc.gridwidth = 1;
 centralPanel.add(hardButton, gbc);
 
-// Ajouter le panneau des décors au panneau central
-gbc.gridy = 1;
-gbc.gridwidth = 2; // Définir la largeur sur 2 pour qu'il occupe deux colonnes
-centralPanel.add(decorsPanel, gbc);
-// pq on remet a 1?
-gbc.gridwidth = 1;
-gbc.gridy = 2; 
-centralPanel.add(BasicButton, gbc);
-gbc.gridx = 1; 
-centralPanel.add(PlateauT, gbc);
-gbc.gridy = 8; 
+// Bouton pour le mode marathon (ajouté pour illustration, ajustez selon vos besoins)
+gbc.gridy = 5;
+gbc.gridx = 1;
+centralPanel.add(marathonMode, gbc);
+
+// Boutons de navigation
+gbc.gridy = 6;
+gbc.gridx = 0;
 centralPanel.add(BackButton, gbc);
-gbc.gridx = 9;
+
+gbc.gridx = 2;
 centralPanel.add(CommencerButton, gbc);
+
 
 
 /*GridBagConstraints gbc = new GridBagConstraints();
