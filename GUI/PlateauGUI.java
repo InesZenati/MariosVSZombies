@@ -113,12 +113,14 @@ public class PlateauGUI extends JPanel{
                 return new StarMario();
             case "ZombieSimple":
                 return new Zombie1(1000);
-            case" ZombieAmélioré":
+            case "ZombieAmélioré":
                 return new Zombie2(1000);
             case "SuperZombie":
                 return new Zombie3(1000);
+            case "SuperMegaUltraZombie":
+                return new Zombie4(1000);
             default:
-                return null;
+                return  new BasicMario();
         }
     }
 
@@ -178,6 +180,8 @@ public class PlateauGUI extends JPanel{
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
                     JPanel casePanel = getCasePanel(i, j);
+    
+                    // Supprimer tous les composants du panneau
                     casePanel.removeAll();
     
                     if (jeuGUI.getPlateau().getCase(i, j).contientPersonnage()) {
@@ -189,16 +193,20 @@ public class PlateauGUI extends JPanel{
                             casePanel.add(new JLabel(new ImageIcon(image)));
                         } catch (NullPointerException e) {
                             e.printStackTrace();
-                            System.out.println("pas dimage");
+                            System.out.println("pas d'image");
                         }
                     }
+    
+                    // Revalider le panneau après modification
                     casePanel.revalidate();
+                    casePanel.repaint();  // Assurez-vous de redessiner le panneau pour voir les changements
                 }
             }
         } else {
             System.out.println("error");
         }
     }
+    
 
     
     
@@ -209,6 +217,7 @@ public class PlateauGUI extends JPanel{
 
 
     public void spawnZombies(){
+        sleep(1000);
       System.out.println("spawnZombies");
       ZombieThread zombieThread = new ZombieThread(this);
        System.out.println("spawnZombies");
@@ -216,7 +225,14 @@ public class PlateauGUI extends JPanel{
         
     }
 
+    public void sleep(int time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+    }
     }
 
 

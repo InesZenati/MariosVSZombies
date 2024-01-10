@@ -2,7 +2,7 @@ public class Case {
     private int li;
     private int col;
     private Personnage p; 
-
+    public boolean contientPerso;
     public Case(int li, int col) {
         this.li = li;
         this.col = col;

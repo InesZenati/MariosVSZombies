@@ -129,8 +129,9 @@ hardButton.addActionListener(new ActionListener() {
         CommencerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                j.getController().debut();
                 tryToShowNewPage();
+                j.getController().debut();
+                
                // j.getController().start();
             }
         });
@@ -245,8 +246,11 @@ add(centralPanel, BorderLayout.CENTER);
     private void tryToShowNewPage() {
         // Vérifier si les deux sélections ont été faites
         if (selectedDecor != null && selectedDifficulty != null) {
-            Plateau plato = new Plateau(6, 11, selectedDifficulty);
+            Plateau plato = new Plateau(5, 9, selectedDifficulty);
+            System.out.println("plateau ceer" +plato.toString());
             jeu.setPlateau(plato);
+            System.out.println("nouveau plateau" +jeu.getPlateau().toString());
+
 
             // Afficher je pense on ajoute ds attributs pour avoir que une page afficher
             cardLayout.show(cardPanel, "PlateauGUI"); 

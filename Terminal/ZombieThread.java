@@ -29,6 +29,7 @@ public class ZombieThread extends Thread {
                         update();
                         break;
                     case 1:
+                    System.out.println("plato interface" +plato.toString());
                     System.out.println("Dans ZombieThread");
                     spawnRandomZombies(pGui.getJeuGUI().getPlateau().getVague());
                     System.out.println("Dans ZombieThread");
@@ -72,12 +73,15 @@ public class ZombieThread extends Thread {
                 col=col-1;
                 sleep(100);
                 placeZombie(z, li, col);
+                System.out.println(z.toString());
                 sleep(1000);
                 System.out.println("update");
                 update();
                 System.out.println("update");
+                plato.affiche();
             }
             System.out.println("Fin moveZombie");
+
         }
 
     public void moveRandomZombies(List<Zombie> listeZombies) {
@@ -95,22 +99,26 @@ public class ZombieThread extends Thread {
         System.out.println("Dans spawnZombie");
         int li = 1+ (int) (Math.random() * plato.getNumLi()-1);
         int col = plato.getNumCols() - 1;
+        System.out.println("colne de spawn " +col);
+         System.out.println(z.toString());
         while (plato.getCase(li, col).contientZombie()) {
             li = (int) (Math.random() * plato.getNumLi()-1);
             col = plato.getNumCols() - 1;
         }
         
         placeZombie(z, li, col);
+        update();
         moveZombie(z);
+        update();
         System.out.println(z.toString());
         System.out.println("Fin spawnZombie");
     } 
 
     public void spawnRandomZombies(List<Zombie> listeZombies) {
         System.out.println("Dans spawnRandomZombies");
-        for (int i = 0; i < listeZombies.size()-1; i++) {
-            System.out.println("fin spawnRandomZombies");
+        for (int i = 0; i < listeZombies.size(); i++) {
             spawnZombie(listeZombies.get(i));
+            System.out.println(listeZombies.get(i).toString());
         }
         System.out.println("Fin spawnRandomZombies");
     }
@@ -126,6 +134,7 @@ public class ZombieThread extends Thread {
     public void removeZombie(int li, int col) {
         plato.retirer(plato.getCase(li, col).getPersonnage());
         plato.getCase(li, col).supprimerPerso();
+
     }
 
     private static void sleep(int milliseconds) {
