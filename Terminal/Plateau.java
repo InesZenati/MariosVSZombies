@@ -6,6 +6,15 @@ public class Plateau {
     private int numCols;
     private Case[][] plato;
     private List<Personnage> PersoDansPlato = new ArrayList<>();
+    private List<Zombie> VagueDeZombie = new ArrayList<>();
+
+    public List<Zombie> getVague(){
+        return VagueDeZombie;
+    }
+
+    public void setVague(List<Zombie> z){
+        this.VagueDeZombie=z;
+    }
 
     public Plateau(int numLi, int numCols) {
         this.numLi = numLi;
@@ -103,7 +112,28 @@ public class Plateau {
         
         placeZombie(z, li, col);
         moveZombie(z);
-    }
+    }   
+    public static List<Zombie> generateEnemies(int n) {
+        List<Zombie> ennemis = new ArrayList<>();
+        Random random = new Random();
+
+        // Définir la proportion de zombies 
+        int zombieType1Percentage = 70;
+       // int zombieType2Percentage = 30;
+
+        for (int i = 0; i < n; i++) {
+            int randomNumber = random.nextInt(100) + 1; // Générer un nombre entre 1 et 100 inclus
+            Zombie1 b = new Zombie1(1000);
+            Zombie2 c = new Zombie2(1000);
+            // Sélectionner le type de zombie en fonction de la proportion définie
+            if (randomNumber <= zombieType1Percentage) {
+                ennemis.add(b);
+            } else {
+                ennemis.add(c);
+            }
+        }
+        return ennemis;
+        }
 
         public void moveZombie(Zombie z) {
         Plateau plato = this;                          
