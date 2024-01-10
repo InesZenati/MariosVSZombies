@@ -161,6 +161,7 @@ public class PlateauGUI extends JPanel{
                 Mario m = (Mario) mario;
                 if (this.getJeuGUI().getJoueur().getArgent() >= m.getPrix()) {
                     jeuGUI.getPlateau().placeMario(m, li, col);
+                    System.out.println(m.toString());
                     System.out.println("mario place");
                     updatePlateau();
                 } else {
@@ -188,6 +189,7 @@ public class PlateauGUI extends JPanel{
                             casePanel.add(new JLabel(new ImageIcon(image)));
                         } catch (NullPointerException e) {
                             e.printStackTrace();
+                            System.out.println("pas dimage");
                         }
                     }
                     casePanel.revalidate();
@@ -213,10 +215,7 @@ public class PlateauGUI extends JPanel{
         zombieThread.start();
         
     }
-    public void testPlateau(){  
-    getJeuGUI().getPlateau().spawnRandomZombies(getJeuGUI().getPlateau().getVague());
-    }
-    
+
 
     }
 

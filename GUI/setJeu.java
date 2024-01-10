@@ -129,9 +129,9 @@ hardButton.addActionListener(new ActionListener() {
         CommencerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                j.getController().start();
+                j.getController().debut();
                 tryToShowNewPage();
-                j.getController().start();
+               // j.getController().start();
             }
         });
 

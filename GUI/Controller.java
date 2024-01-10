@@ -19,11 +19,9 @@ public class Controller extends JPanel{
        
     }
 
-    public  void start(){
+    public void debut(){
         plateauGUI.spawnZombies();
-        Thread update = new Thread(() -> plateauGUI.updatePlateau());
-        update.start();
-
+        
     }
 
 }

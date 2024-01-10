@@ -104,18 +104,7 @@ public class Plateau {
         plato[li][col].supprimerPerso();
     }
 
-    public void spawnZombie(Zombie z) {
-        int li = 1+ (int) (Math.random() * numLi-1);
-        int col = numCols - 1;
-        while (plato[li][col].contientZombie()) {
-            li = (int) (Math.random() * numLi -1);
-            col = numCols - 1;
-        }
-        
-        placeZombie(z, li, col);
-        moveZombie(z);
-        System.out.println(z.toString());
-    } 
+ 
     
     public List<Zombie> generateZombies(String niveaudeDIfficulté){
         List<Zombie> ennemis = new ArrayList<>();
@@ -169,36 +158,11 @@ public class Plateau {
 
         }
 
-        public void moveZombie(Zombie z) {
-        Plateau plato = this;                          
-        int li = z.getInfoActuelle().getPosX();
-        int col = z.getInfoActuelle().getPosY();
-        while(z.peutDeplacer(plato)){ 
-                removeZombie(li, col);
-                col=col-1;
-                sleep(100);
-                placeZombie(z, li, col);
-                sleep(1000);
-                plato.affiche();
-            }
-        }
+   
 
-    public void moveRandomZombies(List<Zombie> listeZombies) {
-        for (int i = 0; i < listeZombies.size(); i++) {
-            sleep(1000);
-            moveZombie(listeZombies.get(i));
-            sleep(1000);
-        }
-        sleep(1000);
-    }
+   
 
-    public void spawnRandomZombies(List<Zombie> listeZombies) {
-        for (int i = 0; i < listeZombies.size()-1; i++) {
-            System.out.println("Dans spawnRandomZombies");
-            spawnZombie(listeZombies.get(i));
-        }
-    }
-
+   
 
     public void affiche() {
         /*for(int li = 0;li<numLi;li++){

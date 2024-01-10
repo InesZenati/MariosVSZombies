@@ -36,6 +36,7 @@ public class JeuGUI extends JFrame {
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
         this.joueur=new Joueur("Anonyme");
+       
 
         // Initialisation du CardLayout
         cardLayout = new CardLayout();
