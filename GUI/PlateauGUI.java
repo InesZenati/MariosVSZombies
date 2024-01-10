@@ -200,8 +200,7 @@ public class PlateauGUI extends JPanel{
     }
 
     public void spawnZombies(){
-        jeuGUI.getPlateau().spawnRandomZombies(ZombieThread.generateEnemies(10));
-        updatePlateau();
+       // ZombieThread zombieThread = new ZombieThread(jeuGUI.getPlateau());
     }
     
 

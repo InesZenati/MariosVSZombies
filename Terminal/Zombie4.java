@@ -3,6 +3,9 @@ public class Zombie4 extends Zombie{
         super("SuperMegaUltraZombie",500,v,new Information(8,10,x,y,50));
     }
 
+    public Zombie4(int v){
+        super("SuperMegaUltraZombie",500,v,new Information(8,10,-1,-1,50));
+    }
     public String getImagePath(){
         return "BasicMario.png";
     }

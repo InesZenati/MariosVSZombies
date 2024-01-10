@@ -5,6 +5,7 @@ public class Plateau {
     private int numLi;
     private int numCols;
     private Case[][] plato;
+    private String niveauDeDifficulté;
     private List<Personnage> PersoDansPlato = new ArrayList<>();
     private List<Zombie> VagueDeZombie = new ArrayList<>();
 
@@ -16,7 +17,7 @@ public class Plateau {
         this.VagueDeZombie=z;
     }
 
-    public Plateau(int numLi, int numCols) {
+    public Plateau(int numLi, int numCols, String niveauDeDifficulté) {
         this.numLi = numLi;
         this.numCols = numCols;
         this.plato = new Case[numLi][numCols];
@@ -112,27 +113,58 @@ public class Plateau {
         
         placeZombie(z, li, col);
         moveZombie(z);
-    }   
-    public static List<Zombie> generateEnemies(int n) {
+    } 
+    
+    public static List<Zombie> generateZombies(String niveaudeDIfficulté){
+        List<Zombie> ennemis = new ArrayList<>();
+        switch (niveaudeDIfficulté) {
+            case "facile":
+               ennemis= generateEnemies(70, 30, 0, 0, 10);
+                break;
+        
+            case"moyen":
+               ennemis= generateEnemies(50, 30, 20, 0, 10);
+                break;
+            case "difficile":
+               ennemis=  generateEnemies(10, 30, 40, 20, 10);
+                break;
+            case "Marathon":
+           // ennemis= generateEnemieMarathon();
+
+        }
+        return ennemis;
+    }
+
+    public static List<Zombie> generateEnemies(int zombie1 , int zombie2 , int zombie3 , int zombie4 , int n) {
         List<Zombie> ennemis = new ArrayList<>();
         Random random = new Random();
 
-        // Définir la proportion de zombies 
-        int zombieType1Percentage = 70;
+
        // int zombieType2Percentage = 30;
 
         for (int i = 0; i < n; i++) {
             int randomNumber = random.nextInt(100) + 1; // Générer un nombre entre 1 et 100 inclus
-            Zombie1 b = new Zombie1(1000);
-            Zombie2 c = new Zombie2(1000);
+            Zombie1 a = new Zombie1(1000);
+            Zombie2 b = new Zombie2(1000);
+            Zombie3 c = new Zombie3(1000);
+            Zombie4 d = new Zombie4(1000);
             // Sélectionner le type de zombie en fonction de la proportion définie
-            if (randomNumber <= zombieType1Percentage) {
-                ennemis.add(b);
+            if (randomNumber <= zombie1) {
+               ennemis.add(a);
+            } else if (randomNumber <= zombie1 + zombie2) {
+                  ennemis.add(b);
+            } else if (randomNumber <= zombie1 + zombie2 + zombie3) {
+                 ennemis.add(c);
             } else {
-                ennemis.add(c);
+                  ennemis.add(d);
             }
+    
         }
         return ennemis;
+        }
+
+        public void generateEnemieMarathon(){
+
         }
 
         public void moveZombie(Zombie z) {
@@ -241,7 +273,7 @@ public class Plateau {
   */
   
     public static void main(String[] args) {
-        Plateau p = new Plateau(6, 11);
+        Plateau p = new Plateau(6, 11,"Facile");
         Zombie2 z = new Zombie2(1000);
         StarMario m = new StarMario();
        // p.affiche();
