@@ -26,8 +26,7 @@ public class ZombieThread extends Thread {
                         plato.affiche();
                         break;
                     case 1:
-                      //  pGui.getJeuGUI().getPlateau().spawnRandomZombies(pGui.getJeuGUI().getPlateau().getVague());
-                    pGui.testPlateau();
+                    pGui.getJeuGUI().getPlateau().spawnRandomZombies(pGui.getJeuGUI().getPlateau().getVague());
                     pGui.getJeuGUI().getPlateau().affiche();    
                    // pGui.updatePlateau();
                         break;
