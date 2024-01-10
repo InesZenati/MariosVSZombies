@@ -2,30 +2,33 @@ import java.util.ArrayList;
 import java.util.List;
 public class Jeu {
     private Plateau plato;
-    private String niveauDeDifficulté;
     private List<Zombie> ennemis;
-    private List<Mario> listeMario;
+    private List<Mario> listeMario = listeMario();
     private Joueur joueur;
 
-    public Jeu(Plateau plato, String niveauDeDifficulté, List<Zombie> ennemis, List<Mario> listeMario, Joueur joueur) {
+    public Jeu(Plateau plato, Joueur joueur) {
         this.plato = plato;
-        this.niveauDeDifficulté = niveauDeDifficulté;
-        this.ennemis = ennemis;
-        this.listeMario = listeMario;
         this.joueur = joueur;
     }
 
     public Plateau getPlato() {
         return plato;
     }
-    public String getNiveauDeDifficulté() {
-        return niveauDeDifficulté;
-    }
     public List<Zombie> getEnnemis() {
         return ennemis;
     }
     public List<Mario> getlisteMario() {
         return listeMario;
+    }
+    public List<Mario> listeMario(){
+        List<Mario> MArioDisponibles =new ArrayList<>();
+        MArioDisponibles.add(new BasicMario());
+        MArioDisponibles.add(new WallBrick());
+        MArioDisponibles.add(new FireMario());
+        MArioDisponibles.add(new BigMario());
+        MArioDisponibles.add(new StarMario());
+        return MArioDisponibles;
+
     }
 /*  
     public void placerMario(String tour){
@@ -108,33 +111,45 @@ public class Jeu {
             }
         } */
 
-         public void jouerPartieSimple() {
+        public static String modeJeu(int i){
+            String v;
+            switch (i) {
+                case 1:
+                    v="Facile";
+                    break;
+                case 2:
+                    v="Moyen";
+                    break;
+                case 3:
+                    v="Difficile";
+                    break;
+                case 4:
+                    v="Marathon";
+                    break;
+            
+                default: v="Facile";
+                    break;
+            }
+            return v;
+        }
+
+        public void jouer(){
             joueur.afficherMArioDisponibles(listeMario);
             System.out.print("Argent : ");
             joueur.afficheArgent();
             plato.affiche();
             MarioThread marioThread = new MarioThread(plato, joueur, listeMario);
-            ZombieThread zombieThread = new ZombieThread(plato, ennemis);
+            ZombieThread zombieThread = new ZombieThread(plato);
             AttaqueThread attaqueThread = new AttaqueThread(plato);
         
             marioThread.start();
             zombieThread.start();
             attaqueThread.start();
-    }
-
-    
-    
-
-    public void jouerPartieMoyen(){
+        }
         
-    }
-
-    public void jouerPartieDifficile(){
-        
-    }
 
     public static void main(String[] args) {
-        Plateau p = new Plateau(6, 10);
+        /*Plateau p = new Plateau(6, 10);
         List<Mario> MArioDisponibles =new ArrayList<>();
         MArioDisponibles.add(new BasicMario());
         MArioDisponibles.add(new WallBrick());
@@ -149,7 +164,14 @@ public class Jeu {
         ennemis.add(new Zombie1(1000));
         ennemis.add(new Zombie1(1000));
         Jeu a = new Jeu(p, "simple", ennemis, MArioDisponibles, joueur);
-        a.jouerPartieSimple();
+        a.jouerPartieSimple();*/
+        Communication c = new Communication();
+        String mode = modeJeu(c.demanderNiveauDifficulte());
+        Joueur j = new Joueur(c.demanderString("Comment souhaites-tu te nommer ?"));
+        Plateau p = new Plateau(6,10,mode);
+        Jeu a = new Jeu(p, j);
+        a.jouer();
+
         }
 
 }

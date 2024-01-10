@@ -22,7 +22,10 @@ public class Communication {
         afficherMessage("Choisissez le type de Mario (1 BasicMario , 2 WallBrick , 3 FireMario , 4 BigMario ,5 StarMario): ");
         return scanner.nextInt();
     }
-
+    public String demanderString(String s){
+        afficherMessage(s);
+        return scanner.nextLine();
+    }
     public String demanderPersoPosition(){
         afficherMessage("Tour: ");
         String position = scanner.nextLine();
