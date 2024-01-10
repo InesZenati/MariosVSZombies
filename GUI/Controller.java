@@ -8,11 +8,20 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 public class Controller extends JPanel{
-     private JeuGUI jeuGUI;
-    public Controller(){
+    private PlateauGUI plateauGUI;
+    private Plateau plateau;
+    private JeuGUI jeuGUI;
+  
+    public Controller(PlateauGUI plateauGUI, Plateau plateau, JeuGUI jeuGUI){
+        this.plateauGUI = plateauGUI;
+        this.plateau = plateau;
+        this.jeuGUI = jeuGUI;
        
-        PlateauGUI plateau = new PlateauGUI(jeuGUI);
-        plateau.setVisible(true);
-        plateau.spawnZombies();
     }
+
+    public  void start(){
+        plateauGUI.spawnZombies();
+
+    }
+
 }

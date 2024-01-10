@@ -164,8 +164,6 @@ public class PlateauGUI extends JPanel{
             }
         }
     }
-    
-    
 
     public void updatePlateau() {
         if (plateauPanel != null) {
@@ -199,8 +197,14 @@ public class PlateauGUI extends JPanel{
         return (JPanel) plateauPanel.getComponent(li * 9 + col);
     }
 
+
+
     public void spawnZombies(){
-       // ZombieThread zombieThread = new ZombieThread(jeuGUI.getPlateau());
+     //   System.out.println("spawnZombies");
+        ZombieThread zombieThread = new ZombieThread(this);
+      //  System.out.println("spawnZombies");
+        zombieThread.start();
+        
     }
     
 

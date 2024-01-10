@@ -194,6 +194,7 @@ public class Plateau {
 
     public void spawnRandomZombies(List<Zombie> listeZombies) {
         for (int i = 0; i < listeZombies.size()-1; i++) {
+            System.out.println("Dans spawnRandomZombies");
             spawnZombie(listeZombies.get(i));
         }
     }

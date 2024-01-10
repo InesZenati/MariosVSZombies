@@ -243,6 +243,8 @@ add(centralPanel, BorderLayout.CENTER);
     private void tryToShowNewPage() {
         // Vérifier si les deux sélections ont été faites
         if (selectedDecor != null && selectedDifficulty != null) {
+            Plateau plato = new Plateau(6, 11, selectedDifficulty);
+            jeu.setPlateau(plato);
 
             // Afficher je pense on ajoute ds attributs pour avoir que une page afficher
             cardLayout.show(cardPanel, "PlateauGUI"); 

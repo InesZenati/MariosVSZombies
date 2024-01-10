@@ -7,6 +7,7 @@ public class JeuGUI extends JFrame {
     private JPanel cardPanel;
     private Joueur joueur;
     private Plateau plateau;
+    private Controller controller;
 
     public CardLayout getCardLayout(){
         return this.cardLayout;
@@ -37,19 +38,15 @@ public class JeuGUI extends JFrame {
         // Initialisation du CardLayout
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
-
         // Welcome Page
         WelcomePageGUI welcomePageGUI = new WelcomePageGUI(this);
         cardPanel.add(welcomePageGUI, "Welcome");
-
         // Menu Page
         MenuGUI menuPageGUI = new MenuGUI(this);
         cardPanel.add(menuPageGUI, "Menu");
-
         // Set Page
         setJeu config = new setJeu(this);
         cardPanel.add(config, "Config");
-
         // Game Page
         PlateauGUI jeu = new PlateauGUI(this);
         cardPanel.add(jeu, "PlateauGUI");
@@ -61,6 +58,11 @@ public class JeuGUI extends JFrame {
 
         // Afficher la fenêtre principale
         frame.setVisible(true);
+    }
+
+    public Plateau setPlateau(Plateau plato){
+       this.plateau = plato;
+        return this.plateau;
     }
 
     public Joueur getJoueur(){
