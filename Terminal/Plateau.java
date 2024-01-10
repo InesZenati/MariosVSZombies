@@ -5,7 +5,6 @@ public class Plateau {
     private int numLi;
     private int numCols;
     private Case[][] plato;
-    private String niveauDeDifficulté;
     private List<Personnage> PersoDansPlato = new ArrayList<>();
     private List<Zombie> VagueDeZombie = new ArrayList<>();
 
@@ -21,7 +20,9 @@ public class Plateau {
         this.numLi = numLi;
         this.numCols = numCols;
         this.plato = new Case[numLi][numCols];
+        this.VagueDeZombie=generateZombies(niveauDeDifficulté);
         creePLato();
+
     }
 
     public List<Personnage> getListPerso(){
@@ -115,7 +116,7 @@ public class Plateau {
         moveZombie(z);
     } 
     
-    public static List<Zombie> generateZombies(String niveaudeDIfficulté){
+    public List<Zombie> generateZombies(String niveaudeDIfficulté){
         List<Zombie> ennemis = new ArrayList<>();
         switch (niveaudeDIfficulté) {
             case "facile":
@@ -135,7 +136,7 @@ public class Plateau {
         return ennemis;
     }
 
-    public static List<Zombie> generateEnemies(int zombie1 , int zombie2 , int zombie3 , int zombie4 , int n) {
+    public List<Zombie> generateEnemies(int zombie1 , int zombie2 , int zombie3 , int zombie4 , int n) {
         List<Zombie> ennemis = new ArrayList<>();
         Random random = new Random();
 

@@ -166,8 +166,8 @@ public class Jeu {
         Jeu a = new Jeu(p, "simple", ennemis, MArioDisponibles, joueur);
         a.jouerPartieSimple();*/
         Communication c = new Communication();
-        String mode = modeJeu(c.demanderNiveauDifficulte());
         Joueur j = new Joueur(c.demanderString("Comment souhaites-tu te nommer ?"));
+        String mode = modeJeu(c.demanderNiveauDifficulte());
         Plateau p = new Plateau(6,10,mode);
         Jeu a = new Jeu(p, j);
         a.jouer();
