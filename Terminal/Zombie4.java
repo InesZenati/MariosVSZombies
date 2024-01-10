@@ -7,7 +7,7 @@ public class Zombie4 extends Zombie{
         super("SuperMegaUltraZombie",500,v,new Information(8,10,-1,-1,50));
     }
     public String getImagePath(){
-        return "BasicMario.png";
+        return "Zombie.png";
     }
     
 }

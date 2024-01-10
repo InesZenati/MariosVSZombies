@@ -91,7 +91,7 @@ public class PlateauGUI extends JPanel{
         mario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                selectedPersonnage = getPersonnageByName(name);
+                selectedPersonnage = (Mario)getPersonnageByName(name);
                 System.out.println(selectedPersonnage.getName());
             }
         });
@@ -99,7 +99,7 @@ public class PlateauGUI extends JPanel{
         }
 
 
-    private Mario getPersonnageByName(String name) {
+    private Personnage getPersonnageByName(String name) {
         switch (name) {
             case "BasicMario":
                 return new BasicMario();
@@ -111,6 +111,12 @@ public class PlateauGUI extends JPanel{
                 return new BigMario();
             case "StarMario":
                 return new StarMario();
+            case "ZombieSimple":
+                return new Zombie1(1000);
+            case" ZombieAmélioré":
+                return new Zombie2(1000);
+            case "SuperZombie":
+                return new Zombie3(1000);
             default:
                 return null;
         }
@@ -149,11 +155,12 @@ public class PlateauGUI extends JPanel{
 
     public void casePanelClic(int li, int col) {
         if (selectedPersonnage != null) {
-            if (!jeuGUI.getPlateau().getCase(li, col).contientPersonnage()) {
-                Mario mario = getPersonnageByName(selectedPersonnage.getName());
+            if (!jeuGUI.getPlateau().getCase(li, col).contientMario()) {
+                Personnage mario = getPersonnageByName(selectedPersonnage.getName());
                 System.out.println("mario creer");
-                if (this.getJeuGUI().getJoueur().getArgent() >= mario.getPrix()) {
-                    jeuGUI.getPlateau().placeMario(mario, li, col);
+                Mario m = (Mario) mario;
+                if (this.getJeuGUI().getJoueur().getArgent() >= m.getPrix()) {
+                    jeuGUI.getPlateau().placeMario(m, li, col);
                     System.out.println("mario place");
                     updatePlateau();
                 } else {
@@ -200,11 +207,14 @@ public class PlateauGUI extends JPanel{
 
 
     public void spawnZombies(){
-     //   System.out.println("spawnZombies");
-        ZombieThread zombieThread = new ZombieThread(this);
-      //  System.out.println("spawnZombies");
+      System.out.println("spawnZombies");
+      ZombieThread zombieThread = new ZombieThread(this);
+       System.out.println("spawnZombies");
         zombieThread.start();
         
+    }
+    public void testPlateau(){  
+    getJeuGUI().getPlateau().spawnRandomZombies(getJeuGUI().getPlateau().getVague());
     }
     
 

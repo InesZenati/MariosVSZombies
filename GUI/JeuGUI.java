@@ -19,7 +19,9 @@ public class JeuGUI extends JFrame {
         return plateau;
     }
 
-
+    public Controller getController(){
+        return controller;
+    }
 
     public static void main(String[] args) {
         new JeuGUI();
@@ -55,7 +57,7 @@ public class JeuGUI extends JFrame {
 
         // Afficher la page "Welcome" au démarrage
         cardLayout.show(cardPanel, "Welcome");
-
+        controller = new Controller(jeu, plateau, this);
         // Afficher la fenêtre principale
         frame.setVisible(true);
     }

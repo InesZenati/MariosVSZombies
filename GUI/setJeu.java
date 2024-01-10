@@ -129,11 +129,13 @@ hardButton.addActionListener(new ActionListener() {
         CommencerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                j.getController().start();
                 tryToShowNewPage();
+                j.getController().start();
             }
         });
-        
 
+     
 // centrer les trucs
 GridBagConstraints gbc = new GridBagConstraints();
 gbc.gridx = 0;

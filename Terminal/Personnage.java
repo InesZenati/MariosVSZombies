@@ -68,5 +68,7 @@ public abstract class Personnage {
 
     public abstract String estDevant(Plateau p);
 
+    public abstract String getImagePath();
+
     
 }
