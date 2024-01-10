@@ -23,11 +23,12 @@ public class ZombieThread extends Thread {
                 switch (i) {
                     case 0:
                         plato.spawnRandomZombies(plato.getVague());
-                        plato.affiche();
+                        update();
                         break;
                     case 1:
                     pGui.getJeuGUI().getPlateau().spawnRandomZombies(pGui.getJeuGUI().getPlateau().getVague());
-                    pGui.getJeuGUI().getPlateau().affiche();    
+                    pGui.getJeuGUI().getPlateau().affiche();
+                    update();    
                         break;
                     default:
                         break;
@@ -43,6 +44,19 @@ public class ZombieThread extends Thread {
         */
     }
 
+    public void update(){
+        switch (i) {
+            case 0:
+                plato.affiche();
+                break;
+            case 1:
+                pGui.updatePlateau();
+                break;
+            default:
+                break;
+        }
+    }
+
     public void moveZombie(Zombie z) {
         Plateau plato = this.plato;                          
         int li = z.getInfoActuelle().getPosX();
@@ -53,7 +67,7 @@ public class ZombieThread extends Thread {
                 sleep(100);
                 placeZombie(z, li, col);
                 sleep(1000);
-                plato.affiche();
+                update();
             }
         }
 
