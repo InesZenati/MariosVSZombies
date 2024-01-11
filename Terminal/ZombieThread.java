@@ -121,6 +121,9 @@ public class ZombieThread extends Thread {
         System.out.println("Dans spawnRandomZombies");
         for (int i = 0; i < listeZombies.size(); i++) {
             spawnZombie(listeZombies.get(i));
+            if(plato.getPartisStatus()!=0){
+                break;
+            }
             System.out.println(listeZombies.get(i).toString());
         }
         System.out.println("Fin spawnRandomZombies");

@@ -6,6 +6,8 @@ public class Jeu {
     private List<Zombie> ennemis;
     private List<Mario> listeMario = listeMario();
     private Joueur joueur;
+    private volatile boolean partieTerminee = false;
+
 
     public Jeu(Plateau plato, Joueur joueur) {
         this.plato = plato;
@@ -147,70 +149,78 @@ public class Jeu {
 
         public void partieFinish() {
             Scanner sc = new Scanner(System.in);
-        
+    
             Thread partieOver = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    boolean victoire = true;
-                    
-                   while  (victoire) {
-                        System.out.println(getPlato().getPartisStatus());
-                        if (plato.getPartisStatus()!= 0) {
+                    while (!partieTerminee) {
+                        if (plato.getPartieStatus() != 0) {
                             jouer(2);
                             System.out.println("Partie terminée");
-                               if (plato.getPartisStatus() == 1) {
-                                System.out.println("arret de thread");
+    
+                            if (plato.getPartieStatus() == 1) {
                                 System.out.println("Vous avez gagné !");
-                                gameRejouer();
-                            } else if (plato.getPartisStatus() == 2) {
+                            } else if (plato.getPartieStatus() == 2) {
                                 System.out.println("Vous avez perdu");
-                              gameRejouer();
                             }
-                        
+                            
+                            gameRejouer();
+                              break;
+                            //partieTerminee = true;
                         }
-                        break;
-                    }   
-                }           
+    
+                        try {
+                            // Pause le thread pendant une courte période
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
             });
-        
+    
             partieOver.start();
         }
-
-        public void gameRejouer(){
+        public void gameRejouer() {
             Scanner sc = new Scanner(System.in);
             System.out.println("Voulez-vous rejouer ? 1 OUI 2 NON");
             int choix = sc.nextInt();
-            if(choix==1){
-                jouer(1);
-            }else if(choix==2){
+            if (choix == 1) {
+                Communication c = new Communication();
+            Joueur j = new Joueur(c.demanderString("Comment souhaites-tu te nommer ?"));
+            String mode = modeJeu(c.demanderNiveauDifficulte());
+                Plateau p = new Plateau(6,10,mode);
+                Jeu a = new Jeu(p, j);
+                a.jouer(1);
+            } else if (choix == 2) {
                 System.out.println("Merci d'avoir joué !");
             }
         }
         
-        
-
-        public void jouer(int i){
-                partieFinish();
+    
+        public void jouer(int i) {
+            partieFinish();
             MarioThread marioThread = new MarioThread(plato, joueur, listeMario);
             ZombieThread zombieThread = new ZombieThread(plato);
             AttaqueThread attaqueThread = new AttaqueThread(plato);
-        
-        if(i ==1){
-            joueur.afficherMArioDisponibles(listeMario);
-            System.out.print("Argent : ");
-            joueur.afficheArgent();
-            plato.affiche();
-            marioThread.start();
-            zombieThread.start();
-            attaqueThread.start();
-        }else if(i==2){
-            //stop all the threads
-            marioThread.stopThread();
-            zombieThread.stopThread();
-            attaqueThread.stopThread();
     
-    }
-}     
+            if (i == 1) {
+                joueur.afficherMArioDisponibles(listeMario);
+                System.out.print("Argent : ");
+                joueur.afficheArgent();
+                plato.affiche();
+                marioThread.start();
+                zombieThread.start();
+                attaqueThread.start();
+            } else if (i == 2) {
+                // Arrêter tous les threads
+                marioThread.stopThread();
+                zombieThread.stopThread();
+                attaqueThread.stopThread();
+                partieTerminee = true;
+            }
+        }
+    
 
     public static void main(String[] args) {
         /*Plateau p = new Plateau(6, 10);
@@ -229,13 +239,9 @@ public class Jeu {
         ennemis.add(new Zombie1(1000));
         Jeu a = new Jeu(p, "simple", ennemis, MArioDisponibles, joueur);
         a.jouerPartieSimple();*/
-        Communication c = new Communication();
-        Joueur j = new Joueur(c.demanderString("Comment souhaites-tu te nommer ?"));
-        String mode = modeJeu(c.demanderNiveauDifficulte());
+        
         //int play = playJeu(demanderInterface());
-        Plateau p = new Plateau(6,10,mode);
-        Jeu a = new Jeu(p, j);
-       // a.jouer();
+        
 
         }
 

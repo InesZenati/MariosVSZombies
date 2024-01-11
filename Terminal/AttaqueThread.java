@@ -18,7 +18,7 @@ public class AttaqueThread extends Thread {
 
     @Override
     public void run(){
-        while(true){
+        while(plato.getPartisStatus()==0){
             update();
             attaque();
             update();

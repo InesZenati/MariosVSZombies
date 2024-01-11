@@ -14,7 +14,7 @@ import java.util.List;
 
     @Override
     public void run() {
-        while (running) {
+        while (plato.getPartisStatus() == 0) {
             String choix = joueur.demanderPersoPosition();
             placerMario(choix);
             plato.affiche();
