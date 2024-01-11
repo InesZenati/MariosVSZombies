@@ -55,8 +55,10 @@ public class JeuGUI extends JFrame {
         // Game Page
         PlateauGUI jeu = new PlateauGUI(this);
         cardPanel.add(jeu, "PlateauGUI");
-        GameOverGUI gameOverPanel = new GameOverGUI();
+        GameOverGUI gameOverPanel = new GameOverGUI(this);
         cardPanel.add(gameOverPanel, "GameOver");
+
+
 
         frame.add(cardPanel);
 

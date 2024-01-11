@@ -3,75 +3,80 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
 
 public class GameOverGUI extends JPanel {
+    private JeuGUI jeu;
+   
 
-    private Jeu jeu;
-    private JFrame frame;
-    private JPanel panel;
-    private JLabel gameOverLabel;
-    private JButton retourMenuButton;
+    public GameOverGUI(JeuGUI j) {
+        jeu =j;
+        setLayout(new BorderLayout());
 
-       Font marioFont = loadMarioFont();
+        // police Mario
+        Font marioFont = loadMarioFont();
 
-    public GameOverGUI() {
-        initializeComponents();
-        createGUI();
-        
-    }
+        //  fond d'image 
+        ImageIcon backgroundImage = new ImageIcon("fonts/mario.png");
+        Image originalImage = backgroundImage.getImage();
+        int newWidth = 1280;
+        int newHeight = 400;
 
-    private void initializeComponents() {
-        frame = new JFrame("Game Over");
-        panel = new JPanel();
-        gameOverLabel = new JLabel("Game Over");
-        retourMenuButton = new JButton("Retour au Menu");
-    }
+        // Redimensionner l'image
+        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledImageIcon = new ImageIcon(scaledImage);//nv image redimensionnée
+        JLabel backgroundLabel = new JLabel(scaledImageIcon);//nv label avec l'image redimensionnée
+        // padding
+                backgroundLabel.setBorder(BorderFactory.createEmptyBorder(-5, 0, 82, 0));
 
-    private void createGUI() {
-        frame.setSize(400, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        add(backgroundLabel, BorderLayout.SOUTH);
+        backgroundLabel.setPreferredSize(new Dimension(backgroundImage.getIconWidth(), 200));
 
-        panel.setLayout(new BorderLayout());
+        // autres trucs de la page
+        JPanel centralPanel = new JPanel(new GridBagLayout());
+        centralPanel.setBackground(new Color(205, 55, 35, 255)); // Rend le fond transparent pour montrer l'image en bas
 
-        // Utilisation d'une police de caractères "Mario" (si elle est disponible)
-        try {
-            Font marioFont = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("mario.ttf"))).deriveFont(Font.PLAIN, 24);
-            gameOverLabel.setFont(marioFont);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Titre Panel
+        JPanel titlePanel = new JPanel();
+        titlePanel.setOpaque(false);
+        JLabel titleLabel = new JLabel("GAME OVER");
+        titleLabel.setFont(marioFont.deriveFont(Font.BOLD, 50));
+        titleLabel.setForeground(Color.WHITE);
+        titlePanel.add(titleLabel);
 
-        panel.add(gameOverLabel, BorderLayout.CENTER);
-        panel.add(retourMenuButton, BorderLayout.SOUTH);
 
-        frame.getContentPane().add(panel);
-        frame.setLocationRelativeTo(null); // Centrez la fenêtre sur l'écran
-        frame.setVisible(true);
-    }
-
-    private void addListeners(final JeuGUI jeuGUI) {
-        retourMenuButton.addActionListener(new ActionListener() {
+        // Start 
+        JButtonStyled startButton = new JButtonStyled("Retour au menu");
+        startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Insérez ici le code pour retourner au menu principal
-                // Vous pouvez fermer la fenêtre actuelle et afficher la nouvelle fenêtre du menu, etc.
-                frame.dispose();
-               // jeu.getCardLayout().show(jeu.getCardPanel(), "Menu");  // Exemple imaginaire, adaptez à votre logique
+               
+                jeu.getCardLayout().show(jeu.getCardPanel(), "Menu");
             }
         });
+
+        // Buttons Panel
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setOpaque(false);
+        buttonsPanel.add(startButton);
+
+
+        // centrer les composants
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weighty = 1;//inutil j'ai limpression pas tropcapter a quoi ça sert
+        centralPanel.add(titlePanel, gbc);
+        
+
+        
+        gbc.gridy = 2;
+        centralPanel.add(buttonsPanel, gbc);
+
+        // Ajouter le panel central à la partie centrale de la fenêtre
+        add(centralPanel, BorderLayout.CENTER);
     }
 
-    // Exemple d'utilisation
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new GameOverGUI();
-            }
-        });
-    }
-
+   
     private Font loadMarioFont() {
         try {
             File fontFile = new File("fonts/SuperMario256.ttf");

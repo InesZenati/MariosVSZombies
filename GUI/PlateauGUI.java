@@ -108,9 +108,10 @@ public class PlateauGUI extends JPanel{
         terminerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(jeuGUI.getPlateau().getPartieStatus()==1){
                 cardLayout.show(cardPanel, "GameOver");
             }
-        });
+        }});
 
         terminerPanel.add(terminerButton);
         return terminerPanel;
