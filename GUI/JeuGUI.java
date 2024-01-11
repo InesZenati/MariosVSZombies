@@ -53,6 +53,8 @@ public class JeuGUI extends JFrame {
         setJeu config = new setJeu(this);
         cardPanel.add(config, "Config");
         // Game Page
+        ReglesGUI reglesGUI = new ReglesGUI(this);
+        cardPanel.add(reglesGUI, "Regles");
         PlateauGUI jeu = new PlateauGUI(this);
         cardPanel.add(jeu, "PlateauGUI");
         GameOverGUI gameOverPanel = new GameOverGUI(this);
@@ -130,7 +132,8 @@ public class JeuGUI extends JFrame {
       // Afficher je pense on ajoute ds attributs pour avoir que une page afficher
             cardLayout.show(cardPanel, "GameOver");
         }
-        else if(finPartie==2){
+        else 
+        if(finPartie==2){
             cardLayout.show(cardPanel, "GameWin");
         }
     }
