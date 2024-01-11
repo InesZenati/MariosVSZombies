@@ -260,6 +260,8 @@ public class PlateauGUI extends JPanel{
       ZombieThread zombieThread = new ZombieThread(this);
        System.out.println("spawnZombies");
         zombieThread.start();
+        AttaqueThread attaqueZombies= new AttaqueThread(this);
+        attaqueZombies.start();
         
     }
 

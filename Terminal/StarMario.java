@@ -8,6 +8,7 @@ public class StarMario extends Mario{
 
     public void attaque (Plateau p){
         int[] pos = this.getPosition();
+        if(p.getCase(pos[0],pos[1]+1)!=null){ 
         if(p.getCase(pos[0],pos[1]+1).contientZombie()){
             Personnage m =  p.getCase(pos[0],pos[1]+1).getPersonnage();
             if(m.getInfoActuelle().getDefense()>this.getInfoActuelle().getAttaque()){
@@ -17,6 +18,7 @@ public class StarMario extends Mario{
             }
             this.aGagner(p,m);
         }
+    }
     }
     
 
@@ -30,6 +32,7 @@ public class StarMario extends Mario{
         int li = pos[0];
         int col = pos[1];
        //  System.out.println(2);
+       if(p.getCase(li,col+1)!=null){ 
          if(p.getCase(li,col+1).contientZombie2()){
             System.out.println(3);
              return true;
@@ -37,8 +40,9 @@ public class StarMario extends Mario{
              System.out.println("non");
          }
       //   System.out.println(5);
-         return false;
-     }
+     } 
+     return false;
+    }
 
      public String getImagePath(){
         return "SuperMario.png";

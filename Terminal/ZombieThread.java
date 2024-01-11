@@ -91,6 +91,7 @@ public class ZombieThread extends Thread {
         System.out.println("Fin moveRandomZombies");
     }
 
+
     public void spawnZombie(Zombie z) {
         System.out.println("Dans spawnZombie");
         int li = 1+ (int) (Math.random() * plato.getNumLi()-1);
