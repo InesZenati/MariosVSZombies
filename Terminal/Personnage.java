@@ -44,6 +44,16 @@ public abstract class Personnage {
                 Zombie z = (Zombie) this;
                 sleep(1000);
                 z.moveZombie(p);
+
+                for(int i = pos[1]+1;i<p.getNumCols();i++){
+                    if(p.getCase(pos[0],i)==null){
+                        break;
+                    }
+                    if(p.getCase(pos[0],i).contientZombie()){
+                        Zombie l = (Zombie) p.getCase(pos[0],i).getPersonnage();
+                        l.moveZombie(p);
+                    }
+                }
                 //modif
             }
             return true;
