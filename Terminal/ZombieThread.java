@@ -21,24 +21,8 @@ public class ZombieThread extends Thread {
     @Override
     public void run() {
         while(true){  
-                switch (i) {
-                    case 0:
-                        System.out.println("Dans case 0");
-                        spawnRandomZombies(plato.getVague());
-                        System.out.println("Dans case 0");
-                        update();
-                        break;
-                    case 1:
-                    System.out.println("plato interface" +plato.toString());
-                    System.out.println("Dans ZombieThread");
-                    spawnRandomZombies(pGui.getJeuGUI().getPlateau().getVague());
-                    System.out.println("Dans ZombieThread");
-                    pGui.getJeuGUI().getPlateau().affiche();
-                    update();    
-                        break;
-                    default:
-                        break;
-                }
+                spawn();
+                update();
                 sleep(100);   
             }
 
@@ -48,6 +32,24 @@ public class ZombieThread extends Thread {
                 plato.affiche();
         }
         */
+    }
+
+    public void spawn(){
+        switch (i) {
+            case 0:
+                System.out.println("Dans case 0");
+                spawnRandomZombies(plato.getVague());
+                System.out.println("Dans case 0");
+                break;
+            case 1:
+                System.out.println("plato interface" +plato.toString());
+                System.out.println("Dans ZombieThread");
+                spawnRandomZombies(pGui.getJeuGUI().getPlateau().getVague());
+                    System.out.println("Dans ZombieThread");
+                break;
+            default:
+                break;
+        }
     }
 
     public void update(){

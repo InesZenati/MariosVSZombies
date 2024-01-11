@@ -22,7 +22,7 @@ public class PlateauGUI extends JPanel{
         this.selectedPersonnage=null;
         return this.jeuGUI;
     }
-  Font marioFont = loadMarioFont();
+    Font marioFont = loadMarioFont();
 
     public PlateauGUI(JeuGUI jeuGUI){
         this.jeuGUI = jeuGUI;
