@@ -76,7 +76,7 @@ public abstract class Zombie extends Personnage {
         while(this.peutDeplacer(plato)){ 
                 this.removeZombie(li, col,plato);
                 col=col-1;
-                sleep(100);
+                sleep(1000);
                 this.placeZombie(li, col, plato);
                 System.out.println(this.toString());
                 System.out.println("update");
