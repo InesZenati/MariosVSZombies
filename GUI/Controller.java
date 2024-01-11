@@ -19,6 +19,10 @@ public class Controller extends JPanel{
        
     }
 
+    public PlateauGUI getPlateauGUI(){
+        return plateauGUI;
+    }
+
     public void debut(){
         plateauGUI.spawnZombies(1);
         

@@ -57,6 +57,10 @@ public class JeuGUI extends JFrame {
 
         frame.add(cardPanel);
 
+        GameOverGUI gameOverPanel = new GameOverGUI();
+        cardPanel.add(gameOverPanel, "GameOver");
+
+
         // Afficher la page "Welcome" au démarrage
         cardLayout.show(cardPanel, "Welcome");
         controller = new Controller(jeu, plateau, this);
@@ -71,21 +75,20 @@ public class JeuGUI extends JFrame {
                 @Override
                 public void run() {
                     while (!partieTerminee) {
-                        if (getPlato().getPartieStatus() != 0) {
-                            jouer(2);
+                        if (plateau.getPartieStatus() != 0) {
+                            controller.getPlateauGUI().spawnZombies(2);
                             System.out.println("Partie terminée");
-    
-                            if (plato.getPartieStatus() == 1) {
-                                System.out.println("Vous avez gagné !");
-                            } else if (plato.getPartieStatus() == 2) {
-                                System.out.println("Vous avez perdu");
+                        
+                            if (plateau.getPartieStatus() == 1) {
+                                cardLayout.show(cardPanel, "GameOver");
+                            } else if (plateau.getPartieStatus() == 2) {
+                                System.out.println("Vous avez gangé !");
                             }
-                            
+                       
                             gameRejouer();
-                              break;
-                            //partieTerminee = true;
+
                         }
-    
+ 
                         try {
                             // Pause le thread pendant une courte période
                             Thread.sleep(100);
@@ -99,20 +102,24 @@ public class JeuGUI extends JFrame {
             partieOver.start();
         }
         public void gameRejouer() {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Voulez-vous rejouer ? 1 OUI 2 NON");
-            int choix = sc.nextInt();
-            if (choix == 1) {
-                Communication c = new Communication();
-            Joueur j = new Joueur(c.demanderString("Comment souhaites-tu te nommer ?"));
-            String mode = modeJeu(c.demanderNiveauDifficulte());
-                Plateau p = new Plateau(6,10,mode);
-                Jeu a = new Jeu(p, j);
-                a.jouer(1);
-            } else if (choix == 2) {
+            int choix = JOptionPane.showOptionDialog(
+                    this,
+                    "Voulez-vous rejouer ?",
+                    "Rejouer",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new Object[]{"OUI", "NON"},
+                    "OUI");
+        
+            if (choix == JOptionPane.YES_OPTION) {
+                // Relancez le jeu (à adapter selon vos besoins)
+                cardLayout.show(cardPanel, "Menu");  // Vous pouvez également utiliser une autre carte comme "Config" selon votre logique
+            } else {
                 System.out.println("Merci d'avoir joué !");
             }
         }
+        
         
 
     
