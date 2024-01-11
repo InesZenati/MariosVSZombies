@@ -100,6 +100,40 @@ public class PlateauGUI extends JPanel{
         return infoJoueur;
     }
 
+    public void updateJoueurInfo(){
+        System.out.println("Update Info"+this.jeuGUI.getJoueur().getName());
+        if(InfoPanel!=null){
+            InfoPanel.removeAll();
+            System.out.println(this.getJeuGUI().getJoueur().toString());
+            InfoPanel.setBackground(new Color(205, 55, 35, 255)); 
+        // add border
+            InfoPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 10, 10));
+            InfoPanel.setLayout(new BoxLayout(InfoPanel, BoxLayout.Y_AXIS));
+            JLabel joueurName = new JLabel("Information de : "+this.getJeuGUI().getJoueur().getName()+" ");
+            joueurName.setFont(marioFont.deriveFont(Font.PLAIN, 20));
+            joueurName.setForeground(Color.WHITE);
+            JLabel joueurArgent = new JLabel("Argent : " + this.Argent + " ");
+            joueurArgent.setFont(marioFont.deriveFont(Font.PLAIN, 20));
+            joueurArgent.setForeground(Color.WHITE);
+       
+        
+            InfoPanel.add(joueurArgent);
+            joueurArgent.setFont(marioFont.deriveFont(Font.PLAIN, 20));
+            joueurArgent.setForeground(Color.WHITE);
+            JLabel joeuurScore = new JLabel("Score : "+this.getJeuGUI().getJoueur().getScore()+" points");
+            joeuurScore.setFont(marioFont.deriveFont(Font.PLAIN, 20));
+            joeuurScore.setForeground(Color.WHITE);
+            InfoPanel.add(joueurName);
+            InfoPanel.add(joueurArgent);
+            InfoPanel.add(joeuurScore);
+            
+            InfoPanel.revalidate();
+            InfoPanel.repaint();
+            
+        }
+    }
+
+
         public JPanel createTerminerPanel() {
         JPanel terminerPanel = new JPanel();
         JButton terminerButton = new JButton("Terminer");
@@ -108,10 +142,9 @@ public class PlateauGUI extends JPanel{
         terminerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(jeuGUI.getPlateau().getPartieStatus()==1){
                 cardLayout.show(cardPanel, "GameOver");
             }
-        }});
+        });
 
         terminerPanel.add(terminerButton);
         return terminerPanel;
@@ -224,6 +257,7 @@ public class PlateauGUI extends JPanel{
     }
 
     public void updatePlateau() {
+        updateJoueurInfo();
         if (plateauPanel != null) {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
