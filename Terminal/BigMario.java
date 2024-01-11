@@ -5,11 +5,13 @@ public class BigMario extends Mario{
     public void attaque(Plateau p){
         int [] pos = this.getPosition();
         for(int i=1;i<3;i++){
+            if(p.getCase(pos[0], pos[1]+i)!=null){
             if(p.getCase(pos[0], pos[1]+i).contientZombie()){
                 Personnage z1 = p.getCase(pos[0],pos[1]+i).getPersonnage();
                 z1.takeDamage(z1.getInfoActuelle().getvie()/2);
                 this.aGagner(p, z1);
             }
+        }
         }
         /*if(p.getCase(pos[0],pos[1]+1).contientZombie() && p.getCase(pos[0],pos[1]+2).contientZombie()){
                 Personnage z1 = p.getCase(pos[0],pos[1]+1).getPersonnage();
@@ -31,6 +33,7 @@ public class BigMario extends Mario{
         int col = pos[1];
        //  System.out.println(2);
        for(int i=1;i<3;i++){
+         if(p.getCase(li,col+i)!=null){ 
            if(p.getCase(li,col+i).contientZombie2()){
              System.out.println(3);
                return true;
@@ -39,6 +42,7 @@ public class BigMario extends Mario{
          }
       //   System.out.println(5);
      } 
+    }
      return false;
     }
 

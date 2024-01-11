@@ -76,13 +76,14 @@ public class Plateau {
             System.out.println("Il y a déjà un Mario placé dans la case ["+li+","+col+"]");
             return false;
         }
-        if(!this.plato[li][col].contientZombie()&&!this.plato[li][col].contientMario()){
+        if(!this.plato[li][col].contientZombie()&&!this.plato[li][col].contientMario()&& col!=numCols-1){
             m.getInfoActuelle().setPosX(li);
             m.getInfoActuelle().setPosY(col);
             this.ajouter(m);
             plato[li][col].setMario(m);
             return true;
         }
+        System.out.println("Vous n'avez pas le droit de placer à la derniere colone");
         return false;
         
     }
@@ -125,6 +126,13 @@ public class Plateau {
         }
         return ennemis;
     }
+/* 
+    public List<Zombie> generateEnemieMarathon(){
+        List<Zombie> ennemis = new ArrayList<>();
+        while(true)
+
+    }
+    */
 
     public List<Zombie> generateEnemies(int zombie1 , int zombie2 , int zombie3 , int zombie4 , int n) {
         List<Zombie> ennemis = new ArrayList<>();
