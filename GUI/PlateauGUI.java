@@ -29,7 +29,9 @@ public class PlateauGUI extends JPanel{
 
         setLayout(new BorderLayout());//pour que le panel soit divisé en 5 parties
 
-      
+        cardLayout = jeuGUI.getCardLayout();
+
+        cardPanel = jeuGUI.getCardPanel();
 
           // Création du menuPanel à gauche
         menuPanel = createSideMenu();

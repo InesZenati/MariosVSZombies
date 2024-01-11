@@ -55,12 +55,12 @@ public class JeuGUI extends JFrame {
         // Game Page
         PlateauGUI jeu = new PlateauGUI(this);
         cardPanel.add(jeu, "PlateauGUI");
-
-        frame.add(cardPanel);
-
         GameOverGUI gameOverPanel = new GameOverGUI();
         cardPanel.add(gameOverPanel, "GameOver");
 
+        frame.add(cardPanel);
+
+      
 
         // Afficher la page "Welcome" au démarrage
         cardLayout.show(cardPanel, "Welcome");
