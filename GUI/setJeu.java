@@ -251,7 +251,9 @@ add(centralPanel, BorderLayout.CENTER);
         System.out.println(selectedDifficulty);
         if (selectedDecor != null && selectedDifficulty != null) {
             System.out.println(selectedDifficulty);
-            Plateau plato = new Plateau(5, 9, selectedDifficulty);
+            Joueur j =jeu.getJoueur();
+            j.setArgent(24);
+            Plateau plato = new Plateau(5, 9, selectedDifficulty,j);
             System.out.println("plateau ceer" +plato.toString());
             jeu.setPlateau(plato);
             System.out.println("nouveau plateau" +jeu.getPlateau().toString());

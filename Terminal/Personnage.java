@@ -55,6 +55,13 @@ public abstract class Personnage {
                     }
                 }
                 //modif
+            }else{
+                if(this instanceof Mario){
+                    Zombie z = (Zombie) perso;
+                    int prix = z.getGain();
+                    p.getJoueur().incrementerArgent(prix);
+                    p.getJoueur().incrementerScore(prix);
+                }
             }
             return true;
            }

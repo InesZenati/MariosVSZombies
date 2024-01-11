@@ -1,6 +1,6 @@
 public class BigMario extends Mario{
     public BigMario(){
-        super("BigMario",0,new Information(6,0,-1,-1,20));
+        super("BigMario",100,new Information(6,0,-1,-1,20));
     }
     public void attaque(Plateau p){
         int [] pos = this.getPosition();
@@ -9,6 +9,7 @@ public class BigMario extends Mario{
             if(p.getCase(pos[0], pos[1]+i).contientZombie()){
                 Personnage z1 = p.getCase(pos[0],pos[1]+i).getPersonnage();
                 z1.takeDamage(z1.getInfoActuelle().getvie()/2);
+                p.getJoueur().incrementerArgent(3);
                 this.aGagner(p, z1);
             }
         }

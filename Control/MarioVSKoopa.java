@@ -15,7 +15,7 @@ public  void demanderInterfaceMarioVSKoopa(){
     Communication c = new Communication();
     Joueur j = new Joueur(c.demanderString("Comment souhaites-tu te nommer ?"));
     String mode = jeu.modeJeu(c.demanderNiveauDifficulte());
-    Plateau p = new Plateau(6,10,mode);
+    Plateau p = new Plateau(6,10,mode,j);
     jeu = new Jeu(p, j);
     jeu.jouer(1);
     break;

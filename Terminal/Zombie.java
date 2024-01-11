@@ -8,6 +8,9 @@ public abstract class Zombie extends Personnage {
         this.vitesse=v;
         this.setInfoActuelle(i);
     }
+    public int getGain(){
+        return gain;
+    }
     public int getVitesse(){
         return this.vitesse;
     }

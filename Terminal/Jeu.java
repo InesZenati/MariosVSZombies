@@ -185,11 +185,10 @@ public class Jeu {
             Communication c = new Communication();
             int choix = c.demanderDeRejouer();
             if (choix == 1) {
-                
-            Joueur j = new Joueur(c.demanderString("Comment souhaites-tu te nommer ?"));
             String mode = modeJeu(c.demanderNiveauDifficulte());
-                Plateau p = new Plateau(6,10,mode);
-                Jeu a = new Jeu(p, j);
+            joueur.setArgent(24);
+                Plateau p = new Plateau(6,10,mode,joueur);
+                Jeu a = new Jeu(p, joueur);
                 a.jouer(1);
             } else if (choix == 2) {
                 System.out.println("Merci d'avoir joué !");

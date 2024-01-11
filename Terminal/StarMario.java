@@ -1,6 +1,6 @@
 public class StarMario extends Mario{
     public StarMario(){
-        super("StarMario",0, new Information(10,10,-1,-1,200));
+        super("StarMario",150, new Information(10,10,-1,-1,200));
     }
     public void takeDamage(int degat){
         this.getInfoActuelle().setvie(this.getInfoActuelle().getvie() - degat);
@@ -13,8 +13,10 @@ public class StarMario extends Mario{
             Personnage m =  p.getCase(pos[0],pos[1]+1).getPersonnage();
             if(m.getInfoActuelle().getDefense()>this.getInfoActuelle().getAttaque()){
                 m.takeDamage(this.getInfoActuelle().getAttaque()/2);
+                p.getJoueur().incrementerArgent(3);
             }else{
                 m.takeDamage(this.getInfoActuelle().getAttaque());
+                p.getJoueur().incrementerArgent(3);
             }
             this.aGagner(p,m);
         }

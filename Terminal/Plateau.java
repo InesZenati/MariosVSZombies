@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 public class Plateau {
+    private Joueur joueur;
     private int numLi;
     private int numCols;
     private Case[][] plato;
@@ -26,8 +27,13 @@ public class Plateau {
     public void setVague(List<Zombie> z){
         this.VagueDeZombie=z;
     }
+    public Joueur getJoueur(){
+        return joueur;
+    }
 
-    public Plateau(int numLi, int numCols, String niveauDeDifficulté) {
+
+    public Plateau(int numLi, int numCols, String niveauDeDifficulté,Joueur j) {
+        this.joueur=j;
         this.numLi = numLi;
         this.numCols = numCols;
         this.plato = new Case[numLi][numCols];
@@ -271,25 +277,4 @@ public class Plateau {
     }
   */
   
-    public static void main(String[] args) {
-        Plateau p = new Plateau(6, 11,"Facile");
-        Zombie2 z = new Zombie2(1000);
-        StarMario m = new StarMario();
-       // p.affiche();
-        //p.spawnZombie(z);
-        //p.affiche();
-        //System.out.println("mvmt");
-        //p.moveZombie(z);
-        //p.affiche();
-        p.placeZombie(z, 0, 1);
-        p.placeMario(m, 0, 0);
-        p.affiche();
-        System.out.println(z.toString());
-        System.out.println(m.toString());
-        System.out.println(m.peutAttaquer(p));
-        m.attaque(p);
-        System.out.println(z.toString());
-        System.out.println(m.toString());
-
-    }
 }
