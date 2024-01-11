@@ -22,10 +22,19 @@ public class Plateau {
         this.numCols = numCols;
         this.plato = new Case[numLi][numCols];
         this.VagueDeZombie=generateZombies(niveauDeDifficulté);
+        this.partieStatus=0;
         creePLato();
 
     }
-
+    public int getPartisStatus(){
+        return partieStatus;
+    }
+    public void ZombieGagne(){
+        partieStatus=1;
+    }
+    public void MarioGagne(){
+        partieStatus=2;
+    }
     public List<Personnage> getListPerso(){
         return this.PersoDansPlato;
     }
