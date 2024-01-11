@@ -18,8 +18,14 @@ public class Communication {
         return scanner.nextInt();
     }
 
+    public int demanderInterfacedeJEU(){
+        afficherMessage("Ou voulez vous jouer ? 1 Terminal, 2 Interface Graphique ");
+        return scanner.nextInt();
+              
+    }
+
     public int demanderTypeMario() {
-        afficherMessage("Choisissez le type de Mario (1 BasicMario , 2 WallBrick , 3 FireMario , 4 BigMario ,5 StarMario): ");
+        afficherMessage("Choisissez le type de Mario (1 BasicMario ");
         return scanner.nextInt();
     }
     public String demanderString(String s){
@@ -34,6 +40,7 @@ public class Communication {
 
     public static void main(String[] args) {
         Communication communication = new Communication();
+        int interfacedeJEU = communication.demanderInterfacedeJEU();
         int niveauDifficulte = communication.demanderNiveauDifficulte();
         int typeMario = communication.demanderTypeMario();
         System.out.println("niveauDifficulte = " + niveauDifficulte);

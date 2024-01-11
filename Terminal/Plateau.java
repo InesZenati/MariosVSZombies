@@ -134,9 +134,6 @@ public class Plateau {
         return ennemis;
     }
 
-    
-    
-
     public List<Zombie> generateEnemies(int zombie1 , int zombie2 , int zombie3 , int zombie4 , int n) {
         List<Zombie> ennemis = new ArrayList<>();
         Random random = new Random();

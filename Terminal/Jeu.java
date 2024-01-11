@@ -133,6 +133,17 @@ public class Jeu {
             return v;
         }
 
+        public static void playJeu(int i){
+            switch (i) {
+                case 1:
+                   
+                    break;
+                case 2:
+                    
+                    break;
+            }
+        }
+
         public void jouer(){
             joueur.afficherMArioDisponibles(listeMario);
             System.out.print("Argent : ");
@@ -168,6 +179,7 @@ public class Jeu {
         Communication c = new Communication();
         Joueur j = new Joueur(c.demanderString("Comment souhaites-tu te nommer ?"));
         String mode = modeJeu(c.demanderNiveauDifficulte());
+        //int play = playJeu(demanderInterface());
         Plateau p = new Plateau(6,10,mode);
         Jeu a = new Jeu(p, j);
         a.jouer();

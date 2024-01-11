@@ -59,7 +59,6 @@ public class AttaqueThread extends Thread {
         switch (i) {
             case 0:
                 n.attaque(plato);
-                n.aGagner(plato, n);
                 break;
             case 1:
                 if(n instanceof Mario){
