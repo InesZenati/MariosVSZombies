@@ -9,6 +9,7 @@ public class JeuGUI extends JFrame {
     private Joueur joueur;
     private Plateau plateau;
     private Controller controller;
+    private int finPartie = 0;
     private volatile boolean partieTerminee = true;
 
     public CardLayout getCardLayout(){
@@ -78,15 +79,15 @@ public class JeuGUI extends JFrame {
                         if (plateau.getPartieStatus() != 0) {
                             controller.getPlateauGUI().spawnZombies(2);
                             System.out.println("Partie terminée");
-                        
                             if (plateau.getPartieStatus() == 1) {
-                                cardLayout.show(cardPanel, "GameOver");
-                            } else if (plateau.getPartieStatus() == 2) {
-                                System.out.println("Vous avez gangé !");
-                            }
-                       
-                            gameRejouer();
+                                finPartie =1;
+                                tryToShowNewPage();
 
+                            } else if (plateau.getPartieStatus() == 2) {
+                                finPartie =2;
+                                System.out.println("Vous avez gangé !");
+                                 tryToShowNewPage();
+                            }
                         }
  
                         try {
@@ -101,24 +102,7 @@ public class JeuGUI extends JFrame {
     
             partieOver.start();
         }
-        public void gameRejouer() {
-            int choix = JOptionPane.showOptionDialog(
-                    this,
-                    "Voulez-vous rejouer ?",
-                    "Rejouer",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    new Object[]{"OUI", "NON"},
-                    "OUI");
-        
-            if (choix == JOptionPane.YES_OPTION) {
-                // Relancez le jeu (à adapter selon vos besoins)
-                cardLayout.show(cardPanel, "Menu");  // Vous pouvez également utiliser une autre carte comme "Config" selon votre logique
-            } else {
-                System.out.println("Merci d'avoir joué !");
-            }
-        }
+    
         
         
 
@@ -134,5 +118,16 @@ public class JeuGUI extends JFrame {
     }
     public void setJoueur(Joueur j){
         joueur = j;
+    }
+
+    private void tryToShowNewPage() {
+        // Vérifier si les deux sélections ont été faites
+        if (finPartie==1 ) {
+      // Afficher je pense on ajoute ds attributs pour avoir que une page afficher
+            cardLayout.show(cardPanel, "GameOver");
+        }
+        else if(finPartie==2){
+            cardLayout.show(cardPanel, "GameOver");
+        }
     }
 }

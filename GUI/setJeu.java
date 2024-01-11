@@ -110,7 +110,7 @@ hardButton.addActionListener(new ActionListener() {
 });
 
 JButtonStyled marathonMode = new JButtonStyled("Marathon");
-hardButton.addActionListener(new ActionListener() {
+marathonMode.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
         selectedDifficulty = "Marathon";
@@ -248,7 +248,9 @@ add(centralPanel, BorderLayout.CENTER);
 
     private void tryToShowNewPage() {
         // Vérifier si les deux sélections ont été faites
+        System.out.println(selectedDifficulty);
         if (selectedDecor != null && selectedDifficulty != null) {
+            System.out.println(selectedDifficulty);
             Plateau plato = new Plateau(5, 9, selectedDifficulty);
             System.out.println("plateau ceer" +plato.toString());
             jeu.setPlateau(plato);

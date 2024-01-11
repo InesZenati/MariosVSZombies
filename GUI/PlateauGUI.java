@@ -36,7 +36,7 @@ public class PlateauGUI extends JPanel{
         add(menuPanel, BorderLayout.WEST);
          menuPanel.setBackground(new Color(205, 55, 35, 255)); 
 
-
+        
 
         InfoPanel = createInfoPanel();
         add(InfoPanel,BorderLayout.NORTH);
@@ -44,12 +44,10 @@ public class PlateauGUI extends JPanel{
         // Création du plateauPanel au centre
         plateauPanel = createPlateau();
         add(plateauPanel, BorderLayout.CENTER);
-        /* 
-        ImageIcon background = new ImageIcon("plateau.png");
-        JLabel backgroundLabel = new JLabel(background);
-        plateauPanel.setOpaque(false);
-        plateauPanel.add(backgroundLabel);
-*/
+
+        // Création du terminerPanel en bas
+        JPanel terminerPanel = createTerminerPanel();
+        add(terminerPanel, BorderLayout.SOUTH);
 
        // plateauPanel.setBackground(new Color(205, 55, 35, 255)); 
         plateauPanel.setBorder(BorderFactory.createEmptyBorder(60, 50, 70, 80));
@@ -87,7 +85,6 @@ public class PlateauGUI extends JPanel{
         joueurArgent.setFont(marioFont.deriveFont(Font.PLAIN, 20));
         joueurArgent.setForeground(Color.WHITE);
        
-
         
         infoJoueur.add(joueurArgent);
         joueurArgent.setFont(marioFont.deriveFont(Font.PLAIN, 20));
@@ -99,6 +96,22 @@ public class PlateauGUI extends JPanel{
         infoJoueur.add(joueurArgent);
         infoJoueur.add(joeuurScore);
         return infoJoueur;
+    }
+
+        public JPanel createTerminerPanel() {
+        JPanel terminerPanel = new JPanel();
+        JButton terminerButton = new JButton("Terminer");
+
+        // Ajoutez un ActionListener pour gérer l'action du bouton "Terminer"
+        terminerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel, "GameOver");
+            }
+        });
+
+        terminerPanel.add(terminerButton);
+        return terminerPanel;
     }
 
     public JButton createTowerButton(String name , String imagePath, int prix){
@@ -285,8 +298,12 @@ public class PlateauGUI extends JPanel{
             attaqueZombies.start();
         }else if(i==2){
             //stop all the threads
+             cardLayout.show(cardPanel, "GameOver");
+             //show gameover
             zombieThread.stopThread();
             attaqueZombies.stopThread();
+            cardLayout.show(cardPanel, "GameOver");
+            //cardLayout.show(cardPanel, "GameOver");
            
         }
         
