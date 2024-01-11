@@ -84,6 +84,9 @@ easyButton.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
         selectedDifficulty = "Facile";
+        //couleur bordeau
+
+      
        // tryToShowNewPage(); 
     }
 });
@@ -279,6 +282,18 @@ add(centralPanel, BorderLayout.CENTER);
             setBorderPainted(false);
             setCursor(new Cursor(Cursor.HAND_CURSOR));
             setPreferredSize(new Dimension(200, 50));
+            //change color when hover
+            addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    setBackground(new Color(109 , 7 , 26));
+                }
+
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    setBackground(new Color(255, 138, 119));
+                }
+            });
+          
+  
         }
     }
 }

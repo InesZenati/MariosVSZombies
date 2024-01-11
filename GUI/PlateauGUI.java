@@ -22,16 +22,20 @@ public class PlateauGUI extends JPanel{
         this.selectedPersonnage=null;
         return this.jeuGUI;
     }
-
+  Font marioFont = loadMarioFont();
 
     public PlateauGUI(JeuGUI jeuGUI){
         this.jeuGUI = jeuGUI;
 
         setLayout(new BorderLayout());//pour que le panel soit divisé en 5 parties
 
+      
+
           // Création du menuPanel à gauche
         menuPanel = createSideMenu();
         add(menuPanel, BorderLayout.WEST);
+         menuPanel.setBackground(new Color(205, 55, 35, 255)); 
+
 
 
         InfoPanel = createInfoPanel();
@@ -40,7 +44,18 @@ public class PlateauGUI extends JPanel{
         // Création du plateauPanel au centre
         plateauPanel = createPlateau();
         add(plateauPanel, BorderLayout.CENTER);
-        plateauPanel.setBorder(BorderFactory.createEmptyBorder(50, 30, 50, 60));
+        /* 
+        ImageIcon background = new ImageIcon("plateau.png");
+        JLabel backgroundLabel = new JLabel(background);
+        plateauPanel.setOpaque(false);
+        plateauPanel.add(backgroundLabel);
+*/
+
+       // plateauPanel.setBackground(new Color(205, 55, 35, 255)); 
+        plateauPanel.setBorder(BorderFactory.createEmptyBorder(60, 50, 70, 80));
+        //add background image
+      
+
 
 
     }
@@ -61,10 +76,25 @@ public class PlateauGUI extends JPanel{
 
     public JPanel createInfoPanel(){
         JPanel infoJoueur = new JPanel();
+        infoJoueur.setBackground(new Color(205, 55, 35, 255)); 
+        // add border
+        infoJoueur.setBorder(BorderFactory.createEmptyBorder(20, 30, 10, 10));
         infoJoueur.setLayout(new BoxLayout(infoJoueur, BoxLayout.Y_AXIS));
         JLabel joueurName = new JLabel("Information de : "+this.getJeuGUI().getJoueur().getName()+" ");
-        JLabel joueurArgent = new JLabel("Argent : "+this.Argent+" coin ");
+        joueurName.setFont(marioFont.deriveFont(Font.PLAIN, 20));
+        joueurName.setForeground(Color.WHITE);
+        JLabel joueurArgent = new JLabel("Argent : " + this.Argent + " ");
+        joueurArgent.setFont(marioFont.deriveFont(Font.PLAIN, 20));
+        joueurArgent.setForeground(Color.WHITE);
+       
+
+        
+        infoJoueur.add(joueurArgent);
+        joueurArgent.setFont(marioFont.deriveFont(Font.PLAIN, 20));
+        joueurArgent.setForeground(Color.WHITE);
         JLabel joeuurScore = new JLabel("Score : "+this.getJeuGUI().getJoueur().getScore()+" points");
+        joeuurScore.setFont(marioFont.deriveFont(Font.PLAIN, 20));
+        joeuurScore.setForeground(Color.WHITE);
         infoJoueur.add(joueurName);
         infoJoueur.add(joueurArgent);
         infoJoueur.add(joeuurScore);
@@ -127,6 +157,7 @@ public class PlateauGUI extends JPanel{
     public JPanel createPlateau() {
         int taille = 100;
         JPanel Plateau = new JPanel();
+        
         Plateau.setLayout(new GridLayout(5, 9));
     
         for (int i = 0; i < 5; i++) {
@@ -136,6 +167,7 @@ public class PlateauGUI extends JPanel{
                 Plateau.add(casePanel);
             }
         }
+        
     
         return Plateau;
     }
@@ -184,13 +216,18 @@ public class PlateauGUI extends JPanel{
                     // Supprimer tous les composants du panneau
                     casePanel.removeAll();
     
+                    // Ajouter un gestionnaire de disposition (FlowLayout)
+                    casePanel.setLayout(new FlowLayout());
+    
                     if (jeuGUI.getPlateau().getCase(i, j).contientPersonnage()) {
                         try {
                             ImageIcon icon = new ImageIcon(getClass().getResource(getPersonnageByName(jeuGUI.getPlateau().getPersonnageAt(i, j).getName()).getImagePath()));
                             Image image = icon.getImage();
+                            int cellSize = 100; // Set the cell size here
+                            Image scaledImage = image.getScaledInstance(cellSize, cellSize, Image.SCALE_SMOOTH);
                             JLabel label = new JLabel();
                             label.setIcon(icon);
-                            casePanel.add(new JLabel(new ImageIcon(image)));
+                            casePanel.add(new JLabel(new ImageIcon(scaledImage)));
                         } catch (NullPointerException e) {
                             e.printStackTrace();
                             System.out.println("pas d'image");
@@ -206,6 +243,7 @@ public class PlateauGUI extends JPanel{
             System.out.println("error");
         }
     }
+    
     
 
     
@@ -232,6 +270,17 @@ public class PlateauGUI extends JPanel{
             e.printStackTrace();
         }
 
+    }
+
+    private Font loadMarioFont() {
+        try {
+            File fontFile = new File("fonts/SuperMario256.ttf");
+            return Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(14f);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // En cas d'erreur, utilisez la police par défaut
+            return new Font("SansSerif", Font.PLAIN, 14);
+        }
     }
     }
 

@@ -64,7 +64,7 @@ public class WelcomePageGUI extends JPanel {
         playerNamePanel.add(playerNameField);
 
         // Start 
-        JButton startButton = new JButton("Start");
+        JButtonStyled startButton = new JButtonStyled("Start");
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,6 +112,30 @@ public class WelcomePageGUI extends JPanel {
             e.printStackTrace();
             // En cas d'erreur, utilisez la police par défaut
             return new Font("SansSerif", Font.PLAIN, 14);
+        }
+    }
+
+    private class JButtonStyled extends JButton {
+        public JButtonStyled(String text) {
+            super(text);
+            setFocusPainted(false);
+            setContentAreaFilled(false);
+            setOpaque(true);
+            setForeground(Color.WHITE);
+            setBackground(new Color(255, 138, 119)); // Couleur orange
+            setFont(getFont().deriveFont(Font.BOLD, 16));
+            setBorderPainted(false);
+            setCursor(new Cursor(Cursor.HAND_CURSOR));
+            setPreferredSize(new Dimension(200, 50));
+            addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    setBackground(new Color(109 , 7 , 26));
+                }
+
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    setBackground(new Color(255, 138, 119));
+                }
+            });
         }
     }
 }
