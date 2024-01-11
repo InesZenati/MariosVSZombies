@@ -252,16 +252,43 @@ public class PlateauGUI extends JPanel{
         return (JPanel) plateauPanel.getComponent(li * 9 + col);
     }
 
+    public void partieFinish(){
+        Thread partieOver = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    if(jeuGUI.getPlateau().getPartieStatus()!=0){
+                        spawnZombies(2);
+                        System.out.println("Partie terminée");
+                        if (jeuGUI.getPlateau().getPartieStatus()==1){
+                           //call func gamewin
+                        }else if(jeuGUI.getPlateau().getPartieStatus()==2){
+                            //call func gameover
+                        }
+                        break;
+                    }
+                }
+            }
+        });
+        partieOver.start();
+        }
+    
 
-
-    public void spawnZombies(){
+    public void spawnZombies(int i){
         sleep(1000);
       System.out.println("spawnZombies");
       ZombieThread zombieThread = new ZombieThread(this);
        System.out.println("spawnZombies");
-        zombieThread.start();
         AttaqueThread attaqueZombies= new AttaqueThread(this);
-        attaqueZombies.start();
+        if(i ==1){
+            zombieThread.start();
+            attaqueZombies.start();
+        }else if(i==2){
+            //stop all the threads
+            zombieThread.interrupt();
+            attaqueZombies.interrupt();
+           
+        }
         
     }
 

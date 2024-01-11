@@ -3,6 +3,7 @@ public class AttaqueThread extends Thread {
     private Plateau plato;
     private PlateauGUI pGui;
     private int i;
+    private boolean running = true;
 
 
     public AttaqueThread(Plateau plato) {
@@ -23,6 +24,10 @@ public class AttaqueThread extends Thread {
             update();
             sleep(1000);
         }
+    }
+
+    public void stopThread(){
+        running = false;
     }
 
     public void update(){

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 public class Jeu {
     private Plateau plato;
     private List<Zombie> ennemis;
@@ -144,20 +145,72 @@ public class Jeu {
             }
         }
 
-        public void jouer(){
-            joueur.afficherMArioDisponibles(listeMario);
-            System.out.print("Argent : ");
-            joueur.afficheArgent();
-            plato.affiche();
+        public void partieFinish() {
+            Scanner sc = new Scanner(System.in);
+        
+            Thread partieOver = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    boolean victoire = true;
+                    
+                   while  (victoire) {
+                        System.out.println(getPlato().getPartisStatus());
+                        if (plato.getPartisStatus()!= 0) {
+                            jouer(2);
+                            System.out.println("Partie terminée");
+                               if (plato.getPartisStatus() == 1) {
+                                System.out.println("arret de thread");
+                                System.out.println("Vous avez gagné !");
+                                gameRejouer();
+                            } else if (plato.getPartisStatus() == 2) {
+                                System.out.println("Vous avez perdu");
+                              gameRejouer();
+                            }
+                        
+                        }
+                        break;
+                    }   
+                }           
+            });
+        
+            partieOver.start();
+        }
+
+        public void gameRejouer(){
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Voulez-vous rejouer ? 1 OUI 2 NON");
+            int choix = sc.nextInt();
+            if(choix==1){
+                jouer(1);
+            }else if(choix==2){
+                System.out.println("Merci d'avoir joué !");
+            }
+        }
+        
+        
+
+        public void jouer(int i){
+                partieFinish();
             MarioThread marioThread = new MarioThread(plato, joueur, listeMario);
             ZombieThread zombieThread = new ZombieThread(plato);
             AttaqueThread attaqueThread = new AttaqueThread(plato);
         
+        if(i ==1){
+            joueur.afficherMArioDisponibles(listeMario);
+            System.out.print("Argent : ");
+            joueur.afficheArgent();
+            plato.affiche();
             marioThread.start();
             zombieThread.start();
             attaqueThread.start();
-        }
-        
+        }else if(i==2){
+            //stop all the threads
+            marioThread.stopThread();
+            zombieThread.stopThread();
+            attaqueThread.stopThread();
+    
+    }
+}     
 
     public static void main(String[] args) {
         /*Plateau p = new Plateau(6, 10);
@@ -182,7 +235,7 @@ public class Jeu {
         //int play = playJeu(demanderInterface());
         Plateau p = new Plateau(6,10,mode);
         Jeu a = new Jeu(p, j);
-        a.jouer();
+       // a.jouer();
 
         }
 

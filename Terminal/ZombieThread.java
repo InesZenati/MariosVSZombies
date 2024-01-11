@@ -5,6 +5,7 @@ public class ZombieThread extends Thread {
     private Plateau plato;
     private PlateauGUI pGui;
     private int i;
+    private boolean running = true;
 
 
     public ZombieThread(Plateau plato) {
@@ -19,10 +20,10 @@ public class ZombieThread extends Thread {
     }
 
     @Override
-    public void run() {
-        while(true){  
-                spawn();
-                update();
+    public void run() { 
+        spawn();
+        while(running){  
+             //   update();
                 sleep(100);   
             }
 
@@ -32,6 +33,10 @@ public class ZombieThread extends Thread {
                 plato.affiche();
         }
         */
+    }
+
+    public void stopThread(){
+        running = false;
     }
 
     public void spawn(){

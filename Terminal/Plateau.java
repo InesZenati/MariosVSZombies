@@ -7,7 +7,7 @@ public class Plateau {
     private Case[][] plato;
     private List<Personnage> PersoDansPlato = new ArrayList<>();
     private List<Zombie> VagueDeZombie = new ArrayList<>();
-    private int partieSatus;
+    private int partieStatus;
 
     public List<Zombie> getVague(){
         return VagueDeZombie;
@@ -31,9 +31,11 @@ public class Plateau {
     }
     public void ZombieGagne(){
         partieStatus=1;
+        System.out.println(partieStatus);
     }
     public void MarioGagne(){
         partieStatus=2;
+        System.out.println(partieStatus);
     }
     public List<Personnage> getListPerso(){
         return this.PersoDansPlato;
@@ -171,13 +173,9 @@ public class Plateau {
         return ennemis;
         }
 
-      
-
-   
-
-   
-
-   
+   public int getPartieStatus(){
+       return this.partieStatus;
+   }
 
     public void affiche() {
         /*for(int li = 0;li<numLi;li++){

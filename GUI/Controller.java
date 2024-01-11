@@ -20,7 +20,7 @@ public class Controller extends JPanel{
     }
 
     public void debut(){
-        plateauGUI.spawnZombies();
+        plateauGUI.spawnZombies(1);
         
     }
 

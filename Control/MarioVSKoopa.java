@@ -17,7 +17,7 @@ public  void demanderInterfaceMarioVSKoopa(){
     String mode = jeu.modeJeu(c.demanderNiveauDifficulte());
     Plateau p = new Plateau(6,10,mode);
     jeu = new Jeu(p, j);
-    jeu.jouer();
+    jeu.jouer(1);
     break;
 
     case 2:

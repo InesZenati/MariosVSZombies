@@ -173,6 +173,7 @@ public abstract class Zombie extends Personnage {
             return true;
             }
         if(col==0){
+            System.out.println("zombie arrivée");
             p.ZombieGagne();
         }
         return false;

@@ -3,6 +3,7 @@ import java.util.List;
     private Plateau plato;
     private Joueur joueur;
     private List<Mario> listeMario;
+    private boolean running = true;
 
     public MarioThread(Plateau plato, Joueur joueur, List<Mario> listeMario) {
         this.plato = plato;
@@ -10,9 +11,10 @@ import java.util.List;
         this.listeMario = listeMario;
     }
 
+
     @Override
     public void run() {
-        while (true) {
+        while (running) {
             String choix = joueur.demanderPersoPosition();
             placerMario(choix);
             plato.affiche();
@@ -28,6 +30,11 @@ import java.util.List;
             System.out.println("Solde insuffisant");
         }
     }
+
+    public void stopThread(){
+        running = false;
+    }
+
 // ajoue try catch
     private void placerMario(String tour) {
         switch (tour.charAt(0)) {
