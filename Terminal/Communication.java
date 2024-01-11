@@ -13,8 +13,12 @@ public class Communication {
         System.out.println(message);
     }
 
+    public int demanderDeRejouer(){
+        afficherMessage("Voulez-vous rejouer ? 1 OUI 2 NON");
+        return scanner.nextInt();
+    }
     public int demanderNiveauDifficulte() {
-        afficherMessage("Choisissez le niveau de difficulté (1 facile, 2 moyen, 3 difficile): ");
+        afficherMessage("Choisissez le niveau de difficulté (1 facile, 2 moyen, 3 difficile, 4 marathon): ");
         return scanner.nextInt();
     }
 

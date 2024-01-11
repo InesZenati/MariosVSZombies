@@ -15,6 +15,7 @@ import java.util.List;
     @Override
     public void run() {
         while (plato.getPartisStatus() == 0) {
+            ZombieMort();
             String choix = joueur.demanderPersoPosition();
             placerMario(choix);
             plato.affiche();
@@ -66,6 +67,19 @@ import java.util.List;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean ZombieMort(){
+        if(plato.getMarathonOrNot()==false){
+            for(int i =0;i<plato.getVague().size()-1;i++){
+                if(plato.getVague().get(i).estVivant()){
+                    return false;
+                }
+            }
+            plato.MarioGagne();
+            return true;
+        }
+        return false;
     }
 }
 
