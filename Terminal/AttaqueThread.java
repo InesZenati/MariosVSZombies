@@ -55,15 +55,9 @@ public class AttaqueThread extends Thread {
 
     public void attaque(){
         if(!plato.getListPerso().isEmpty()){
-            //System.out.println(p.getListPerso().size());
-            plato.afficheList();
             for(int i=0 ; i<plato.getListPerso().size(); i++ ){
                     Personnage n = plato.getListPerso().get(i);
-                     //   System.out.println("dans le while"); 
-                    //System.out.println(n.estDevant(p));
                     if(n.peutAttaquer(plato)){
-                        System.out.println(n.getName()+"peut attaquer !");
-                        System.out.println(n.getName()+"attaque !");
                         attaquerZombie(n);
                     }
             }

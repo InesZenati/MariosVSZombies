@@ -55,10 +55,8 @@ public abstract class Zombie extends Personnage {
         int col = pos[1]-1;
         if(pos[1]!=0){
         if(p.getCase(li,col).contientMario()){
-            //System.err.println("Zombie peut attaquer");
             return true;
         }}
-        //System.out.println("Zombie peut pas attaquer");
         return false;
     }
 
@@ -83,25 +81,21 @@ public abstract class Zombie extends Personnage {
             }
             this.aGagner(pGui,m);
     }
-    public void moveZombie(Plateau plato) {
-        System.out.println("Dans moveZombie");                 
+    public void moveZombie(Plateau plato) {;                 
         int li = this.getInfoActuelle().getPosX();
         int col = this.getInfoActuelle().getPosY();
         while(this.peutDeplacer(plato)){ 
                 this.removeZombie(li, col,plato);
                 col=col-1;
-            sleep(800);
+                sleep(100);
                 this.placeZombie(li, col, plato);
-                System.out.println(this.toString());
-                System.out.println("update");
                 plato.affiche();
+                sleep(1000);
             }
-            System.out.println("Fin moveZombie");
         }
 
     public void moveZombie(PlateauGUI p){
-        Plateau plato = p.getJeuGUI().getPlateau();
-        System.out.println("Dans moveZombie");                 
+        Plateau plato = p.getJeuGUI().getPlateau();                
         int li = this.getInfoActuelle().getPosX();
         int col = this.getInfoActuelle().getPosY();
         while(this.peutDeplacer(plato)){ 
@@ -110,19 +104,13 @@ public abstract class Zombie extends Personnage {
                 col=col-1;
                 sleep(100);
                 this.placeZombie(li, col, plato);
-                System.out.println(this.toString());
-                System.out.println("update");
-                plato.affiche();
                 p.updatePlateau();
-                  System.out.println("update2");
                sleep(1000);
             }
-            System.out.println("Fin moveZombie");
         }
         public boolean aGagner(PlateauGUI pGui, Personnage perso){
             Plateau p = pGui.getJeuGUI().getPlateau();
             int [] pos = perso.getPosition();
-            System.out.println(perso.toString());
             if((!perso.estVivant())){
                 
                 System.out.println(perso.getName()+"est mort");
@@ -140,20 +128,17 @@ public abstract class Zombie extends Personnage {
                         l.moveZombie(pGui);
                     }
                 }
-                    //modif}
                 }
                 return true;
                }
             return false;
             }
         
-        public void placeZombie(int li, int col,Plateau plato ){
-            //(!plato[li][col].contientZombie() && !plato[li][col].contientMario()){    
+        public void placeZombie(int li, int col,Plateau plato ){   
             this.getInfoActuelle().setPosX(li);
             this.getInfoActuelle().setPosY(col);
             plato.ajouter(this);
             plato.getCase(li, col).setZombie(this);
-            //}
         }
     
         public void removeZombie(int li, int col,Plateau plato) {
@@ -161,21 +146,6 @@ public abstract class Zombie extends Personnage {
             plato.getCase(li, col).supprimerPerso();
         }
 
-    /*public boolean aGagner(Plateau p){
-        int [] pos = this.getPosition();
-        int li = pos[0];
-        int coll = pos[1]-1;
-        if (this.estVivant()){
-            if(!p.getCase(li, coll).getPersonnage().estVivant()){
-                //System.out.println("Le mario est mort");
-                p.removeMario(li, coll);
-                p.moveZombie(this);
-                return true;
-            }
-        }
-        //System.out.println("Vie du mario"+p.getCase(li, coll).getPersonnage().getInfoActuelle().getvie());
-        return false;
-    }*/
 
     public boolean peutDeplacer(Plateau p){ 
         int [] pos = this.getPosition();
@@ -185,7 +155,6 @@ public abstract class Zombie extends Personnage {
             return true;
             }
         if(col==0){
-            System.out.println("zombie arrivée");
             p.ZombieGagne();
         }
         return false;

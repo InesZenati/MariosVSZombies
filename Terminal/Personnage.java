@@ -35,9 +35,7 @@ public abstract class Personnage {
     public abstract boolean peutAttaquer(Plateau p);
     public boolean aGagner(Plateau p, Personnage perso){
         int [] pos = perso.getPosition();
-        System.out.println(perso.toString());
         if((!perso.estVivant())){
-            
             System.out.println(perso.getName()+"est mort");
             p.removeZombie(pos[0],pos[1]);
             if(this instanceof Zombie){
@@ -54,7 +52,6 @@ public abstract class Personnage {
                         l.moveZombie(p);
                     }
                 }
-                //modif
             }else{
                 if(this instanceof Mario){
                     Zombie z = (Zombie) perso;
@@ -65,11 +62,6 @@ public abstract class Personnage {
             }
             return true;
            }
-         /*if(!this.estVivant()){
-            p.removeMario(pos[0], pos[1]);
-            return false;
-         }*/
-         //System.out.println("Vie du Zombie :"+p.getCase(pos[0],pos[1]+1).getPersonnage().getInfoActuelle().getvie());
         return false;
         }
     

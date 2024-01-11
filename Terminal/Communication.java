@@ -45,13 +45,6 @@ public class Communication {
         return position;
     }
 
-    public static void main(String[] args) {
-        Communication communication = new Communication();
-        int interfacedeJEU = communication.demanderInterfacedeJEU();
-        int niveauDifficulte = communication.demanderNiveauDifficulte();
-        int typeMario = communication.demanderTypeMario();
-        System.out.println("niveauDifficulte = " + niveauDifficulte);
-        System.out.println("typeMario = " + typeMario);
-    }
+
 
 }

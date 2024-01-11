@@ -1,6 +1,6 @@
 public class StarMario extends Mario{
     public StarMario(){
-        super("StarMario",150, new Information(10,10,-1,-1,200));
+        super("StarMario",150, new Information(10,10,-1,-1,100));
     }
     public void takeDamage(int degat){
         this.getInfoActuelle().setvie(this.getInfoActuelle().getvie() - degat);
@@ -29,19 +29,13 @@ public class StarMario extends Mario{
     }
 
     public boolean peutAttaquer(Plateau p){
-        // System.out.println(1);
        int [] pos = this.getPosition();
         int li = pos[0];
         int col = pos[1];
-       //  System.out.println(2);
        if(p.getCase(li,col+1)!=null){ 
-         if(p.getCase(li,col+1).contientZombie2()){
-            System.out.println(3);
+         if(p.getCase(li,col+1).contientZombie()){
              return true;
-         }else{
-             System.out.println("non");
          }
-      //   System.out.println(5);
      } 
      return false;
     }

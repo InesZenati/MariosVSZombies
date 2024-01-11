@@ -92,10 +92,5 @@ public class Menu {
         afficherMessage("Choisissez le niveau de difficulté (1 facile, 2 moyen, 3 difficile): ");
         return scanner.nextInt();
     }
-
-    public static void main(String[] args) {
-        Menu a = new Menu();
-        a.afficheMenuPrincipal();
-    }
     
 }
