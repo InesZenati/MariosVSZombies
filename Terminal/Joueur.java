@@ -56,12 +56,7 @@ public class Joueur {
             }
         }
     }
-    public String demanderPersoPosition(){
-        Scanner scanner = new Scanner(System.in);
-        afficherMessage("Tour: ");
-        String position = scanner.nextLine();
-        return position;
-    }
+    
 
     public static void main(String[] args) {
          List<Mario> MArioDisponibles =new ArrayList<>();

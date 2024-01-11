@@ -8,6 +8,9 @@ public class Communication {
     public Communication() {
         this.scanner = new Scanner(System.in);
     }
+    public Scanner getScanner(){
+        return scanner;
+    }
 
     public void afficherMessage(String message) {
         System.out.println(message);

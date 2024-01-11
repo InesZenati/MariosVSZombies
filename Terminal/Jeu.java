@@ -114,7 +114,7 @@ public class Jeu {
             }
         } */
 
-        public String modeJeu(int i){
+        public static String modeJeu(int i){
             String v;
             switch (i) {
                 case 1:
@@ -193,7 +193,9 @@ public class Jeu {
                 a.jouer(1);
             } else if (choix == 2) {
                 System.out.println("Merci d'avoir joué !");
+                c.getScanner().close();
             }
+            
         }
         
     
