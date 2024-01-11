@@ -69,6 +69,35 @@ public abstract class Zombie extends Personnage {
             }
             this.aGagner(p, m);
     }
+    public void moveZombie(Plateau plato) {
+        System.out.println("Dans moveZombie");                 
+        int li = this.getInfoActuelle().getPosX();
+        int col = this.getInfoActuelle().getPosY();
+        while(this.peutDeplacer(plato)){ 
+                this.removeZombie(li, col,plato);
+                col=col-1;
+                sleep(100);
+                this.placeZombie(li, col, plato);
+                System.out.println(this.toString());
+                System.out.println("update");
+                plato.affiche();
+            }
+            System.out.println("Fin moveZombie");
+
+        }
+        public void placeZombie(int li, int col,Plateau plato ){
+            //(!plato[li][col].contientZombie() && !plato[li][col].contientMario()){    
+            this.getInfoActuelle().setPosX(li);
+            this.getInfoActuelle().setPosY(col);
+            plato.ajouter(this);
+            plato.getCase(li, col).setZombie(this);
+            //}
+        }
+    
+        public void removeZombie(int li, int col,Plateau plato) {
+            plato.retirer(plato.getCase(li, col).getPersonnage());
+            plato.getCase(li, col).supprimerPerso();
+        }
 
     /*public boolean aGagner(Plateau p){
         int [] pos = this.getPosition();
@@ -86,17 +115,25 @@ public abstract class Zombie extends Personnage {
         return false;
     }*/
 
-public boolean peutDeplacer(Plateau p){ 
-    int [] pos = this.getPosition();
-    int col = pos[1];
-    int li = pos[0];
-    if(col>0){
-    if(!p.getCase(li,col-1).contientMario()&& !p.getCase(li,col-1).contientZombie()){
-        return true;
+    public boolean peutDeplacer(Plateau p){ 
+        int [] pos = this.getPosition();
+        int col = pos[1];
+        int li = pos[0];
+        if(col>0){
+        if(!p.getCase(li,col-1).contientMario()&& !p.getCase(li,col-1).contientZombie()){
+            return true;
+        }
     }
-}
-    return false;
-}
+        return false;
+    }
+
+    private static void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     
 } 
     

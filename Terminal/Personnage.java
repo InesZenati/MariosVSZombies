@@ -33,13 +33,18 @@ public abstract class Personnage {
 
     public abstract void attaque (Plateau p);
     public abstract boolean peutAttaquer(Plateau p);
-    public boolean aGagner(Plateau p, Personnage z){
-        int [] pos = z.getPosition();
-        System.out.println(z.toString());
-        if((!z.estVivant())){
+    public boolean aGagner(Plateau p, Personnage perso){
+        int [] pos = perso.getPosition();
+        System.out.println(perso.toString());
+        if((!perso.estVivant())){
             
-            System.out.println(z.getName()+"est mort");
+            System.out.println(perso.getName()+"est mort");
             p.removeZombie(pos[0],pos[1]);
+            if(this instanceof Zombie){
+                Zombie z = (Zombie) this;
+                z.moveZombie(p);
+                //modif
+            }
             return true;
            }
          /*if(!this.estVivant()){
