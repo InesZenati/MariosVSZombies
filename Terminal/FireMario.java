@@ -1,7 +1,7 @@
 public class FireMario  extends Mario{
 
     public FireMario(){
-        super("FireMario",50,new Information(10,0,-1,-1,100));
+        super("FireMario",50,new Information(10,5,-1,-1,100));
     }
 
     public void attaque(Plateau p){
@@ -46,23 +46,17 @@ public class FireMario  extends Mario{
     }
 
     public boolean peutAttaquer(Plateau p){
-        // System.out.println(1);
-       int [] pos = this.getPosition();
+        int [] pos = this.getPosition();
         int li = pos[0];
         int col = pos[1];
-       //  System.out.println(2);
-       for(int i=1;i<4;i++){
-        if(p.getCase(li,col+i)!=null){
-           if(p.getCase(li,col+i).contientZombie2()){
-             //System.out.println(3);
-               return true;
-         }else{
-             //System.out.println("non");
-         }
-      //   System.out.println(5);
-     } 
-    }
-     return false;
+        for(int i=1;i<4;i++){
+            if(p.getCase(li,col+i)!=null){
+                if(p.getCase(li,col+i).contientZombie()){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
    
     public String estDevant(Plateau p){

@@ -100,10 +100,8 @@ public class PlateauGUI extends JPanel{
     }
 
     public void updateJoueurInfo(){
-        System.out.println("Update Info"+this.jeuGUI.getJoueur().getName());
         if(InfoPanel!=null){
             InfoPanel.removeAll();
-            System.out.println(this.getJeuGUI().getJoueur().toString());
             InfoPanel.setBackground(new Color(205, 55, 35, 255)); 
         // add border
             InfoPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 10, 10));
@@ -170,7 +168,6 @@ public class PlateauGUI extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 selectedPersonnage = (Mario)getPersonnageByName(name);
-                System.out.println(selectedPersonnage.getName());
             }
         });
         return mario;
@@ -246,11 +243,7 @@ public class PlateauGUI extends JPanel{
                     System.out.println(m.toString());
                     System.out.println("mario place");
                     updatePlateau();
-                } else {
-                    System.out.println("Argent insuffisant pour acheter ce Mario.");
                 }
-            } else {
-                System.out.println("La case est déjà occupée par un Mario.");
             }
         }
     }
@@ -325,9 +318,7 @@ public class PlateauGUI extends JPanel{
 
     public void spawnZombies(int i){
         sleep(1000);
-      System.out.println("spawnZombies");
       ZombieThread zombieThread = new ZombieThread(this);
-       System.out.println("spawnZombies");
         AttaqueThread attaqueZombies= new AttaqueThread(this);
         if(i ==1){
             zombieThread.start();

@@ -93,7 +93,7 @@ public class JeuGUI extends JFrame {
 
                             } else if (plateau.getPartieStatus() == 2) {
                                 finPartie =2;
-                                System.out.println("Vous avez gangé !");
+                                System.out.println("Vous avez gagné !");
                                  tryToShowNewPage();
                             }
                         }

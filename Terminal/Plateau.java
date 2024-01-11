@@ -55,11 +55,9 @@ public class Plateau {
     }
     public void ZombieGagne(){
         partieStatus=1;
-        System.out.println(partieStatus);
     }
     public void MarioGagne(){
         partieStatus=2;
-        System.out.println(partieStatus);
     }
     public List<Personnage> getListPerso(){
         return this.PersoDansPlato;
@@ -101,13 +99,11 @@ public class Plateau {
         plato[li][col] = newCase;
     }
 
-    //A AMELIORER
     public boolean placeMario(Mario m, int li, int col) {
         if(this.plato[li][col].contientZombie()){
             System.out.println("Impossible !Un Zombie se trouve dans la case ["+li+","+col+"]");
             return false;
         }
-        //A voir si on garde ou pas
         if(this.plato[li][col].contientMario()){
             System.out.println("Il y a déjà un Mario placé dans la case ["+li+","+col+"]");
             return false;
@@ -123,13 +119,11 @@ public class Plateau {
         return false;
         
     }
-    public void placeZombie(Zombie z, int li, int col) {
-        //(!plato[li][col].contientZombie() && !plato[li][col].contientMario()){    
+    public void placeZombie(Zombie z, int li, int col) {   
         z.getInfoActuelle().setPosX(li);
         z.getInfoActuelle().setPosY(col);
         this.ajouter(z);
         plato[li][col].setZombie(z);
-        //}
     }
 
     public void removeMario(int li, int col) {
@@ -157,7 +151,7 @@ public class Plateau {
                ennemis=  generateEnemies(10, 30, 40, 20, 10);
                 break;
             case "Marathon":
-           // ennemis= generateEnemieMarathon();
+            ennemis= generateEnemieMarathon();
 
         }
         return ennemis;
@@ -172,9 +166,6 @@ public class Plateau {
     public List<Zombie> generateEnemies(int zombie1 , int zombie2 , int zombie3 , int zombie4 , int n) {
         List<Zombie> ennemis = new ArrayList<>();
         Random random = new Random();
-
-
-       // int zombieType2Percentage = 30;
 
         for (int i = 0; i < n; i++) {
             int randomNumber = random.nextInt(100) + 1; // Générer un nombre entre 1 et 100 inclus
@@ -202,14 +193,6 @@ public class Plateau {
    }
 
     public void affiche() {
-        /*for(int li = 0;li<numLi;li++){
-            for(int col = 0; col<numCols; col++){
-                if(plato[li][col].contientZombie()){
-                    System.out.println(plato[li][col].getPersonnage().toString());
-                }
-            }
-        }*/
-
         System.out.print("  ");
         for (int col = 0; col < numCols; col++) {
             System.out.print("  "+col+" " ); 
@@ -271,10 +254,5 @@ public class Plateau {
     public Personnage getPersonnageAt(int li, int col) {
         return plato[li][col].getPersonnage();
     }
-/* 
-    public boolean partieFinish(){
-        return true;
-    }
-  */
   
 }

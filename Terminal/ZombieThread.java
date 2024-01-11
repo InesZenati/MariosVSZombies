@@ -22,18 +22,8 @@ public class ZombieThread extends Thread {
     @Override
     public void run() { 
         spawn();
-        while(running){  
-             //   update();
-                sleep(100);   
-            }
 
-           /* 
-            plato.moveZombie(zombie);
-                sleep(100);
-                plato.affiche();
         }
-        */
-    }
 
     public void stopThread(){
         running = false;
@@ -47,19 +37,14 @@ public class ZombieThread extends Thread {
                 if(plato.getMarathonOrNot()==true){
                 l= plato.getMarathonMode();
             }
-                System.out.println("Dans case 0");
                 spawnRandomZombies(l);
-                System.out.println("Dans case 0");
                 break;
             case 1:
                  List<Zombie> f = pGui.getJeuGUI().getPlateau().getVague();
                 if(plato.getMarathonOrNot()==true){
                 f= pGui.getJeuGUI().getPlateau().getMarathonMode();
             }
-                System.out.println("plato interface" +plato.toString());
-                System.out.println("Dans ZombieThread");
                 spawnRandomZombies(f);
-                    System.out.println("Dans ZombieThread");
                 break;
             default:
                 break;
@@ -95,23 +80,19 @@ public class ZombieThread extends Thread {
     
 
     public void moveRandomZombies(List<Zombie> listeZombies) {
-        System.out.println("Dans moveRandomZombies");
         for (int i = 0; i < listeZombies.size(); i++) {
             sleep(1000);
             listeZombies.get(i).moveZombie(plato);
             sleep(1000);
         }
         sleep(1000);
-        System.out.println("Fin moveRandomZombies");
+
     }
 
 
     public void spawnZombie(Zombie z) {
-        System.out.println("Dans spawnZombie");
         int li = 1+ (int) (Math.random() * plato.getNumLi()-1);
         int col = plato.getNumCols() - 1;
-        System.out.println("colne de spawn " +col);
-         System.out.println(z.toString());
         while (plato.getCase(li, col).contientZombie()) {
             li = (int) (Math.random() * plato.getNumLi()-1);
             col = plato.getNumCols() - 1;
@@ -122,24 +103,19 @@ public class ZombieThread extends Thread {
         sleep(1000);
         move(z);
         update();
-        System.out.println(z.toString());
-        System.out.println("Fin spawnZombie");
     } 
 
     public void spawnRandomZombies(List<Zombie> listeZombies) {
-        System.out.println("Dans spawnRandomZombies");
         for (int i = 0; i < listeZombies.size(); i++) {
             spawnZombie(listeZombies.get(i));
             if(plato.getPartisStatus()!=0){
                 break;
             }
-            System.out.println(listeZombies.get(i).toString());
         }
         sleep(1000);
         if(plato.getMarathonOrNot()==true && plato.getPartisStatus()!=1){
             spawnRandomZombies(plato.generateEnemieMarathon());
-        }
-        System.out.println("Fin spawnRandomZombies");
+        };
     }
    
 

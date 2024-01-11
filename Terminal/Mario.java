@@ -25,13 +25,7 @@ public abstract class Mario extends Personnage {
         return false;
     }
 
-    /*public boolean aGagner(Plateau p){
-        int [] pos = this.getPosition();
-        if(pos[1]==p.getNumCols()-1){
-            return true;
-        }
-        return false;
-    }*/
+
 
     public abstract String getImagePath();
 

@@ -54,7 +54,6 @@ public class setJeu extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
         selectedDecor = "Basic";
-       // tryToShowNewPage(); 
     }
 });
 
@@ -63,7 +62,6 @@ public class setJeu extends JPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         selectedDecor = "Nouveau";
-      //  tryToShowNewPage(); 
     }
 });
 
@@ -85,9 +83,6 @@ easyButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent e) {
         selectedDifficulty = "Facile";
         //couleur bordeau
-
-      
-       // tryToShowNewPage(); 
     }
 });
 
@@ -96,7 +91,6 @@ mediumButton.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
         selectedDifficulty = "Moyen";
-       // tryToShowNewPage(); 
     }
 });
 
@@ -105,7 +99,6 @@ hardButton.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
         selectedDifficulty = "Difficile";
-       // tryToShowNewPage(); 
     }
 });
 
@@ -114,7 +107,6 @@ marathonMode.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
         selectedDifficulty = "Marathon";
-       // tryToShowNewPage(); 
     }
 });
 
@@ -193,54 +185,6 @@ centralPanel.add(BackButton, gbc);
 gbc.gridx = 2;
 centralPanel.add(CommencerButton, gbc);
 
-
-
-/*GridBagConstraints gbc = new GridBagConstraints();
-gbc.gridx = 0;
-gbc.gridy = 0;
-gbc.weighty = 1.0;
-centralPanel.add(titlePanel, gbc);
-
-
-gbc.gridy = 1;
-gbc.gridwidth = 2; // 
-centralPanel.add(decorsPanel, gbc);
-
-// Réinitialiser gridwidth à 1
-gbc.gridwidth = 1;
-
-// Bouton style
-gbc.gridy = 2; // 
-centralPanel.add(desertButton, gbc);
-
-// Bouton style
-gbc.gridx = 1; // 
-centralPanel.add(jungleButton, gbc);
-
-// Mode de difficulté Panel
-gbc.gridy = 2; 
-gbc.gridx = 0;
-gbc.gridwidth = 3; // Définir la largeur sur 3 pour qu'il occupe trois colonnes
-centralPanel.add(difficultyPanel, gbc);
-
-// Réinitialiser gridwidth à 1
-gbc.gridwidth = 1;
-
-// Bouton style
-gbc.gridy = 1; // Ajuster
-gbc.gridx = 0; //
-centralPanel.add(easyButton, gbc);
-
-// Bouton style
-
-gbc.gridx = 1; // Utilisez la colonne suivante pour le bouton Moyen
-centralPanel.add(mediumButton, gbc);
-
-// Bouton style
-gbc.gridx = 2; // Utilisez la colonne suivante pour le bouton Difficile
-centralPanel.add(hardButton, gbc); */
-
-
 add(centralPanel, BorderLayout.CENTER);
 
 
@@ -248,15 +192,11 @@ add(centralPanel, BorderLayout.CENTER);
 
     private void tryToShowNewPage() {
         // Vérifier si les deux sélections ont été faites
-        System.out.println(selectedDifficulty);
         if (selectedDecor != null && selectedDifficulty != null) {
-            System.out.println(selectedDifficulty);
             Joueur j =jeu.getJoueur();
             j.setArgent(24);
             Plateau plato = new Plateau(5, 9, selectedDifficulty,j);
-            System.out.println("plateau ceer" +plato.toString());
             jeu.setPlateau(plato);
-            System.out.println("nouveau plateau" +jeu.getPlateau().toString());
 
 
             // Afficher je pense on ajoute ds attributs pour avoir que une page afficher

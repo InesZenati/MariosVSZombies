@@ -1,6 +1,6 @@
 public class BasicMario extends Mario{
     BasicMario(){
-        super("BasicMario",8,new Information(2,1,-1,-1,10));
+        super("BasicMario",8,new Information(2,0,-1,-1,10));
     }
 
 
@@ -12,7 +12,6 @@ public class BasicMario extends Mario{
                 if(m.getInfoActuelle().getDefense()>this.getInfoActuelle().getAttaque()){
                     m.takeDamage(this.getInfoActuelle().getAttaque()/2);
                     p.getJoueur().incrementerArgent(3);
-                    //m.attaque(p);
                 }
                 else{
                     m.takeDamage(this.getInfoActuelle().getAttaque());

@@ -61,8 +61,6 @@ public class WelcomePageGUI extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String l =playerNameField.getText();
                 Joueur j = new Joueur(l);
-                System.out.println("Prenom 2 ?");
-                System.out.println(j.toString());
                 jeu.setJoueur(j);
                 jeu.getCardLayout().show(jeu.getCardPanel(), "Menu");
             }

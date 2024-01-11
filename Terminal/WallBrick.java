@@ -1,11 +1,12 @@
 public class WallBrick extends Mario{
     WallBrick(){
-        super("WallBrick",200,new Information(0,0,-1,-1,500));
+        super("WallBrick",30,new Information(0,0,-1,-1,100));
     }
     public void attaque(Plateau p){
+        p.getJoueur().incrementerArgent(10);
     }
     public boolean peutAttaquer(Plateau p){
-        return false;
+        return true;
     }
     public String estDevant(Plateau p){
         return"Wallmario";
