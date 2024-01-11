@@ -12,7 +12,6 @@ public class PlateauGUI extends JPanel{
     private JPanel plateauPanel;
     private JPanel menuPanel;
     private JPanel InfoPanel;
-    private int Argent = 10000;
     private static Mario selectedPersonnage;
     private CardLayout cardLayout;
     private JPanel cardPanel;
@@ -83,7 +82,7 @@ public class PlateauGUI extends JPanel{
         JLabel joueurName = new JLabel("Information de : "+this.getJeuGUI().getJoueur().getName()+" ");
         joueurName.setFont(marioFont.deriveFont(Font.PLAIN, 20));
         joueurName.setForeground(Color.WHITE);
-        JLabel joueurArgent = new JLabel("Argent : " + this.Argent + " ");
+        JLabel joueurArgent = new JLabel("Argent : " + this.getJeuGUI().getJoueur().getArgent()+ " ");
         joueurArgent.setFont(marioFont.deriveFont(Font.PLAIN, 20));
         joueurArgent.setForeground(Color.WHITE);
        
@@ -112,7 +111,7 @@ public class PlateauGUI extends JPanel{
             JLabel joueurName = new JLabel("Information de : "+this.getJeuGUI().getJoueur().getName()+" ");
             joueurName.setFont(marioFont.deriveFont(Font.PLAIN, 20));
             joueurName.setForeground(Color.WHITE);
-            JLabel joueurArgent = new JLabel("Argent : " + this.Argent + " ");
+            JLabel joueurArgent = new JLabel("Argent : " + this.getJeuGUI().getJoueur().getArgent() + " ");
             joueurArgent.setFont(marioFont.deriveFont(Font.PLAIN, 20));
             joueurArgent.setForeground(Color.WHITE);
        

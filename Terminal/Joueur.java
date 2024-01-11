@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Joueur {
     private final String name;
-    private int argent =30;
+    private int argent =24;
     private int score=0;
 
     public Joueur(String name) {
