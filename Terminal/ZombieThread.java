@@ -105,6 +105,7 @@ public class ZombieThread extends Thread {
         
         z.placeZombie(li, col, plato);
         update();
+        sleep(1000);
         move(z);
         update();
         System.out.println(z.toString());

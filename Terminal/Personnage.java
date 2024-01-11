@@ -42,6 +42,7 @@ public abstract class Personnage {
             p.removeZombie(pos[0],pos[1]);
             if(this instanceof Zombie){
                 Zombie z = (Zombie) this;
+                sleep(1000);
                 z.moveZombie(p);
                 //modif
             }
@@ -74,6 +75,14 @@ public abstract class Personnage {
     public abstract String estDevant(Plateau p);
 
     public abstract String getImagePath();
+
+    public void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     
 }

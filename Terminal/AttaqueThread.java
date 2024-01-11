@@ -38,21 +38,40 @@ public class AttaqueThread extends Thread {
         }
     }
 
-    public void attaque(Plateau p){
-        if(!p.getListPerso().isEmpty()){
+    public void attaque(){
+        if(!plato.getListPerso().isEmpty()){
             //System.out.println(p.getListPerso().size());
-            p.afficheList();
-            for(int i=0 ; i<p.getListPerso().size(); i++ ){
-                    Personnage n = p.getListPerso().get(i);
+            plato.afficheList();
+            for(int i=0 ; i<plato.getListPerso().size(); i++ ){
+                    Personnage n = plato.getListPerso().get(i);
                      //   System.out.println("dans le while"); 
                     //System.out.println(n.estDevant(p));
-                    if(n.peutAttaquer(p)){
+                    if(n.peutAttaquer(plato)){
                         System.out.println(n.getName()+"peut attaquer !");
                         System.out.println(n.getName()+"attaque !");
-                       n.attaque(p);
-                       //n.aGagner(p);
+                        attaquerZombie(n);
                     }
             }
+        }
+    }
+
+    public void attaquerZombie(Personnage n){
+        switch (i) {
+            case 0:
+                n.attaque(plato);
+                n.aGagner(plato, n);
+                break;
+            case 1:
+                if(n instanceof Mario){
+                    Mario m = (Mario) n;
+                    m.attaque(plato);
+                    m.aGagner(plato, n);
+                }
+                n.attaque(pGui);
+                n.aGagner(pGui, n);
+                break;
+            default:
+                break;
         }
     }
 

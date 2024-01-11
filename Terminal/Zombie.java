@@ -69,6 +69,17 @@ public abstract class Zombie extends Personnage {
             }
             this.aGagner(p, m);
     }
+    public void attaque(PlateauGUI pGui){
+        Plateau p = pGui.getJeuGUI().getPlateau();
+        int [] pos = this.getPosition();
+            Personnage m = p.getCase(pos[0],pos[1]-1).getPersonnage();
+            if(m.getInfoActuelle().getDefense()>this.getInfoActuelle().getAttaque()){;
+                m.takeDamage(this.getInfoActuelle().getAttaque()/2);
+            }else{
+                m.takeDamage(this.getInfoActuelle().getAttaque());
+            }
+            this.aGagner(pGui,m);
+    }
     public void moveZombie(Plateau plato) {
         System.out.println("Dans moveZombie");                 
         int li = this.getInfoActuelle().getPosX();
@@ -76,7 +87,7 @@ public abstract class Zombie extends Personnage {
         while(this.peutDeplacer(plato)){ 
                 this.removeZombie(li, col,plato);
                 col=col-1;
-            sleep(500);
+            sleep(800);
                 this.placeZombie(li, col, plato);
                 System.out.println(this.toString());
                 System.out.println("update");
@@ -91,17 +102,39 @@ public abstract class Zombie extends Personnage {
         int li = this.getInfoActuelle().getPosX();
         int col = this.getInfoActuelle().getPosY();
         while(this.peutDeplacer(plato)){ 
+            p.updatePlateau();
                 this.removeZombie(li, col,plato);
                 col=col-1;
-                sleep(1000);
+                sleep(100);
                 this.placeZombie(li, col, plato);
                 System.out.println(this.toString());
                 System.out.println("update");
                 plato.affiche();
                 p.updatePlateau();
+                  System.out.println("update2");
+               sleep(1000);
             }
             System.out.println("Fin moveZombie");
-        } 
+        }
+        public boolean aGagner(PlateauGUI pGui, Personnage perso){
+            Plateau p = pGui.getJeuGUI().getPlateau();
+            int [] pos = perso.getPosition();
+            System.out.println(perso.toString());
+            if((!perso.estVivant())){
+                
+                System.out.println(perso.getName()+"est mort");
+                p.removeZombie(pos[0],pos[1]);
+                if(this instanceof Zombie){
+                    Zombie z = (Zombie) this;
+                    sleep(1000);
+                    z.moveZombie(pGui);
+                    //modif
+                }
+                return true;
+               }
+            return false;
+            }
+        
         public void placeZombie(int li, int col,Plateau plato ){
             //(!plato[li][col].contientZombie() && !plato[li][col].contientMario()){    
             this.getInfoActuelle().setPosX(li);
@@ -144,7 +177,7 @@ public abstract class Zombie extends Personnage {
         return false;
     }
 
-    private static void sleep(int milliseconds) {
+    public void sleep(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException e) {
