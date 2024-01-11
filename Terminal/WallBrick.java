@@ -1,6 +1,6 @@
 public class WallBrick extends Mario{
     WallBrick(){
-        super("WallBrick",60,new Information(0,0,-1,-1,100));
+        super("WallBrick",30,new Information(0,0,-1,-1,100));
     }
     public void attaque(Plateau p){
         p.getJoueur().incrementerArgent(10);

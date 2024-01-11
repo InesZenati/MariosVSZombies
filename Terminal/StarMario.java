@@ -13,10 +13,10 @@ public class StarMario extends Mario{
             Personnage m =  p.getCase(pos[0],pos[1]+1).getPersonnage();
             if(m.getInfoActuelle().getDefense()>this.getInfoActuelle().getAttaque()){
                 m.takeDamage(this.getInfoActuelle().getAttaque()/2);
-                p.getJoueur().incrementerArgent(3);
+                p.getJoueur().incrementerArgent(10);
             }else{
                 m.takeDamage(this.getInfoActuelle().getAttaque());
-                p.getJoueur().incrementerArgent(3);
+                p.getJoueur().incrementerArgent(10);
             }
             this.aGagner(p,m);
         }
