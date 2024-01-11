@@ -6,7 +6,6 @@ import java.io.File;
 
 public class GameWinGUI extends JPanel {
     private JeuGUI jeu;
-    private JTextField playerNameField;
 
     public GameWinGUI(JeuGUI j) {
         jeu =j;
@@ -85,9 +84,7 @@ public class GameWinGUI extends JPanel {
         add(centralPanel, BorderLayout.CENTER);
     }
 
-    public String getPlayerName() {
-        return playerNameField.getText().trim();
-    }
+   
 
     private Font loadMarioFont() {
         try {

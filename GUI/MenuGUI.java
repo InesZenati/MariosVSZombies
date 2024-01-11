@@ -44,7 +44,7 @@ public class MenuGUI extends JPanel {
         rulesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               //cardLayput.show(cardPanel, "Rules");
+               cardLayout.show(cardPanel, "Regles");
             }
         });
 

@@ -232,7 +232,7 @@ public class Plateau {
                     else if(plato[li][col].getPersonnage().getName()=="BigMario"){
                     System.out.print("|G_|");
                     }
-                    else if(plato[li][col].getPersonnage().getName()=="SuperMario"){
+                    else if(plato[li][col].getPersonnage().getName()=="StarMario"){
                     System.out.print("|S_|");
                     }
                 } else if (plato[li][col].contientZombie()) {

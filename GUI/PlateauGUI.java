@@ -335,11 +335,11 @@ public class PlateauGUI extends JPanel{
             attaqueZombies.start();
         }else if(i==2){
             //stop all the threads
-             cardLayout.show(cardPanel, "GameOver");
+             cardLayout.show(cardPanel, "GameWin");
              //show gameover
             zombieThread.stopThread();
             attaqueZombies.stopThread();
-            cardLayout.show(cardPanel, "GameOver");
+            cardLayout.show(cardPanel, "GameWin");
             //cardLayout.show(cardPanel, "GameOver");
            
         }
