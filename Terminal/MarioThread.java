@@ -14,9 +14,10 @@ import java.util.List;
 
     @Override
     public void run() {
+        Communication c = new Communication();
         while (plato.getPartisStatus() == 0) {
             ZombieMort();
-            String choix = joueur.demanderPersoPosition();
+            String choix = c.demanderPersoPosition();
             placerMario(choix);
             plato.affiche();
         }
