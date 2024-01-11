@@ -19,7 +19,7 @@ public class AttaqueThread extends Thread {
     public void run(){
         while(true){
             update();
-            attaque(plato);
+            attaque();
             update();
             sleep(1000);
         }
@@ -65,10 +65,10 @@ public class AttaqueThread extends Thread {
                 if(n instanceof Mario){
                     Mario m = (Mario) n;
                     m.attaque(plato);
-                    m.aGagner(plato, n);
+                }else if(n instanceof Zombie){
+                    Zombie z =(Zombie) n;
+                    z.attaque(pGui);
                 }
-                n.attaque(pGui);
-                n.aGagner(pGui, n);
                 break;
             default:
                 break;
