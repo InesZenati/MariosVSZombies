@@ -169,11 +169,12 @@ public abstract class Zombie extends Personnage {
         int [] pos = this.getPosition();
         int col = pos[1];
         int li = pos[0];
-        if(col>0){
-        if(!p.getCase(li,col-1).contientMario()&& !p.getCase(li,col-1).contientZombie()){
+        if((col>0)&&!p.getCase(li,col-1).contientMario()&& !p.getCase(li,col-1).contientZombie()){
             return true;
+            }
+        if(col==0){
+            p.ZombieGagne();
         }
-    }
         return false;
     }
 
