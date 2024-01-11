@@ -83,8 +83,25 @@ public abstract class Zombie extends Personnage {
                 plato.affiche();
             }
             System.out.println("Fin moveZombie");
-
         }
+
+    public void moveZombie(PlateauGUI p){
+        Plateau plato = p.getJeuGUI().getPlateau();
+        System.out.println("Dans moveZombie");                 
+        int li = this.getInfoActuelle().getPosX();
+        int col = this.getInfoActuelle().getPosY();
+        while(this.peutDeplacer(plato)){ 
+                this.removeZombie(li, col,plato);
+                col=col-1;
+                sleep(1000);
+                this.placeZombie(li, col, plato);
+                System.out.println(this.toString());
+                System.out.println("update");
+                plato.affiche();
+                p.updatePlateau();
+            }
+            System.out.println("Fin moveZombie");
+        } 
         public void placeZombie(int li, int col,Plateau plato ){
             //(!plato[li][col].contientZombie() && !plato[li][col].contientMario()){    
             this.getInfoActuelle().setPosX(li);
