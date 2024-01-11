@@ -65,6 +65,19 @@ public class ZombieThread extends Thread {
         }
     }
 
+    public void move(Zombie z){
+        switch (i) {
+            case 0:
+                z.moveZombie(plato);
+                break;
+            case 1:
+                z.moveZombie(pGui);
+                break;
+            default:
+                break;
+        }
+    }
+
     
 
     public void moveRandomZombies(List<Zombie> listeZombies) {
@@ -92,7 +105,7 @@ public class ZombieThread extends Thread {
         
         z.placeZombie(li, col, plato);
         update();
-        z.moveZombie(plato);
+        move(z);
         update();
         System.out.println(z.toString());
         System.out.println("Fin spawnZombie");
