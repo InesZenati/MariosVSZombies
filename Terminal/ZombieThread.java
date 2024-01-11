@@ -65,32 +65,13 @@ public class ZombieThread extends Thread {
         }
     }
 
-    public void moveZombie(Zombie z) {
-        System.out.println("Dans moveZombie");
-        Plateau plato = this.plato;                          
-        int li = z.getInfoActuelle().getPosX();
-        int col = z.getInfoActuelle().getPosY();
-        while(z.peutDeplacer(plato)){ 
-                removeZombie(li, col);
-                col=col-1;
-                sleep(100);
-                placeZombie(z, li, col);
-                System.out.println(z.toString());
-                sleep(1000);
-                System.out.println("update");
-                update();
-                System.out.println("update");
-                plato.affiche();
-            }
-            System.out.println("Fin moveZombie");
-
-        }
+    
 
     public void moveRandomZombies(List<Zombie> listeZombies) {
         System.out.println("Dans moveRandomZombies");
         for (int i = 0; i < listeZombies.size(); i++) {
             sleep(1000);
-            moveZombie(listeZombies.get(i));
+            listeZombies.get(i).moveZombie(plato);
             sleep(1000);
         }
         sleep(1000);
@@ -108,9 +89,9 @@ public class ZombieThread extends Thread {
             col = plato.getNumCols() - 1;
         }
         
-        placeZombie(z, li, col);
+        z.placeZombie(li, col, plato);
         update();
-        moveZombie(z);
+        z.moveZombie(plato);
         update();
         System.out.println(z.toString());
         System.out.println("Fin spawnZombie");
@@ -124,20 +105,7 @@ public class ZombieThread extends Thread {
         }
         System.out.println("Fin spawnRandomZombies");
     }
-    public void placeZombie(Zombie z, int li, int col) {
-        //(!plato[li][col].contientZombie() && !plato[li][col].contientMario()){    
-        z.getInfoActuelle().setPosX(li);
-        z.getInfoActuelle().setPosY(col);
-        plato.ajouter(z);
-        plato.getCase(li, col).setZombie(z);
-        //}
-    }
-
-    public void removeZombie(int li, int col) {
-        plato.retirer(plato.getCase(li, col).getPersonnage());
-        plato.getCase(li, col).supprimerPerso();
-
-    }
+   
 
     private static void sleep(int milliseconds) {
         try {
