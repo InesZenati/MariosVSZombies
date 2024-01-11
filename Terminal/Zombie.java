@@ -97,7 +97,6 @@ public abstract class Zombie extends Personnage {
         public void removeZombie(int li, int col,Plateau plato) {
             plato.retirer(plato.getCase(li, col).getPersonnage());
             plato.getCase(li, col).supprimerPerso();
-    
         }
 
     /*public boolean aGagner(Plateau p){

@@ -43,6 +43,7 @@ public abstract class Personnage {
             if(this instanceof Zombie){
                 Zombie z = (Zombie) this;
                 z.moveZombie(p);
+                //modif
             }
             return true;
            }
