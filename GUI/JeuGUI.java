@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Scanner;
 
 public class JeuGUI extends JFrame {
     private JFrame frame;
@@ -8,6 +9,7 @@ public class JeuGUI extends JFrame {
     private Joueur joueur;
     private Plateau plateau;
     private Controller controller;
+    private volatile boolean partieTerminee = true;
 
     public CardLayout getCardLayout(){
         return this.cardLayout;
@@ -61,6 +63,59 @@ public class JeuGUI extends JFrame {
         // Afficher la fenêtre principale
         frame.setVisible(true);
     }
+
+     public void partieFinish() {
+            Scanner sc = new Scanner(System.in);
+    
+            Thread partieOver = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!partieTerminee) {
+                        if (getPlato().getPartieStatus() != 0) {
+                            jouer(2);
+                            System.out.println("Partie terminée");
+    
+                            if (plato.getPartieStatus() == 1) {
+                                System.out.println("Vous avez gagné !");
+                            } else if (plato.getPartieStatus() == 2) {
+                                System.out.println("Vous avez perdu");
+                            }
+                            
+                            gameRejouer();
+                              break;
+                            //partieTerminee = true;
+                        }
+    
+                        try {
+                            // Pause le thread pendant une courte période
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+    
+            partieOver.start();
+        }
+        public void gameRejouer() {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Voulez-vous rejouer ? 1 OUI 2 NON");
+            int choix = sc.nextInt();
+            if (choix == 1) {
+                Communication c = new Communication();
+            Joueur j = new Joueur(c.demanderString("Comment souhaites-tu te nommer ?"));
+            String mode = modeJeu(c.demanderNiveauDifficulte());
+                Plateau p = new Plateau(6,10,mode);
+                Jeu a = new Jeu(p, j);
+                a.jouer(1);
+            } else if (choix == 2) {
+                System.out.println("Merci d'avoir joué !");
+            }
+        }
+        
+
+    
 
     public Plateau setPlateau(Plateau plato){
        this.plateau = plato;

@@ -40,16 +40,25 @@ public class ZombieThread extends Thread {
     }
 
     public void spawn(){
+       
         switch (i) {
             case 0:
+             List<Zombie> l= plato.getVague();
+                if(plato.getMarathonOrNot()==true){
+                l= plato.getMarathonMode();
+            }
                 System.out.println("Dans case 0");
-                spawnRandomZombies(plato.getVague());
+                spawnRandomZombies(l);
                 System.out.println("Dans case 0");
                 break;
             case 1:
+                 List<Zombie> f = pGui.getJeuGUI().getPlateau().getVague();
+                if(plato.getMarathonOrNot()==true){
+                f= pGui.getJeuGUI().getPlateau().getMarathonMode();
+            }
                 System.out.println("plato interface" +plato.toString());
                 System.out.println("Dans ZombieThread");
-                spawnRandomZombies(pGui.getJeuGUI().getPlateau().getVague());
+                spawnRandomZombies(f);
                     System.out.println("Dans ZombieThread");
                 break;
             default:
@@ -125,6 +134,10 @@ public class ZombieThread extends Thread {
                 break;
             }
             System.out.println(listeZombies.get(i).toString());
+        }
+        sleep(1000);
+        if(plato.getMarathonOrNot()==true && plato.getPartisStatus()==0){
+            spawnRandomZombies(plato.generateEnemieMarathon());
         }
         System.out.println("Fin spawnRandomZombies");
     }

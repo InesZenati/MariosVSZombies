@@ -8,9 +8,19 @@ public class Plateau {
     private List<Personnage> PersoDansPlato = new ArrayList<>();
     private List<Zombie> VagueDeZombie = new ArrayList<>();
     private int partieStatus;
+    private List<Zombie> marathonMode =new ArrayList<>();
+    private boolean marathonorNot=false;
 
     public List<Zombie> getVague(){
         return VagueDeZombie;
+    }
+
+    public List <Zombie> getMarathonMode(){
+        return marathonMode;
+    }
+
+    public boolean getMarathonOrNot(){
+        return marathonorNot;
     }
 
     public void setVague(List<Zombie> z){
@@ -22,6 +32,14 @@ public class Plateau {
         this.numCols = numCols;
         this.plato = new Case[numLi][numCols];
         this.VagueDeZombie=generateZombies(niveauDeDifficulté);
+        this.marathonMode=generateEnemieMarathon();
+        if (niveauDeDifficulté.equals("Marathon")){
+            this.marathonorNot=true;
+            this.marathonMode=generateEnemieMarathon();
+        }
+        else{
+            this.marathonorNot=false;
+        }
         this.partieStatus=0;
         creePLato();
 

@@ -285,8 +285,8 @@ public class PlateauGUI extends JPanel{
             attaqueZombies.start();
         }else if(i==2){
             //stop all the threads
-            zombieThread.interrupt();
-            attaqueZombies.interrupt();
+            zombieThread.stopThread();
+            attaqueZombies.stopThread();
            
         }
         
