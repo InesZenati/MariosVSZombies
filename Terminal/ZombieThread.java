@@ -136,7 +136,7 @@ public class ZombieThread extends Thread {
             System.out.println(listeZombies.get(i).toString());
         }
         sleep(1000);
-        if(plato.getMarathonOrNot()==true && plato.getPartisStatus()==0){
+        if(plato.getMarathonOrNot()==true && plato.getPartisStatus()!=1){
             spawnRandomZombies(plato.generateEnemieMarathon());
         }
         System.out.println("Fin spawnRandomZombies");

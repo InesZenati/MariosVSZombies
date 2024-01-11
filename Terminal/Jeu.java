@@ -114,7 +114,7 @@ public class Jeu {
             }
         } */
 
-        public static String modeJeu(int i){
+        public String modeJeu(int i){
             String v;
             switch (i) {
                 case 1:
@@ -148,7 +148,7 @@ public class Jeu {
         }
 
         public void partieFinish() {
-            Scanner sc = new Scanner(System.in);
+            //Scanner sc = new Scanner(System.in);
     
             Thread partieOver = new Thread(new Runnable() {
                 @Override
@@ -158,9 +158,9 @@ public class Jeu {
                             jouer(2);
                             System.out.println("Partie terminée");
     
-                            if (plato.getPartieStatus() == 1) {
+                            if (plato.getPartieStatus() == 2) {
                                 System.out.println("Vous avez gagné !");
-                            } else if (plato.getPartieStatus() == 2) {
+                            } else if (plato.getPartieStatus() == 1) {
                                 System.out.println("Vous avez perdu");
                             }
                             
@@ -182,11 +182,10 @@ public class Jeu {
             partieOver.start();
         }
         public void gameRejouer() {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Voulez-vous rejouer ? 1 OUI 2 NON");
-            int choix = sc.nextInt();
+            Communication c = new Communication();
+            int choix = c.demanderDeRejouer();
             if (choix == 1) {
-                Communication c = new Communication();
+                
             Joueur j = new Joueur(c.demanderString("Comment souhaites-tu te nommer ?"));
             String mode = modeJeu(c.demanderNiveauDifficulte());
                 Plateau p = new Plateau(6,10,mode);

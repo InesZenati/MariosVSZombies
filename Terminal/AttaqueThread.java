@@ -18,12 +18,22 @@ public class AttaqueThread extends Thread {
 
     @Override
     public void run(){
+        if(plato.getMarathonOrNot()==false){
         while(plato.getPartisStatus()==0){
             update();
             attaque();
             update();
             sleep(1000);
+        }     
+        }else{
+            while(plato.getPartisStatus()!=1){
+                update();
+                attaque();
+                update();
+                sleep(1000);
+            
         }
+    }
     }
 
     public void stopThread(){
