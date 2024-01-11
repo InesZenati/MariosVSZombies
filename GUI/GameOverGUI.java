@@ -43,6 +43,12 @@ public class GameOverGUI extends JPanel {
         titleLabel.setForeground(Color.WHITE);
         titlePanel.add(titleLabel);
 
+        JPanel scorePanel = new JPanel();
+        scorePanel.setOpaque(false);
+        JLabel score = new JLabel("TON SCORE : "+jeu.getJoueur().getScore());
+        score.setFont(marioFont.deriveFont(Font.BOLD, 30));
+        score.setForeground(Color.WHITE);
+        scorePanel.add(score);
 
         // Start 
         JButtonStyled startButton = new JButtonStyled("Retour au menu");
@@ -54,11 +60,14 @@ public class GameOverGUI extends JPanel {
             }
         });
 
+
+
         // Buttons Panel
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setOpaque(false);
         buttonsPanel.add(startButton);
 
+     
 
         // centrer les composants
         GridBagConstraints gbc = new GridBagConstraints();
@@ -67,7 +76,8 @@ public class GameOverGUI extends JPanel {
         gbc.weighty = 1;//inutil j'ai limpression pas tropcapter a quoi ça sert
         centralPanel.add(titlePanel, gbc);
         
-
+        gbc.gridy = 1;
+        centralPanel.add(scorePanel, gbc);
         
         gbc.gridy = 2;
         centralPanel.add(buttonsPanel, gbc);

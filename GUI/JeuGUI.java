@@ -57,6 +57,8 @@ public class JeuGUI extends JFrame {
         cardPanel.add(jeu, "PlateauGUI");
         GameOverGUI gameOverPanel = new GameOverGUI(this);
         cardPanel.add(gameOverPanel, "GameOver");
+        GameWinGUI gameWinPanel = new GameWinGUI(this);
+        cardPanel.add(gameWinPanel, "GameWin");
 
 
 
@@ -129,7 +131,7 @@ public class JeuGUI extends JFrame {
             cardLayout.show(cardPanel, "GameOver");
         }
         else if(finPartie==2){
-            cardLayout.show(cardPanel, "GameOver");
+            cardLayout.show(cardPanel, "GameWin");
         }
     }
 }

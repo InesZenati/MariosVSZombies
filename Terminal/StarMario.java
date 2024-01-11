@@ -1,6 +1,6 @@
 public class StarMario extends Mario{
     public StarMario(){
-        super("SuperMario",0, new Information(10,10,-1,-1,200));
+        super("StarMario",0, new Information(10,10,-1,-1,200));
     }
     public void takeDamage(int degat){
         this.getInfoActuelle().setvie(this.getInfoActuelle().getvie() - degat);
