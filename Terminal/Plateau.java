@@ -7,6 +7,7 @@ public class Plateau {
     private Case[][] plato;
     private List<Personnage> PersoDansPlato = new ArrayList<>();
     private List<Zombie> VagueDeZombie = new ArrayList<>();
+    private int partieSatus;
 
     public List<Zombie> getVague(){
         return VagueDeZombie;
@@ -126,13 +127,15 @@ public class Plateau {
         }
         return ennemis;
     }
-/* 
+
     public List<Zombie> generateEnemieMarathon(){
         List<Zombie> ennemis = new ArrayList<>();
-        while(true)
-
+        ennemis = generateEnemies(20,20,20,40,10);
+        return ennemis;
     }
-    */
+
+    
+    
 
     public List<Zombie> generateEnemies(int zombie1 , int zombie2 , int zombie3 , int zombie4 , int n) {
         List<Zombie> ennemis = new ArrayList<>();
@@ -162,9 +165,7 @@ public class Plateau {
         return ennemis;
         }
 
-        public void generateEnemieMarathon(){
-
-        }
+      
 
    
 
