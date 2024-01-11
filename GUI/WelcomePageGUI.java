@@ -50,15 +50,6 @@ public class WelcomePageGUI extends JPanel {
         welcomeLabel.setFont(marioFont.deriveFont(Font.PLAIN, 20));
         welcomeLabel.setForeground(Color.WHITE);
         playerNameField = new JTextField(15);
-        playerNameField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { 
-                String l =playerNameField.getText();
-                jeu.setJoueur(new Joueur(l));
-                System.out.println("Prenom 1 ?");
-                System.out.println(j.toString());
-            }
-        });
         playerNameField.setHorizontalAlignment(JTextField.CENTER);
         playerNamePanel.add(welcomeLabel);
         playerNamePanel.add(playerNameField);
