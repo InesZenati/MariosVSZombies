@@ -6,7 +6,7 @@ import java.io.File;
 
 public class GameOverGUI extends JPanel {
     private JeuGUI jeu;
-    private JLabel score;
+     private static JLabel score;
    
 
     public GameOverGUI(JeuGUI j) {
@@ -106,6 +106,10 @@ public class GameOverGUI extends JPanel {
     public void updateScore() {
         int nouveauScore = jeu.getJoueur().getScore();
         score.setText("TON SCORE : " + nouveauScore);
+    }
+
+    public static JLabel getScore() {
+        return score;
     }
 
     
