@@ -7,7 +7,6 @@ public class Plateau {
     private List<Personnage> PersoDansPlato = new ArrayList<>();
     private List<Zombie> VagueDeZombie = new ArrayList<>();
     private int partieStatus;
-    private List<Zombie> marathonMode =new ArrayList<>();
     private boolean marathonorNot=false;
 
 
