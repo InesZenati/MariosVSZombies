@@ -13,7 +13,6 @@ public class Jeu {
     public Plateau getPlato() {
         return plato;
     }
-
     
         public static String modeJeu(int i){
             String v;
@@ -89,7 +88,7 @@ public class Jeu {
     
         public void jouer(int i) {
             partieFinish();
-            MarioThread marioThread = new MarioThread(plato, joueur, listeMario);
+            MarioThread marioThread = new MarioThread(plato);
             ZombieThread zombieThread = new ZombieThread(plato);
             AttaqueThread attaqueThread = new AttaqueThread(plato);
     

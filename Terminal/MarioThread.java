@@ -8,8 +8,7 @@ import java.util.List;
 
     public MarioThread(Plateau plato) {
         this.plato = plato;
-        this.joueur = joueur;
-        this.listeMario = listeMario;
+        this.joueur = plato.getJoueur();
     }
 
 
