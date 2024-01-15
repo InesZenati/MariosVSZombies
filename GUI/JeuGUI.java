@@ -34,7 +34,7 @@ public class JeuGUI extends JFrame {
     public JeuGUI() {
         frame = new JFrame("MariosVSZombies");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);        
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
         this.joueur=new Joueur("Anonyme");

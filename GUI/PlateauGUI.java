@@ -168,6 +168,7 @@ public class PlateauGUI extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 selectedPersonnage = (Mario)getPersonnageByName(name);
+                System.out.println(selectedPersonnage);
             }
         });
         return mario;
@@ -233,20 +234,27 @@ public class PlateauGUI extends JPanel{
     }
 
     public void casePanelClic(int li, int col) {
+        System.out.println(selectedPersonnage);
         if (selectedPersonnage != null) {
+            System.out.println(selectedPersonnage);
             if (!jeuGUI.getPlateau().getCase(li, col).contientMario()) {
                 Personnage mario = getPersonnageByName(selectedPersonnage.getName());
-                System.out.println("mario creer");
+                System.out.println("mario créé");
                 Mario m = (Mario) mario;
-                if (this.getJeuGUI().getJoueur().getArgent() >= m.getPrix()) {
+                int solde = jeuGUI.getJoueur().getArgent();
+                System.out.println("solde : " + solde);
+                int prix = m.getPrix();
+                System.out.println("prix : " + prix);
+                if (solde >= prix) {
                     jeuGUI.getPlateau().placeMario(m, li, col);
                     System.out.println(m.toString());
-                    System.out.println("mario place");
+                    System.out.println("mario placé");
                     updatePlateau();
                 }
             }
         }
     }
+    
 
     public void updatePlateau() {
         updateJoueurInfo();
