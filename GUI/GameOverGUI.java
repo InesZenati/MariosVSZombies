@@ -45,6 +45,7 @@ public class GameOverGUI extends JPanel {
 
         JPanel scorePanel = new JPanel();
         scorePanel.setOpaque(false);
+        System.out.println(jeu.getJoueur().getScore());
         JLabel score = new JLabel("TON SCORE : "+jeu.getJoueur().getScore());
         score.setFont(marioFont.deriveFont(Font.BOLD, 30));
         score.setForeground(Color.WHITE);

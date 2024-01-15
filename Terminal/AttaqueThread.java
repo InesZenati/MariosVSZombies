@@ -47,6 +47,7 @@ public class AttaqueThread extends Thread {
                 break;
             case 1:
                 pGui.updatePlateau();
+                plato.affiche();
                 break;
             default:
                 break;

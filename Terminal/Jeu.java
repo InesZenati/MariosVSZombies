@@ -118,7 +118,7 @@ public class Jeu {
     
         public void jouer(int i) {
             partieFinish();
-            MarioThread marioThread = new MarioThread(plato, joueur, listeMario);
+           // MarioThread marioThread = new MarioThread(plato);
             ZombieThread zombieThread = new ZombieThread(plato);
             AttaqueThread attaqueThread = new AttaqueThread(plato);
     
@@ -127,12 +127,12 @@ public class Jeu {
                 System.out.print("Argent : ");
                 joueur.afficheArgent();
                 plato.affiche();
-                marioThread.start();
+             //   marioThread.start();
                 zombieThread.start();
                 attaqueThread.start();
             } else if (i == 2) {
                 // Arrêter tous les threads
-                marioThread.stopThread();
+             //   marioThread.stopThread();
                 zombieThread.stopThread();
                 attaqueThread.stopThread();
                 partieTerminee = true;

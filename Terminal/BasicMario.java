@@ -17,7 +17,7 @@ public class BasicMario extends Mario{
                     m.takeDamage(this.getInfoActuelle().getAttaque());
                     p.getJoueur().incrementerArgent(3);
                 }
-                m.aGagner(p, m);
+                this.aGagner(p, m);
         }
     }
     }

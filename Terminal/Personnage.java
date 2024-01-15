@@ -33,6 +33,7 @@ public abstract class Personnage {
 
     public abstract void attaque (Plateau p);
     public abstract boolean peutAttaquer(Plateau p);
+
     public boolean aGagner(Plateau p, Personnage perso){
         int [] pos = perso.getPosition();
         if((!perso.estVivant())){
@@ -52,14 +53,14 @@ public abstract class Personnage {
                         l.moveZombie(p);
                     }
                 }
-            }else{
-                if(this instanceof Mario){
+            }else {
+                    System.out.println("instance of");
                     Zombie z = (Zombie) perso;
                     int prix = z.getGain();
                     p.getJoueur().incrementerArgent(prix);
                     p.getJoueur().incrementerScore(prix);
                 }
-            }
+            
             return true;
            }
         return false;

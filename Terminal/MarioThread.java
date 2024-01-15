@@ -1,14 +1,21 @@
 import java.util.List;
     public class MarioThread extends Thread {
     private Plateau plato;
+    private PlateauGUI pGui;
     private Joueur joueur;
     private List<Mario> listeMario;
     private boolean running = true;
+    private int i;
 
-    public MarioThread(Plateau plato, Joueur joueur, List<Mario> listeMario) {
+    public MarioThread(Plateau plato) {
         this.plato = plato;
-        this.joueur = joueur;
-        this.listeMario = listeMario;
+        this.i=0;
+    }
+
+    public MarioThread(PlateauGUI p) {
+        this.plato = p.getJeuGUI().getPlateau();
+        this.joueur = p.getJeuGUI().getJoueur();
+        this.i = 1;
     }
 
 
@@ -20,6 +27,21 @@ import java.util.List;
             String choix = c.demanderPersoPosition();
             placerMario(choix);
             plato.affiche();
+            pGui.updatePlateau();  
+        }
+    }
+
+    public void update(){
+        switch (i) {
+            case 0:
+                plato.affiche();
+                break;
+            case 1:
+                pGui.updatePlateau();
+                plato.affiche();
+                break;
+            default:
+                break;
         }
     }
 

@@ -12,13 +12,13 @@ public class PlateauGUI extends JPanel{
     private JPanel plateauPanel;
     private JPanel menuPanel;
     private JPanel InfoPanel;
-    private static Mario selectedPersonnage;
+    private Mario selectedPersonnage=null;
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private JeuGUI jeuGUI;
 
     public JeuGUI getJeuGUI(){
-        this.selectedPersonnage=null;
+       // this.selectedPersonnage=null;
         return this.jeuGUI;
     }
     Font marioFont = loadMarioFont();
@@ -167,6 +167,8 @@ public class PlateauGUI extends JPanel{
         mario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                MarioThread mariothread  = new MarioThread(jeuGUI.getController().getPlateauGUI());
+                mariothread.start();
                 selectedPersonnage = (Mario)getPersonnageByName(name);
                 System.out.println(selectedPersonnage);
             }
@@ -174,8 +176,7 @@ public class PlateauGUI extends JPanel{
         return mario;
         }
 
-
-    private Personnage getPersonnageByName(String name) {
+    public Personnage getPersonnageByName(String name) {
         switch (name) {
             case "BasicMario":
                 return new BasicMario();
@@ -234,9 +235,9 @@ public class PlateauGUI extends JPanel{
     }
 
     public void casePanelClic(int li, int col) {
-        System.out.println(selectedPersonnage);
+        System.out.println("dans casepanelclic" + selectedPersonnage);
         if (selectedPersonnage != null) {
-            System.out.println(selectedPersonnage);
+            System.out.println("dans le if" +selectedPersonnage);
             if (!jeuGUI.getPlateau().getCase(li, col).contientMario()) {
                 Personnage mario = getPersonnageByName(selectedPersonnage.getName());
                 System.out.println("mario créé");
@@ -287,6 +288,7 @@ public class PlateauGUI extends JPanel{
                     // Revalider le panneau après modification
                     casePanel.revalidate();
                     casePanel.repaint();  // Assurez-vous de redessiner le panneau pour voir les changements
+                    jeuGUI.getPlateau().affiche();
                 }
             }
         } else {
@@ -328,16 +330,19 @@ public class PlateauGUI extends JPanel{
         sleep(1000);
       ZombieThread zombieThread = new ZombieThread(this);
         AttaqueThread attaqueZombies= new AttaqueThread(this);
+
         if(i ==1){
+          //  marioThread.start();
             zombieThread.start();
             attaqueZombies.start();
         }else if(i==2){
             //stop all the threads
-             cardLayout.show(cardPanel, "GameWin");
+             
              //show gameover
+         //   marioThread.stopThread();
             zombieThread.stopThread();
             attaqueZombies.stopThread();
-            cardLayout.show(cardPanel, "GameWin");
+        
             //cardLayout.show(cardPanel, "GameOver");
            
         }
@@ -351,6 +356,10 @@ public class PlateauGUI extends JPanel{
             e.printStackTrace();
         }
 
+    }
+
+    public Personnage getSelectedPersonnage(){
+        return this.selectedPersonnage;
     }
 
     private Font loadMarioFont() {
