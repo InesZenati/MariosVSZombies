@@ -1,6 +1,6 @@
 public class BigMario extends Mario{
     public BigMario(){
-        super("BigMario",70,new Information(6,10,-1,-1,20));
+        super("BigMario",70,new Information(6,10,20));
     }
     public void attaque(Plateau p){
         int [] pos = this.getPosition();

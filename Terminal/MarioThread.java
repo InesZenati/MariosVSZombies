@@ -3,26 +3,20 @@ import java.util.List;
     private Plateau plato;
     private PlateauGUI pGui;
     private Joueur joueur;
-    private List<Mario> listeMario;
     private boolean running = true;
     private int i;
 
     public MarioThread(Plateau plato) {
         this.plato = plato;
-        this.i=0;
-    }
-
-    public MarioThread(PlateauGUI p) {
-        this.plato = p.getJeuGUI().getPlateau();
-        this.joueur = p.getJeuGUI().getJoueur();
-        this.i = 1;
+        this.joueur = joueur;
+        this.listeMario = listeMario;
     }
 
 
     @Override
     public void run() {
         Communication c = new Communication();
-        while (plato.getPartisStatus() == 0) {
+        while (plato.getPartieStatus() == 0 && running) {
             ZombieMort();
             String choix = c.demanderPersoPosition();
             placerMario(choix);

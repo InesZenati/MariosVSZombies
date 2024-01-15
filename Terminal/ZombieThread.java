@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 public class ZombieThread extends Thread {
     private Plateau plato;
     private PlateauGUI pGui;
@@ -34,16 +35,10 @@ public class ZombieThread extends Thread {
         switch (i) {
             case 0:
              List<Zombie> l= plato.getVague();
-                if(plato.getMarathonOrNot()==true){
-                l= plato.getMarathonMode();
-            }
                 spawnRandomZombies(l);
                 break;
             case 1:
                  List<Zombie> f = pGui.getJeuGUI().getPlateau().getVague();
-                if(plato.getMarathonOrNot()==true){
-                f= pGui.getJeuGUI().getPlateau().getMarathonMode();
-            }
                 spawnRandomZombies(f);
                 break;
             default:
@@ -78,18 +73,6 @@ public class ZombieThread extends Thread {
         }
     }
 
-    
-
-    public void moveRandomZombies(List<Zombie> listeZombies) {
-        for (int i = 0; i < listeZombies.size(); i++) {
-            sleep(1000);
-            listeZombies.get(i).moveZombie(plato);
-            sleep(1000);
-        }
-        sleep(1000);
-
-    }
-
 
     public void spawnZombie(Zombie z) {
         int li = 1+ (int) (Math.random() * plato.getNumLi()-1);
@@ -109,13 +92,13 @@ public class ZombieThread extends Thread {
     public void spawnRandomZombies(List<Zombie> listeZombies) {
         for (int i = 0; i < listeZombies.size(); i++) {
             spawnZombie(listeZombies.get(i));
-            if(plato.getPartisStatus()!=0){
+            if(plato.getPartieStatus()!=0){
                 break;
             }
         }
         sleep(1000);
-        if(plato.getMarathonOrNot()==true && plato.getPartisStatus()!=1){
-            spawnRandomZombies(plato.generateEnemieMarathon());
+        if(plato.getMarathonOrNot()==true && plato.getPartieStatus()!=1 && running){
+            spawnRandomZombies(plato.generateZombies("Marathon"));
         };
     }
    

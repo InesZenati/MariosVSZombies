@@ -82,9 +82,9 @@ public abstract class Zombie extends Personnage {
             this.aGagner(pGui,m);
     }
     public void moveZombie(Plateau plato) {;                 
-        int li = this.getInfoActuelle().getPosX();
-        int col = this.getInfoActuelle().getPosY();
-        while(this.peutDeplacer(plato)){ 
+        int li = this.getPosition()[0];
+        int col = this.getPosition()[1];
+        while(this.peutDeplacer(plato)&& plato.getPartieStatus()==0){ 
                 this.removeZombie(li, col,plato);
                 col=col-1;
                 sleep(100);
@@ -96,8 +96,8 @@ public abstract class Zombie extends Personnage {
 
     public void moveZombie(PlateauGUI p){
         Plateau plato = p.getJeuGUI().getPlateau();                
-        int li = this.getInfoActuelle().getPosX();
-        int col = this.getInfoActuelle().getPosY();
+        int li = this.getPosition()[0];
+        int col =this.getPosition()[1];
         while(this.peutDeplacer(plato)){ 
             p.updatePlateau();
                 this.removeZombie(li, col,plato);
@@ -135,8 +135,7 @@ public abstract class Zombie extends Personnage {
             }
         
         public void placeZombie(int li, int col,Plateau plato ){   
-            this.getInfoActuelle().setPosX(li);
-            this.getInfoActuelle().setPosY(col);
+            this.setPosition(li, col);
             plato.ajouter(this);
             plato.getCase(li, col).setZombie(this);
         }

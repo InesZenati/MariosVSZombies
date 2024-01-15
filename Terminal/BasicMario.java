@@ -1,6 +1,6 @@
 public class BasicMario extends Mario{
     BasicMario(){
-        super("BasicMario",8,new Information(2,0,-1,-1,10));
+        super("BasicMario",8,new Information(2,0,10));
     }
 
 

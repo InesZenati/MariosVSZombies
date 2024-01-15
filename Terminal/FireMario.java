@@ -1,7 +1,7 @@
 public class FireMario  extends Mario{
 
     public FireMario(){
-        super("FireMario",50,new Information(10,5,-1,-1,100));
+        super("FireMario",50,new Information(10,5,100));
     }
 
     public void attaque(Plateau p){

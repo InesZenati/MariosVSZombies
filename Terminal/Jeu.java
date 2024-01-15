@@ -3,37 +3,18 @@ import java.util.List;
 import java.util.Scanner;
 public class Jeu {
     private Plateau plato;
-    private List<Zombie> ennemis;
-    private List<Mario> listeMario = listeMario();
-    private Joueur joueur;
     private volatile boolean partieTerminee = false;
 
 
-    public Jeu(Plateau plato, Joueur joueur) {
+    public Jeu(Plateau plato) {
         this.plato = plato;
-        this.joueur = joueur;
     }
 
     public Plateau getPlato() {
         return plato;
     }
-    public List<Zombie> getEnnemis() {
-        return ennemis;
-    }
-    public List<Mario> getlisteMario() {
-        return listeMario;
-    }
-    public List<Mario> listeMario(){
-        List<Mario> MArioDisponibles =new ArrayList<>();
-        MArioDisponibles.add(new BasicMario());
-        MArioDisponibles.add(new WallBrick());
-        MArioDisponibles.add(new FireMario());
-        MArioDisponibles.add(new BigMario());
-        MArioDisponibles.add(new StarMario());
-        return MArioDisponibles;
 
-    }
-
+    
         public static String modeJeu(int i){
             String v;
             switch (i) {
@@ -54,17 +35,6 @@ public class Jeu {
                     break;
             }
             return v;
-        }
-
-        public static void playJeu(int i){
-            switch (i) {
-                case 1:
-                   
-                    break;
-                case 2:
-                    
-                    break;
-            }
         }
 
         public void partieFinish() {
@@ -104,9 +74,10 @@ public class Jeu {
             int choix = c.demanderDeRejouer();
             if (choix == 1) {
             String mode = modeJeu(c.demanderNiveauDifficulte());
-            joueur.setArgent(24);
-                Plateau p = new Plateau(6,10,mode,joueur);
-                Jeu a = new Jeu(p, joueur);
+            plato.getJoueur().setArgent(24);
+            plato.getJoueur().setScore(0);
+                Plateau p = new Plateau(6,10,mode,plato.getJoueur());
+                Jeu a = new Jeu(p);
                 a.jouer(1);
             } else if (choix == 2) {
                 System.out.println("Merci d'avoir joué !");
@@ -118,14 +89,14 @@ public class Jeu {
     
         public void jouer(int i) {
             partieFinish();
-           // MarioThread marioThread = new MarioThread(plato);
+            MarioThread marioThread = new MarioThread(plato, joueur, listeMario);
             ZombieThread zombieThread = new ZombieThread(plato);
             AttaqueThread attaqueThread = new AttaqueThread(plato);
     
             if (i == 1) {
-                joueur.afficherMArioDisponibles(listeMario);
+                plato.afficherMArioDisponibles(plato.listeMario());
                 System.out.print("Argent : ");
-                joueur.afficheArgent();
+                plato.getJoueur().afficheArgent();
                 plato.affiche();
              //   marioThread.start();
                 zombieThread.start();
