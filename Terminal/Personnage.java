@@ -49,7 +49,7 @@ public abstract class Personnage {
                         break;
                     }
                     if(p.getCase(pos[0],i).contientZombie()){
-                        Zombie l = (Zombie) p.getCase(pos[0],i).getPersonnage();
+                        Zombie l = (Zombie) p.getPersonnageAt(pos[0],i);
                         l.moveZombie(p);
                     }
                 }
