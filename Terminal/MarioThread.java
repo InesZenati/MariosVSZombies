@@ -2,20 +2,18 @@ import java.util.List;
     public class MarioThread extends Thread {
     private Plateau plato;
     private Joueur joueur;
-    private List<Mario> listeMario;
     private boolean running = true;
 
-    public MarioThread(Plateau plato, Joueur joueur, List<Mario> listeMario) {
+    public MarioThread(Plateau plato) {
         this.plato = plato;
-        this.joueur = joueur;
-        this.listeMario = listeMario;
+        this.joueur = plato.getJoueur();
     }
 
 
     @Override
     public void run() {
         Communication c = new Communication();
-        while (plato.getPartisStatus() == 0) {
+        while (plato.getPartieStatus() == 0 && running) {
             ZombieMort();
             String choix = c.demanderPersoPosition();
             placerMario(choix);

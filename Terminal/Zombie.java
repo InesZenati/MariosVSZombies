@@ -84,7 +84,7 @@ public abstract class Zombie extends Personnage {
     public void moveZombie(Plateau plato) {;                 
         int li = this.getPosition()[0];
         int col = this.getPosition()[1];
-        while(this.peutDeplacer(plato)){ 
+        while(this.peutDeplacer(plato)&& plato.getPartieStatus()==0){ 
                 this.removeZombie(li, col,plato);
                 col=col-1;
                 sleep(100);

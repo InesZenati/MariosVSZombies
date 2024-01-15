@@ -3,13 +3,11 @@ import java.util.List;
 import java.util.Random;
 public class Plateau {
     private Joueur joueur;
-    private int numLi;
-    private int numCols;
     private Case[][] plato;
     private List<Personnage> PersoDansPlato = new ArrayList<>();
     private List<Zombie> VagueDeZombie = new ArrayList<>();
     private int partieStatus;
-    private List<Zombie> marathonMode =new ArrayList<>();
+    //0 -> Partis en cours ; 1 Zombie Gagne; 2 Mario gagne;
     private boolean marathonorNot=false;
 
 
@@ -17,19 +15,13 @@ public class Plateau {
     public List<Zombie> getVague(){
         return VagueDeZombie;
     }
-    public void setVague(List<Zombie> z){
-        this.VagueDeZombie=z;
-    }
-    public List <Zombie> getMarathonMode(){
-        return marathonMode;
-    }
     public boolean getMarathonOrNot(){
         return marathonorNot;
     }
     public Joueur getJoueur(){
             return joueur;
         }
-    public int getPartisStatus(){
+    public int getPartieStatus(){
         return partieStatus;
     }
     public void ZombieGagne(){
@@ -41,29 +33,33 @@ public class Plateau {
     public List<Personnage> getListPerso(){
         return this.PersoDansPlato;
     }
+    public int getNumLi() {
+        return plato.length;
+    }
+    public int getNumCols() {
+        return plato[0].length;
+    }
+    public Case getCase(int li, int col) {
+        return plato[li][col];
+    }
+    public Personnage getPersonnageAt(int li, int col) {
+        return plato[li][col].getPersonnage();
+    }
 
-
-    public Plateau(int numLi, int numCols, String niveauDeDifficulté,Joueur j) {
+    //Constructeur
+    public Plateau(int numLi, int numCols, String niveauDeDifficulté, Joueur j) {
         this.joueur=j;
-        this.numLi = numLi;
-        this.numCols = numCols;
         this.plato = new Case[numLi][numCols];
-        this.VagueDeZombie=generateZombies(niveauDeDifficulté);
-        this.marathonMode=generateEnemieMarathon();
         if (niveauDeDifficulté.equals("Marathon")){
-            this.marathonorNot=true;
-            this.marathonMode=generateEnemieMarathon();
+            this.marathonorNot=true;;
         }
-        else{
-            this.marathonorNot=false;
-        }
+            this.VagueDeZombie=generateZombies(niveauDeDifficulté);
         this.partieStatus=0;
         creePLato();
 
     }
-    
-    
 
+    //Ajouter ou enlever de la liste Perso
     public void ajouter(Personnage p){
         this.PersoDansPlato.add(p);
     }
@@ -71,30 +67,16 @@ public class Plateau {
         this.PersoDansPlato.remove(p);
     }
     
+    //Creer Plato
     private void creePLato() {
-        for (int li = 0; li < numLi; li++) {
-            for (int col = 0; col < numCols; col++) {
+        for (int li = 0; li < getNumLi(); li++) {
+            for (int col = 0; col < getNumCols(); col++) {
                     plato[li][col] = new Case(li, col);
                 
             }
         }
     }
-
-    public int getNumLi() {
-        return numLi;
-    }
-    public int getNumCols() {
-        return numCols;
-    }                   
-
-    public Case getCase(int li, int col) {
-        return plato[li][col];
-    }
-
-    public void setCase(Case newCase, int li, int col) {
-        plato[li][col] = newCase;
-    }
-
+    //Placer Mario Zombie et retirer 
     public boolean placeMario(Mario m, int li, int col) {
         if(this.plato[li][col].contientZombie()){
             System.out.println("Impossible !Un Zombie se trouve dans la case ["+li+","+col+"]");
@@ -104,7 +86,7 @@ public class Plateau {
             System.out.println("Il y a déjà un Mario placé dans la case ["+li+","+col+"]");
             return false;
         }
-        if(!this.plato[li][col].contientZombie()&&!this.plato[li][col].contientMario()&& col!=numCols-1){
+        if(!this.plato[li][col].contientZombie()&&!this.plato[li][col].contientMario()&& col!=getNumCols()-1){
             m.setPosition(li, col);
             this.ajouter(m);
             plato[li][col].setMario(m);
@@ -119,7 +101,6 @@ public class Plateau {
         this.ajouter(z);
         plato[li][col].setZombie(z);
     }
-
     public void removeMario(int li, int col) {
         this.retirer(plato[li][col].getPersonnage());
         plato[li][col].supprimerPerso();;
@@ -129,8 +110,6 @@ public class Plateau {
         plato[li][col].supprimerPerso();
     }
 
- 
-    
     public List<Zombie> generateZombies(String niveaudeDIfficulté){
         List<Zombie> ennemis = new ArrayList<>();
         switch (niveaudeDIfficulté) {
@@ -145,15 +124,9 @@ public class Plateau {
                ennemis=  generateEnemies(10, 30, 40, 20, 10);
                 break;
             case "Marathon":
-            ennemis= generateEnemieMarathon();
+            ennemis= generateEnemies(20,20,20,40,10);
 
         }
-        return ennemis;
-    }
-
-    public List<Zombie> generateEnemieMarathon(){
-        List<Zombie> ennemis = new ArrayList<>();
-        ennemis = generateEnemies(20,20,20,40,10);
         return ennemis;
     }
 
@@ -182,20 +155,16 @@ public class Plateau {
         return ennemis;
         }
 
-   public int getPartieStatus(){
-       return this.partieStatus;
-   }
-
     public void affiche() {
         System.out.print("  ");
-        for (int col = 0; col < numCols; col++) {
+        for (int col = 0; col < getNumCols(); col++) {
             System.out.print("  "+col+" " ); 
         }
         System.out.println();   
     
-        for (int li = 0; li < numLi; li++) {
+        for (int li = 0; li < getNumLi(); li++) {
             System.out.print(" "+li + " ");
-            for (int col = 0; col < numCols; col++) {
+            for (int col = 0; col < getNumCols(); col++) {
                 if (plato[li][col].contientMario()) {
                     if(plato[li][col].getPersonnage().getName()=="BasicMario"){
                     System.out.print("|B_|");
@@ -234,41 +203,25 @@ public class Plateau {
     }
 }   
 
-public List<Mario> listeMario(){
-    List<Mario> MArioDisponibles =new ArrayList<>();
-    MArioDisponibles.add(new BasicMario());
-    MArioDisponibles.add(new WallBrick());
-    MArioDisponibles.add(new FireMario());
-    MArioDisponibles.add(new BigMario());
-    MArioDisponibles.add(new StarMario());
-    return MArioDisponibles;
+    public List<Mario> listeMario(){
+        List<Mario> MArioDisponibles =new ArrayList<>();
+        MArioDisponibles.add(new BasicMario());
+        MArioDisponibles.add(new WallBrick());
+        MArioDisponibles.add(new FireMario());
+        MArioDisponibles.add(new BigMario());
+        MArioDisponibles.add(new StarMario());
+        return MArioDisponibles;
 
-}
+    }
 
-public void afficherMArioDisponibles(List<Mario> MArioDisponibles) {
-    Communication c = new Communication();
-    c.afficherMessage("Mario disponibles :");
-    for (int i = 0; i < MArioDisponibles.size(); i++) {
-        Mario mario = MArioDisponibles.get(i);
-        if(mario.getPrix()<=getJoueur().getArgent()){
-            c.afficherMessage((i + 1) + ". " + mario.toString());
+    public void afficherMArioDisponibles(List<Mario> MArioDisponibles) {
+        Communication c = new Communication();
+        c.afficherMessage("Mario disponibles :");
+        for (int i = 0; i < MArioDisponibles.size(); i++) {
+            Mario mario = MArioDisponibles.get(i);
+            if(mario.getPrix()<=getJoueur().getArgent()){
+                c.afficherMessage((i + 1) + ". " + mario.toString());
+            }
         }
     }
-}
-
-      
-
-
-       private static void sleep(int milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Personnage getPersonnageAt(int li, int col) {
-        return plato[li][col].getPersonnage();
-    }
-  
 }
