@@ -91,6 +91,7 @@ public class Jeu {
             MarioThread marioThread = new MarioThread(plato);
             ZombieThread zombieThread = new ZombieThread(plato);
             AttaqueThread attaqueThread = new AttaqueThread(plato);
+            MoveThread moveThread = new MoveThread(plato);
     
             if (i == 1) {
                 plato.afficherMArioDisponibles(plato.listeMario());
@@ -100,12 +101,15 @@ public class Jeu {
                 marioThread.start();
                 zombieThread.start();
                 attaqueThread.start();
+                moveThread.start();
             } else if (i == 2) {
                 // Arrêter tous les threads
-             //   marioThread.stopThread();
+                marioThread.stopThread();
                 zombieThread.stopThread();
                 attaqueThread.stopThread();
+                moveThread.stopThread();
                 partieTerminee = true;
+
             }
         }
     

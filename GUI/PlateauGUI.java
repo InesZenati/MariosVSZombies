@@ -326,20 +326,18 @@ public class PlateauGUI extends JPanel{
 
     public void spawnZombies(int i){
         sleep(1000);
-      ZombieThread zombieThread = new ZombieThread(this);
+        ZombieThread zombieThread = new ZombieThread(this);
         AttaqueThread attaqueZombies= new AttaqueThread(this);
+        MoveThread moveThread = new MoveThread(this);
 
         if(i ==1){
-          //  marioThread.start();
             zombieThread.start();
             attaqueZombies.start();
+            moveThread.start();
         }else if(i==2){
-            //stop all the threads
-             
-             //show gameover
-         //   marioThread.stopThread();
             zombieThread.stopThread();
             attaqueZombies.stopThread();
+            moveThread.stopThread();
         
             //cardLayout.show(cardPanel, "GameOver");
            
