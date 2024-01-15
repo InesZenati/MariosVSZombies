@@ -89,6 +89,7 @@ public class Plateau {
             m.setPosition(li, col);
             this.ajouter(m);
             plato[li][col].setMario(m);
+            this.joueur.decrementerArgent(m.getPrix());
             return true;
         }
         System.out.println("Vous n'avez pas le droit de placer à la derniere colone");
