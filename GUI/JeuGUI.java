@@ -76,42 +76,7 @@ public class JeuGUI extends JFrame {
         frame.setVisible(true);
     }
 
-     public void partieFinish() {
-            Scanner sc = new Scanner(System.in);
-    
-            Thread partieOver = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (!partieTerminee) {
-                        if (plateau.getPartieStatus() != 0) {
-                            controller.getPlateauGUI().spawnZombies(2);
-                            System.out.println("Partie terminée");
-                            if (plateau.getPartieStatus() == 1) {
-                                System.out.println("Vous avez perdu");
-
-                            } else if (plateau.getPartieStatus() == 2) {
-                             
-                                System.out.println("Vous avez gagné !");
-                     
-                            }
-                        }
- 
-                        try {
-                            // Pause le thread pendant une courte période
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            });
-    
-            partieOver.start();
-        }
-    
-        
-        
-
+   
     
 
     public Plateau setPlateau(Plateau plato){

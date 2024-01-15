@@ -25,6 +25,8 @@ public class Controller extends JPanel{
 
     public void debut(){
         plateauGUI.spawnZombies(1);
+        plateauGUI.partieFinish();
+
         
     }
 
