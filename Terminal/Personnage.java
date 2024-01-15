@@ -2,15 +2,13 @@ public abstract class Personnage {
     private boolean tour;
     private String name;
     private Information InfoActuelle;
+    private int [] position = {-1,-1};
     
-
     public Personnage(boolean t,String n){
         this.tour=t;
         this.name=n;
     }
-    public Personnage(boolean t){
-        this(t,null);
-    }
+    
     public void takeDamage(int degat){
         this.getInfoActuelle().setvie(this.getInfoActuelle().getvie() - degat);
     }
@@ -27,8 +25,11 @@ public abstract class Personnage {
     }
 
     public int[] getPosition(){
-        int [] position = { this.InfoActuelle.getPosX() , this.InfoActuelle.getPosY()};
         return position;
+    }
+    public void setPosition(int x, int y){
+        int [] pos = {x,y};
+        position = pos; 
     }
 
     public abstract void attaque (Plateau p);

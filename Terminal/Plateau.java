@@ -109,8 +109,7 @@ public class Plateau {
             return false;
         }
         if(!this.plato[li][col].contientZombie()&&!this.plato[li][col].contientMario()&& col!=numCols-1){
-            m.getInfoActuelle().setPosX(li);
-            m.getInfoActuelle().setPosY(col);
+            m.setPosition(li, col);
             this.ajouter(m);
             plato[li][col].setMario(m);
             return true;
@@ -120,8 +119,7 @@ public class Plateau {
         
     }
     public void placeZombie(Zombie z, int li, int col) {   
-        z.getInfoActuelle().setPosX(li);
-        z.getInfoActuelle().setPosY(col);
+        z.setPosition(li, col);
         this.ajouter(z);
         plato[li][col].setZombie(z);
     }
