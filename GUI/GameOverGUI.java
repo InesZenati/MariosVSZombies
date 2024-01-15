@@ -6,6 +6,7 @@ import java.io.File;
 
 public class GameOverGUI extends JPanel {
     private JeuGUI jeu;
+    private JLabel score;
    
 
     public GameOverGUI(JeuGUI j) {
@@ -45,15 +46,15 @@ public class GameOverGUI extends JPanel {
 
         JPanel scorePanel = new JPanel();
         scorePanel.setOpaque(false);
-        System.out.println(jeu.getJoueur().getScore());
-        JLabel score = new JLabel("TON SCORE : "+jeu.getJoueur().getScore());
+        score = new JLabel("TON SCORE : " + jeu.getJoueur().getScore());
         score.setFont(marioFont.deriveFont(Font.BOLD, 30));
         score.setForeground(Color.WHITE);
         scorePanel.add(score);
 
-
         
 
+
+     
         // Start 
         JButtonStyled startButton = new JButtonStyled("Retour au menu");
         startButton.addActionListener(new ActionListener() {
@@ -63,8 +64,6 @@ public class GameOverGUI extends JPanel {
                 jeu.getCardLayout().show(jeu.getCardPanel(), "Menu");
             }
         });
-
-
 
         // Buttons Panel
         JPanel buttonsPanel = new JPanel();
@@ -100,7 +99,16 @@ public class GameOverGUI extends JPanel {
             // En cas d'erreur, utilisez la police par défaut
             return new Font("SansSerif", Font.PLAIN, 14);
         }
+
     }
+
+
+    public void updateScore() {
+        int nouveauScore = jeu.getJoueur().getScore();
+        score.setText("TON SCORE : " + nouveauScore);
+    }
+
+    
 
     private class JButtonStyled extends JButton {
         public JButtonStyled(String text) {

@@ -112,7 +112,6 @@ public class PlateauGUI extends JPanel{
             JLabel joueurArgent = new JLabel("Argent : " + this.getJeuGUI().getJoueur().getArgent() + " ");
             joueurArgent.setFont(marioFont.deriveFont(Font.PLAIN, 20));
             joueurArgent.setForeground(Color.WHITE);
-       
         
             InfoPanel.add(joueurArgent);
             joueurArgent.setFont(marioFont.deriveFont(Font.PLAIN, 20));
@@ -122,8 +121,7 @@ public class PlateauGUI extends JPanel{
             joeuurScore.setForeground(Color.WHITE);
             InfoPanel.add(joueurName);
             InfoPanel.add(joueurArgent);
-            InfoPanel.add(joeuurScore);
-            
+            InfoPanel.add(joeuurScore);  
             InfoPanel.revalidate();
             InfoPanel.repaint();
             
@@ -139,6 +137,7 @@ public class PlateauGUI extends JPanel{
         terminerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 cardLayout.show(cardPanel, "GameOver");
             }
         });
