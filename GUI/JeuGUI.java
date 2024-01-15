@@ -9,7 +9,6 @@ public class JeuGUI extends JFrame {
     private Joueur joueur;
     private Plateau plateau;
     private Controller controller;
-    private int finPartie = 0;
     private volatile boolean partieTerminee = true;
 
     public CardLayout getCardLayout(){
@@ -88,13 +87,12 @@ public class JeuGUI extends JFrame {
                             controller.getPlateauGUI().spawnZombies(2);
                             System.out.println("Partie terminée");
                             if (plateau.getPartieStatus() == 1) {
-                                finPartie =1;
-                                tryToShowNewPage();
+                                System.out.println("Vous avez perdu");
 
                             } else if (plateau.getPartieStatus() == 2) {
-                                finPartie =2;
+                             
                                 System.out.println("Vous avez gagné !");
-                                 tryToShowNewPage();
+                     
                             }
                         }
  
@@ -128,15 +126,5 @@ public class JeuGUI extends JFrame {
         joueur = j;
     }
 
-    private void tryToShowNewPage() {
-        // Vérifier si les deux sélections ont été faites
-        if (finPartie==1 ) {
-      // Afficher je pense on ajoute ds attributs pour avoir que une page afficher
-            cardLayout.show(cardPanel, "GameOver");
-        }
-        else 
-        if(finPartie==2){
-            cardLayout.show(cardPanel, "GameWin");
-        }
-    }
+ 
 }

@@ -18,7 +18,6 @@ public class PlateauGUI extends JPanel{
     private JeuGUI jeuGUI;
 
     public JeuGUI getJeuGUI(){
-       // this.selectedPersonnage=null;
         return this.jeuGUI;
     }
     Font marioFont = loadMarioFont();
@@ -138,7 +137,9 @@ public class PlateauGUI extends JPanel{
         terminerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if(jeuGUI.getPlateau().getPartieStatus()==2){
+                   cardLayout.show(cardPanel, "GameWin");
+                }
                 cardLayout.show(cardPanel, "GameOver");
             }
         });
