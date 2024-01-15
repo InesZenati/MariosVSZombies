@@ -86,10 +86,10 @@ public class Plateau {
             return false;
         }
         if(!this.plato[li][col].contientZombie()&&!this.plato[li][col].contientMario()&& col!=getNumCols()-1){
+            this.joueur.decrementerArgent(m.getPrix());
             m.setPosition(li, col);
             this.ajouter(m);
             plato[li][col].setMario(m);
-            this.joueur.decrementerArgent(m.getPrix());
             return true;
         }
         System.out.println("Vous n'avez pas le droit de placer à la derniere colone");
