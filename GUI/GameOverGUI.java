@@ -51,6 +51,9 @@ public class GameOverGUI extends JPanel {
         score.setForeground(Color.WHITE);
         scorePanel.add(score);
 
+
+        
+
         // Start 
         JButtonStyled startButton = new JButtonStyled("Retour au menu");
         startButton.addActionListener(new ActionListener() {
