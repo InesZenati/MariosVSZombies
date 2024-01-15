@@ -60,18 +60,7 @@ public class ZombieThread extends Thread {
         }
     }
 
-    public void move(Zombie z){
-        switch (i) {
-            case 0:
-                z.moveZombie(plato);
-                break;
-            case 1:
-                z.moveZombie(pGui);
-                break;
-            default:
-                break;
-        }
-    }
+    
 
 
     public void spawnZombie(Zombie z) {
@@ -81,11 +70,7 @@ public class ZombieThread extends Thread {
             li = (int) (Math.random() * plato.getNumLi()-1);
             col = plato.getNumCols() - 1;
         }
-        
         z.placeZombie(li, col, plato);
-        update();
-        sleep(1000);
-        move(z);
         update();
     } 
 

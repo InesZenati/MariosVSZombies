@@ -20,6 +20,7 @@ public class AttaqueThread extends Thread {
     public void run(){
         if(plato.getMarathonOrNot()==false){
         while(plato.getPartieStatus()==0){
+            deplacer();
             update();
             attaque();
             update();
@@ -78,6 +79,31 @@ public class AttaqueThread extends Thread {
                     Zombie z =(Zombie) n;
                     z.attaque(pGui);
                 }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void deplacer(){
+        if(!plato.getListPerso().isEmpty()){
+            for(int i=0 ; i<plato.getListPerso().size(); i++ ){
+                if(plato.getListPerso().get(i) instanceof Zombie){
+                    Zombie z =(Zombie)plato.getListPerso().get(i);
+                    move(z);
+                    update();
+                    sleep(1000);
+                }
+            }
+        }
+    }
+    public void move(Zombie z){
+        switch (i) {
+            case 0:
+                z.moveZombie(plato);
+                break;
+            case 1:
+                z.moveZombie(pGui);
                 break;
             default:
                 break;
