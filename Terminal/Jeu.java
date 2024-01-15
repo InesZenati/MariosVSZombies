@@ -14,16 +14,7 @@ public class Jeu {
         return plato;
     }
 
-    public List<Mario> listeMario(){
-        List<Mario> MArioDisponibles =new ArrayList<>();
-        MArioDisponibles.add(new BasicMario());
-        MArioDisponibles.add(new WallBrick());
-        MArioDisponibles.add(new FireMario());
-        MArioDisponibles.add(new BigMario());
-        MArioDisponibles.add(new StarMario());
-        return MArioDisponibles;
-
-    }
+    
         public static String modeJeu(int i){
             String v;
             switch (i) {
@@ -103,7 +94,7 @@ public class Jeu {
             AttaqueThread attaqueThread = new AttaqueThread(plato);
     
             if (i == 1) {
-                plato.getJoueur().afficherMArioDisponibles(listeMario());
+                plato.afficherMArioDisponibles(plato.listeMario());
                 System.out.print("Argent : ");
                 plato.getJoueur().afficheArgent();
                 plato.affiche();

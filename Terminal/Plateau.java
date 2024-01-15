@@ -232,7 +232,27 @@ public class Plateau {
         }
          System.out.println();
     }
+}   
+
+public List<Mario> listeMario(){
+    List<Mario> MArioDisponibles =new ArrayList<>();
+    MArioDisponibles.add(new BasicMario());
+    MArioDisponibles.add(new WallBrick());
+    MArioDisponibles.add(new FireMario());
+    MArioDisponibles.add(new BigMario());
+    MArioDisponibles.add(new StarMario());
+    return MArioDisponibles;
+
 }
+
+public void afficherMArioDisponibles(List<Mario> MArioDisponibles) {
+    afficherMessage("Mario disponibles :");
+    for (int i = 0; i < MArioDisponibles.size(); i++) {
+        Mario mario = MArioDisponibles.get(i);
+        if(mario.getPrix()<=this.argent){
+            afficherMessage((i + 1) + ". " + mario.toString());
+        }
+    }
 
       
 
