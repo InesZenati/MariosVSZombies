@@ -42,7 +42,7 @@ public class MoveThread extends Thread {
                     Zombie z =(Zombie)plato.getListPerso().get(i);
                     move(z);
                     update();
-                    sleep(1000);
+                    sleep(100);
                 }
             }
         }
