@@ -32,7 +32,7 @@ public class Joueur {
     }
 
     public void decrementerArgent(int montant) {
-        this.argent -= montant;
+        this.argent = argent- montant;
     }
 
     public void incrementerScore(int montant) {

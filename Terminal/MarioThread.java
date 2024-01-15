@@ -41,7 +41,7 @@ import java.util.List;
     private void placerMarioAux(String tour, Mario m){
         if(m.getPrix()<=this.joueur.getArgent()){
             if(plato.placeMario(m, Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)))){
-                this.joueur.decrementerArgent(m.getPrix());
+               
             }
         }else{
             System.out.println("Solde insuffisant");
