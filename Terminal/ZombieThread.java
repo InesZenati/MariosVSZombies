@@ -77,6 +77,7 @@ public class ZombieThread extends Thread {
     public void spawnRandomZombies(List<Zombie> listeZombies) {
         for (int i = 0; i < listeZombies.size(); i++) {
             spawnZombie(listeZombies.get(i));
+            sleep(2000);
             if(plato.getPartieStatus()!=0){
                 break;
             }
