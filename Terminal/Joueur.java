@@ -46,8 +46,6 @@ public class Joueur {
     public void afficheArgent(){
         System.out.println(this.argent);
     }
-
-        
+   
     }
     
-}

@@ -246,13 +246,15 @@ public List<Mario> listeMario(){
 }
 
 public void afficherMArioDisponibles(List<Mario> MArioDisponibles) {
-    afficherMessage("Mario disponibles :");
+    Communication c = new Communication();
+    c.afficherMessage("Mario disponibles :");
     for (int i = 0; i < MArioDisponibles.size(); i++) {
         Mario mario = MArioDisponibles.get(i);
-        if(mario.getPrix()<=this.argent){
-            afficherMessage((i + 1) + ". " + mario.toString());
+        if(mario.getPrix()<=getJoueur().getArgent()){
+            c.afficherMessage((i + 1) + ". " + mario.toString());
         }
     }
+}
 
       
 
