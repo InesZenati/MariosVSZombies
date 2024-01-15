@@ -12,23 +12,34 @@ public class Plateau {
     private List<Zombie> marathonMode =new ArrayList<>();
     private boolean marathonorNot=false;
 
+
+    //Guetteur et Setter
     public List<Zombie> getVague(){
         return VagueDeZombie;
     }
-
-    public List <Zombie> getMarathonMode(){
-        return marathonMode;
-    }
-
-    public boolean getMarathonOrNot(){
-        return marathonorNot;
-    }
-
     public void setVague(List<Zombie> z){
         this.VagueDeZombie=z;
     }
+    public List <Zombie> getMarathonMode(){
+        return marathonMode;
+    }
+    public boolean getMarathonOrNot(){
+        return marathonorNot;
+    }
     public Joueur getJoueur(){
-        return joueur;
+            return joueur;
+        }
+    public int getPartisStatus(){
+        return partieStatus;
+    }
+    public void ZombieGagne(){
+        partieStatus=1;
+    }
+    public void MarioGagne(){
+        partieStatus=2;
+    }
+    public List<Personnage> getListPerso(){
+        return this.PersoDansPlato;
     }
 
 
@@ -50,29 +61,14 @@ public class Plateau {
         creePLato();
 
     }
-    public int getPartisStatus(){
-        return partieStatus;
-    }
-    public void ZombieGagne(){
-        partieStatus=1;
-    }
-    public void MarioGagne(){
-        partieStatus=2;
-    }
-    public List<Personnage> getListPerso(){
-        return this.PersoDansPlato;
-    }
+    
+    
 
     public void ajouter(Personnage p){
         this.PersoDansPlato.add(p);
     }
     public void retirer(Personnage p){
         this.PersoDansPlato.remove(p);
-    } 
-    public void afficheList(){
-        for(int i =0;i<this.PersoDansPlato.size();i++){
-            System.out.println(this.PersoDansPlato.get(i).toString());
-        }
     }
     
     private void creePLato() {
