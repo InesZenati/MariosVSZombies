@@ -97,7 +97,7 @@ public class Jeu {
                 System.out.print("Argent : ");
                 plato.getJoueur().afficheArgent();
                 plato.affiche();
-             //   marioThread.start();
+                marioThread.start();
                 zombieThread.start();
                 attaqueThread.start();
             } else if (i == 2) {

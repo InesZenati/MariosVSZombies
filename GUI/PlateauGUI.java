@@ -167,8 +167,6 @@ public class PlateauGUI extends JPanel{
         mario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MarioThread mariothread  = new MarioThread(jeuGUI.getController().getPlateauGUI());
-                mariothread.start();
                 selectedPersonnage = (Mario)getPersonnageByName(name);
                 System.out.println(selectedPersonnage);
             }
