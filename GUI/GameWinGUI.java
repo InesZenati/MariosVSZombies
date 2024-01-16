@@ -9,55 +9,33 @@ public class GameWinGUI extends JPanel {
     private static JLabel score;
 
     public GameWinGUI(JeuGUI j) {
-        jeu =j;
+        jeu = j;
         setLayout(new BorderLayout());
 
-        // police Mario
-        Font marioFont = loadMarioFont();
-
-        //  fond d'image 
-        ImageIcon backgroundImage = new ImageIcon("fonts/mario.png");
-        Image originalImage = backgroundImage.getImage();
-        int newWidth = 1280;
-        int newHeight = 400;
-
-        // Redimensionner l'image
-        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-        ImageIcon scaledImageIcon = new ImageIcon(scaledImage);//nv image redimensionnée
-        JLabel backgroundLabel = new JLabel(scaledImageIcon);//nv label avec l'image redimensionnée
-        // padding
-                backgroundLabel.setBorder(BorderFactory.createEmptyBorder(-5, 0, 82, 0));
-
-        add(backgroundLabel, BorderLayout.SOUTH);
-        backgroundLabel.setPreferredSize(new Dimension(backgroundImage.getIconWidth(), 200));
-
-        // autres trucs de la page
+        // Autres trucs de la page
         JPanel centralPanel = new JPanel(new GridBagLayout());
-        centralPanel.setBackground(new Color(230,54,116)); // Rend le fond transparent pour montrer l'image en bas
+        centralPanel.setBackground(new Color( 250, 159, 190));
 
         // Titre Panel
         JPanel titlePanel = new JPanel();
         titlePanel.setOpaque(false);
         JLabel titleLabel = new JLabel("GAME WIN");
-        titleLabel.setFont(marioFont.deriveFont(Font.BOLD, 30));
+        titleLabel.setFont(loadMarioFont().deriveFont(Font.BOLD, 50));
         titleLabel.setForeground(Color.WHITE);
         titlePanel.add(titleLabel);
 
-        // Joueur Panel
-        
         JPanel scorePanel = new JPanel();
         scorePanel.setOpaque(false);
         score = new JLabel("TON SCORE : " + jeu.getJoueur().getScore());
-        score.setFont(marioFont.deriveFont(Font.BOLD, 30));
+        score.setFont(loadMarioFont().deriveFont(Font.BOLD, 30));
         score.setForeground(Color.WHITE);
         scorePanel.add(score);
 
-        // Start 
+        // Start
         JButtonStyled startButton = new JButtonStyled("Retour au menu");
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
                 jeu.getCardLayout().show(jeu.getCardPanel(), "Menu");
             }
         });
@@ -67,25 +45,65 @@ public class GameWinGUI extends JPanel {
         buttonsPanel.setOpaque(false);
         buttonsPanel.add(startButton);
 
-
-        // centrer les composants
+        // Centrer les composants
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.weighty = 1;//inutil j'ai limpression pas tropcapter a quoi ça sert
+        gbc.weighty = 1;
         centralPanel.add(titlePanel, gbc);
-        
+
         gbc.gridy = 1;
         centralPanel.add(scorePanel, gbc);
-        
+
         gbc.gridy = 2;
         centralPanel.add(buttonsPanel, gbc);
 
-        // Ajouter le panel central à la partie centrale de la fenêtre
+        // Ajouter les composants au JPanel
         add(centralPanel, BorderLayout.CENTER);
-    }
 
-   
+        // Fond d'image Peach
+        ImageIcon peachImage = new ImageIcon("fonts/Peach.png");
+        Image peachOriginal = peachImage.getImage();
+        int peachWidth = 350;
+        int peachHeight = 400;
+
+        // Redimensionner l'image Peach
+        Image peachScaled = peachOriginal.getScaledInstance(peachWidth, peachHeight, Image.SCALE_SMOOTH);
+        ImageIcon peachScaledIcon = new ImageIcon(peachScaled);
+        JLabel peachLabel = new JLabel(peachScaledIcon);
+        peachLabel.setBounds(0, 0, peachWidth, peachHeight);
+
+        // Fond d'image à droite
+        ImageIcon rightImage = new ImageIcon("fonts/fillCOrner.png");
+        Image rightOriginal = rightImage.getImage();
+        int rightWidth = 100;  // Ajustez la largeur selon vos besoins
+        int rightHeight = 400; // Ajustez la hauteur selon vos besoins
+
+        // Redimensionner l'image à droite
+        Image rightScaled = rightOriginal.getScaledInstance(rightWidth, rightHeight, Image.SCALE_SMOOTH);
+        ImageIcon rightScaledIcon = new ImageIcon(rightScaled);
+        JLabel rightLabel = new JLabel(rightScaledIcon);
+
+        // Fond d'image à gauche
+        ImageIcon leftImage = new ImageIcon("fonts/fillCOrner.png");
+        Image leftOriginal = leftImage.getImage();
+        int leftWidth = 100;  // Ajustez la largeur selon vos besoins
+        int leftHeight = 400; // Ajustez la hauteur selon vos besoins
+
+        // Redimensionner l'image à gauche
+        Image leftScaled = leftOriginal.getScaledInstance(leftWidth, leftHeight, Image.SCALE_SMOOTH);
+        ImageIcon leftScaledIcon = new ImageIcon(leftScaled);
+        JLabel leftLabel = new JLabel(leftScaledIcon);
+
+        // Ajouter les images à droite et à gauche
+        JPanel imagePanel = new JPanel(null);
+        imagePanel.setOpaque(false);
+        imagePanel.add(leftLabel);
+        imagePanel.add(peachLabel);
+        imagePanel.add(rightLabel);
+
+        add(imagePanel, BorderLayout.SOUTH);
+    }
 
     private Font loadMarioFont() {
         try {
@@ -96,6 +114,11 @@ public class GameWinGUI extends JPanel {
             // En cas d'erreur, utilisez la police par défaut
             return new Font("SansSerif", Font.PLAIN, 14);
         }
+    }
+
+    public void updateScore() {
+        int nouveauScore = jeu.getJoueur().getScore();
+        score.setText("TON SCORE : " + nouveauScore);
     }
 
     public static JLabel getScore() {
@@ -116,7 +139,7 @@ public class GameWinGUI extends JPanel {
             setPreferredSize(new Dimension(200, 50));
             addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
-                    setBackground(new Color(109 , 7 , 26));
+                    setBackground(new Color(109, 7, 26));
                 }
 
                 public void mouseExited(java.awt.event.MouseEvent evt) {
