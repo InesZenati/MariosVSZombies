@@ -28,10 +28,10 @@ public class CatalogueGUI extends JPanel {
         titleLabel.setFont(marioFont.deriveFont(Font.BOLD, 30));
         titleLabel.setForeground(Color.WHITE);
         titlePanel.add(titleLabel);
-        titlePanel.setBorder(new EmptyBorder(10, 120, 5, 20));
+        titlePanel.setBorder(new EmptyBorder(10, 90, 5, 20));
         
         // Catalogue Panel
-        JPanel cataloguePanel = createCatalogue();
+        JPanel createCatalogueMario = createCatalogueMario();
         
         // Bouton Panel
         JPanel boutonPanel = new JPanel();
@@ -49,7 +49,7 @@ public class CatalogueGUI extends JPanel {
 
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.CENTER;
-        centralPanel.add(cataloguePanel, gbc);
+        centralPanel.add(createCatalogueMario, gbc);
 
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.SOUTH;
@@ -58,7 +58,7 @@ public class CatalogueGUI extends JPanel {
         add(centralPanel, BorderLayout.CENTER);
     }
 
-    public JPanel createCatalogue() {
+    public JPanel createCatalogueMario() {
         JPanel cataloguePanel = new JPanel();
         JPanel BasicMario = new JPanel();
         JPanel FireMario = new JPanel();
@@ -101,6 +101,8 @@ public class CatalogueGUI extends JPanel {
         return cataloguePanel;
     }
 
+    public void catalogueZombie(){}
+
     private Font loadMarioFont() {
         try {
             File fontFile = new File("fonts/SuperMario256.ttf");
@@ -113,6 +115,27 @@ public class CatalogueGUI extends JPanel {
 
     private class MarioPanel extends JPanel {
         public MarioPanel(String name, String price, String attackType, String defenseType, String attackStrength) {
+            setOpaque(true);
+            setBackground(new Color(205, 55, 35, 255));
+            setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+            ImageIcon icon = new ImageIcon(getClass().getResource(name+".png"));
+            Image image = icon.getImage();
+            int panelSize = 150;
+            Image scaledImage = image.getScaledInstance(panelSize, panelSize, Image.SCALE_SMOOTH);
+            JLabel label = new JLabel();
+            label.setIcon(icon);
+            add(new JLabel(new ImageIcon(scaledImage)));
+            add(new JLabel(name));
+            add(new JLabel(price));
+            add(new JLabel("Attack Type: "  ));
+            add(new JLabel("Defense Type: "  ));
+            add(new JLabel("Attack Strength: " ));
+        }
+    }
+
+    private class ZombiePanel extends JPanel {
+        public ZombiePanel(String name, String price, String attackType, String defenseType, String attackStrength) {
             setOpaque(true);
             setBackground(new Color(205, 55, 35, 255));
             setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
