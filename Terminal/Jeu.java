@@ -78,9 +78,12 @@ public class Jeu {
                 Plateau p = new Plateau(6,10,mode,plato.getJoueur());
                 Jeu a = new Jeu(p);
                 a.jouer(1);
-            } else if (choix == 2) {
+            }if (choix == 2) {
                 System.out.println("Merci d'avoir joué !");
                 c.getScanner().close();
+            }else{
+                c.afficherMessage("Répondre par 1 ou 2");
+                gameRejouer();
             }
             
         }

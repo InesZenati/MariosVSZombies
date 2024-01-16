@@ -18,24 +18,14 @@ public class AttaqueThread extends Thread {
 
     @Override
     public void run(){
-        if(plato.getMarathonOrNot()==false){
         while(plato.getPartieStatus()==0){
             update();
             if (ZombieMort()==false) {
                 attaque();
             }
             update();
-            sleep(1000);
-        }     
-        }else{
-            while(plato.getPartieStatus()!=1){
-                update();
-                attaque();
-                update();
-                sleep(1000);
-            
+            sleep(1000);    
         }
-    }
     }
 
     public boolean ZombieMort() {

@@ -45,6 +45,10 @@ public class Plateau {
         return plato[li][col].getPersonnage();
     }
 
+    public Plateau(){
+        
+    }
+
     //Constructeur
     public Plateau(int numLi, int numCols, String niveauDeDifficulté, Joueur j) {
         this.joueur=j;
@@ -110,7 +114,6 @@ public class Plateau {
         plato[li][col].supprimerPerso();;
     }
     public void removeZombie(int li, int col) {
-        this.retirer(plato[li][col].getPersonnage());
         plato[li][col].supprimerPerso();
     }
 

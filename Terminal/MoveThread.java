@@ -18,7 +18,7 @@ public class MoveThread extends Thread {
         while(running && plato.getPartieStatus()==0){
             deplacer();
             update();
-            sleep(2000);
+            sleep(800);
         }
     }
     public void update(){
@@ -42,7 +42,6 @@ public class MoveThread extends Thread {
                     Zombie z =(Zombie)plato.getListPerso().get(i);
                     move(z);
                     update();
-                    sleep(100);
                 }
             }
         }

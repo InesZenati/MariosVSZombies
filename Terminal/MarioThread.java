@@ -1,4 +1,4 @@
-import java.util.List;
+    import java.util.List;
     public class MarioThread extends Thread {
     private Plateau plato;
     private PlateauGUI pGui;
@@ -15,12 +15,15 @@ import java.util.List;
     @Override
     public void run() {
         Communication c = new Communication();
-        while (plato.getPartieStatus() == 0 && running) {
-            ZombieMort();
+        while (plato.getPartieStatus()==0 && running) {
             String choix = c.demanderPersoPosition();
+            if(!ZombieMort()&&plato.getPartieStatus()==0){
             placerMario(choix);
-            plato.affiche();
-            pGui.updatePlateau();  
+            update();
+            }else{
+                c.afficherMessage("Repondre 1 ou 2");
+            }
+            
         }
     }
 
@@ -39,7 +42,7 @@ import java.util.List;
     }
 
     private void placerMarioAux(String tour, Mario m){
-        if(m.getPrix()<=this.joueur.getArgent()){
+        if(m.getPrix()<=this.joueur.getArgent()&&plato.getPartieStatus()==0){
             if(plato.placeMario(m, Character.getNumericValue(tour.charAt(1)), Character.getNumericValue(tour.charAt(2)))){
                
             }
@@ -98,6 +101,5 @@ import java.util.List;
         return false;
     }
 }
-
 
 
