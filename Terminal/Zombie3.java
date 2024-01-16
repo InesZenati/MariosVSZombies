@@ -4,7 +4,7 @@ public class Zombie3 extends Zombie{
     }
 
     public String getImagePath(){
-        return "zombie3.png";
+        return "SuperZombie.png";
     }
     
 }

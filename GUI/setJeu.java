@@ -7,7 +7,7 @@ public class setJeu extends JPanel {
     private JeuGUI jeu;
     private CardLayout cardLayout;
     private JPanel cardPanel;
-    private String selectedDecor;
+    private static String selectedDecor="test";
     private String selectedDifficulty;
 
     public setJeu(JeuGUI j) {
@@ -53,7 +53,7 @@ public class setJeu extends JPanel {
         BasicButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        selectedDecor = "Basic";
+            selectedDecor = "Basic";
     }
 });
 
@@ -62,8 +62,10 @@ public class setJeu extends JPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         selectedDecor = "Nouveau";
+
     }
 });
+
 
         // Mode de difficulté Panel
         JPanel difficultyPanel = new JPanel();
@@ -190,6 +192,10 @@ add(centralPanel, BorderLayout.CENTER);
 
     }
 
+    public static String getSelectedDecor() {
+        return selectedDecor;
+    }
+
     private void tryToShowNewPage() {
         // Vérifier si les deux sélections ont été faites
         if (selectedDecor != null && selectedDifficulty != null) {
@@ -199,8 +205,6 @@ add(centralPanel, BorderLayout.CENTER);
             Plateau plato = new Plateau(5, 9, selectedDifficulty,j);
             jeu.setPlateau(plato);
 
-
-            // Afficher je pense on ajoute ds attributs pour avoir que une page afficher
             cardLayout.show(cardPanel, "PlateauGUI"); 
         }
     }

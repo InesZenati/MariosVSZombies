@@ -16,7 +16,7 @@ public class ReglesGUI extends JPanel {
     public ReglesGUI(JeuGUI jeuGUI) {
         this.jeuGUI = jeuGUI;
         setLayout(new BorderLayout());
-        
+
         JPanel centralPanel = new JPanel(new GridBagLayout()) {
             @Override
             protected void paintComponent(Graphics g) {
@@ -38,7 +38,15 @@ public class ReglesGUI extends JPanel {
             titlePanel.setBorder(new EmptyBorder(10, 480, 5, 20));
 
             //Texte des regles du jeu 
-            JPanel rules = new JPanel();
+            JPanel rules = new JPanel(new GridBagLayout()) {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    ImageIcon background = new ImageIcon("fonts/menuBack.jpeg");
+                    Image image = background.getImage();
+                    g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+                }
+            };
             JTextArea regles = new JTextArea();
             regles.setEditable(false);
             regles.setFont(loadMarioFont().deriveFont(Font.PLAIN,20));
@@ -61,7 +69,7 @@ public class ReglesGUI extends JPanel {
             regles.append("Cependant vous ne pouvez pas placer de Marios a la derniere colone du jeu");
             regles.append("\n");
             regles.append("\n");
-            regles.append("Chaque Mario a un prix tuez des Koopa afin de gagner plus de champignon et achetez des Marios puissants");
+            regles.append("Chaque Mario a un prix tuez des Koopa afin de gagner plus de champignon et achetez des Marios     puissants");
             rules.add(regles);
            // rules.setBackground(new Color(205, 55, 35, 255));
             JScrollPane scrollPane = new JScrollPane(regles);

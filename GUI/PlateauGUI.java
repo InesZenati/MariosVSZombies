@@ -5,8 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class PlateauGUI extends JPanel{
     private JPanel plateauPanel;
@@ -192,7 +191,7 @@ public class PlateauGUI extends JPanel{
                 return new StarMario();
             case "ZombieSimple":
                 return new Zombie1(1000);
-            case "ZombieAmélioré":
+            case "ZombieAmeliore":
                 return new Zombie2(1000);
             case "SuperZombie":
                 return new Zombie3(1000);
@@ -203,10 +202,13 @@ public class PlateauGUI extends JPanel{
         }
     }
 
+
+  
+
     public JPanel createPlateau() {
         int taille = 100;
         JPanel Plateau = new JPanel();
-        
+   
         Plateau.setLayout(new GridLayout(5, 9));
     
         for (int i = 0; i < 5; i++) {
@@ -261,6 +263,15 @@ public class PlateauGUI extends JPanel{
 
     public void updatePlateau() {
         updateJoueurInfo();
+        if(setJeu.getSelectedDecor().equals("Basic")){
+            plateauPanel.setBackground(Color.RED);
+        }
+        else if(setJeu.getSelectedDecor().equals("Nouveau")){
+            plateauPanel.setBackground(Color.PINK);
+        }
+        else{
+            plateauPanel.setBackground(Color.GREEN);
+        }
         if (plateauPanel != null) {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
@@ -314,10 +325,10 @@ public class PlateauGUI extends JPanel{
                     if(jeuGUI.getPlateau().getPartieStatus()!=0){
                         spawnZombies(2);
                         System.out.println("Partie terminée");
-                        if (jeuGUI.getPlateau().getPartieStatus()==1){
-                           //call func gamewin
-                        }else if(jeuGUI.getPlateau().getPartieStatus()==2){
-                            //call func gameover
+                        if (jeuGUI.getPlateau().getPartieStatus()==1){//1 =On a perdu
+                            cardLayout.show(cardPanel, "GameOver");
+                        }else if(jeuGUI.getPlateau().getPartieStatus()==2){//2=On a gagner
+                            cardLayout.show(cardPanel, "GameWin");
                         }
                         break;
                     }
@@ -341,10 +352,7 @@ public class PlateauGUI extends JPanel{
         }else if(i==2){
             zombieThread.stopThread();
             attaqueZombies.stopThread();
-            moveThread.stopThread();
-        
-            //cardLayout.show(cardPanel, "GameOver");
-           
+            moveThread.stopThread();        
         }
         
     }

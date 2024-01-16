@@ -9,8 +9,8 @@ public class JeuGUI extends JFrame {
     private Joueur joueur;
     private Plateau plateau;
     private Controller controller;
+    private PlateauGUI plateauGUI;  
     private volatile boolean partieTerminee = true;
-
     public CardLayout getCardLayout(){
         return this.cardLayout;
     }
@@ -28,6 +28,9 @@ public class JeuGUI extends JFrame {
     public static void main(String[] args) {
         new JeuGUI();
        
+    }
+    public PlateauGUI getPlateauGUI(){
+        return this.plateauGUI;
     }
 
     public JeuGUI() {
