@@ -24,6 +24,7 @@ public class ZombieThread extends Thread {
     public void run() { 
         spawn();
 
+
         }
 
     public void stopThread(){
@@ -72,11 +73,13 @@ public class ZombieThread extends Thread {
     } 
 
     public void spawnRandomZombies(List<Zombie> listeZombies) {
-        for (int i = 0; i < listeZombies.size(); i++) {
-            spawnZombie(listeZombies.get(i));
-            sleep(5000);
+        boolean changement = true;
+        for (int j = 0; changement && j < listeZombies.size(); j++) {
             if(plato.getPartieStatus()!=0){
-                break;
+                changement=false;
+            }else{
+            spawnZombie(listeZombies.get(j));
+            sleep(5000);
             }
         }
         sleep(1000);

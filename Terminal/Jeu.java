@@ -81,9 +81,6 @@ public class Jeu {
             }if (choix == 2) {
                 System.out.println("Merci d'avoir joué !");
                 c.getScanner().close();
-            }else{
-                c.afficherMessage("Répondre par 1 ou 2");
-                gameRejouer();
             }
             
         }

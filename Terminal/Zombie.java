@@ -90,8 +90,9 @@ public abstract class Zombie extends Personnage {
                 col=col-1;
                 //sleep(100);
                 this.placeZombie(li, col, plato);
-                //plato.affiche();
-                sleep(1000);
+                plato.affiche();
+                peutDeplacer(plato);
+                sleep(100);
             }
         }
 
@@ -105,8 +106,9 @@ public abstract class Zombie extends Personnage {
                 col=col-1;
                 //sleep(100);
                 this.placeZombie(li, col, plato);
-                //p.updatePlateau();
-               //sleep(1000);
+                p.updatePlateau();
+               peutDeplacer(plato);
+               sleep(100);
             }
         }
         public boolean aGagner(PlateauGUI pGui, Personnage perso){

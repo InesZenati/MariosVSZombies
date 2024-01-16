@@ -61,11 +61,6 @@ public class Plateau {
         creePLato();
 
     }
-
-    public Plateau(){
-        
-    }
-
     //Ajouter ou enlever de la liste Perso
     public void ajouter(Personnage p){
         this.PersoDansPlato.add(p);

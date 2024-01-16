@@ -17,7 +17,6 @@ public class MoveThread extends Thread {
     public void run(){
         while(running && plato.getPartieStatus()==0){
             deplacer();
-            update();
             sleep(800);
         }
     }
@@ -36,13 +35,17 @@ public class MoveThread extends Thread {
     }
     
     public void deplacer(){
+        boolean changement = true;
         if(!plato.getListPerso().isEmpty()){
-            for(int i=0 ; i<plato.getListPerso().size(); i++ ){
-                if(plato.getListPerso().get(i) instanceof Zombie){
+            for(int i=0 ; changement&& i<plato.getListPerso().size(); i++ ){
+                if(plato.getPartieStatus()!=0){
+                    changement=false;
+                }else{
+                    if(plato.getListPerso().get(i) instanceof Zombie){
                     Zombie z =(Zombie)plato.getListPerso().get(i);
                     move(z);
-                    update();
-                }
+                }}
+                
             }
         }
     }

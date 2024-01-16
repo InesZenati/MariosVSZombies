@@ -19,11 +19,9 @@ public class AttaqueThread extends Thread {
     @Override
     public void run(){
         while(plato.getPartieStatus()==0){
-            update();
             if (ZombieMort()==false) {
                 attaque();
             }
-            update();
             sleep(1000);    
         }
     }
@@ -45,19 +43,6 @@ public class AttaqueThread extends Thread {
         running = false;
     }
 
-    public void update(){
-        switch (i) {
-            case 0:
-                plato.affiche();
-                break;
-            case 1:
-                pGui.updatePlateau();
-                plato.affiche();
-                break;
-            default:
-                break;
-        }
-    }
 
     public void attaque(){
         if(!plato.getListPerso().isEmpty()){
