@@ -140,8 +140,10 @@ public class PlateauGUI extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 if(jeuGUI.getPlateau().getPartieStatus()==2){
                    cardLayout.show(cardPanel, "GameWin");
+                   System.out.println(jeuGUI.getPlateau().getPartieStatus());
                 }
                 cardLayout.show(cardPanel, "GameOver");
+                System.out.println(jeuGUI.getPlateau().getPartieStatus());
             }
         });
 

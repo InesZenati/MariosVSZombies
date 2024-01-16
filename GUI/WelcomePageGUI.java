@@ -26,7 +26,7 @@ public class WelcomePageGUI extends JPanel {
         ImageIcon scaledImageIcon = new ImageIcon(scaledImage);//nv image redimensionnée
         JLabel backgroundLabel = new JLabel(scaledImageIcon);//nv label avec l'image redimensionnée
         // padding
-                backgroundLabel.setBorder(BorderFactory.createEmptyBorder(-5, 0, 82, 0));
+        backgroundLabel.setBorder(BorderFactory.createEmptyBorder(-5, 0, 82, 0));
 
         add(backgroundLabel, BorderLayout.SOUTH);
         backgroundLabel.setPreferredSize(new Dimension(backgroundImage.getIconWidth(), 200));
@@ -34,11 +34,13 @@ public class WelcomePageGUI extends JPanel {
         // autres trucs de la page
         JPanel centralPanel = new JPanel(new GridBagLayout());
         centralPanel.setBackground(new Color(205, 55, 35, 255)); // Rend le fond transparent pour montrer l'image en bas
+        add(centralPanel, BorderLayout.CENTER);
+
 
         // Titre Panel
         JPanel titlePanel = new JPanel();
         titlePanel.setOpaque(false);
-        JLabel titleLabel = new JLabel("Marios VS Zombies");
+        JLabel titleLabel = new JLabel("Marios VS Koopa");
         titleLabel.setFont(marioFont.deriveFont(Font.BOLD, 30));
         titleLabel.setForeground(Color.WHITE);
         titlePanel.add(titleLabel);

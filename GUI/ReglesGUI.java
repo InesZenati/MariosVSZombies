@@ -16,9 +16,16 @@ public class ReglesGUI extends JPanel {
     public ReglesGUI(JeuGUI jeuGUI) {
         this.jeuGUI = jeuGUI;
         setLayout(new BorderLayout());
-
-        JPanel centralPanel = new JPanel(new GridBagLayout());
-        centralPanel.setBackground(new Color(205, 55, 35, 255));
+        
+        JPanel centralPanel = new JPanel(new GridBagLayout()) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon background = new ImageIcon("fonts/menuBack.jpeg");
+                Image image = background.getImage();
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
     
             // Titre Panel
             JPanel titlePanel = new JPanel();
