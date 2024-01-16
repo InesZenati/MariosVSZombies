@@ -42,7 +42,7 @@ public class Communication {
             return scanner.nextInt();
         } catch (Exception e) {
             System.out.println("Répondez par 1 ou 2");
-            return demanderDeRejouer();
+            return demanderInterfacedeJEU();
         }
               
     }

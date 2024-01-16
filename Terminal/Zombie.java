@@ -85,12 +85,13 @@ public abstract class Zombie extends Personnage {
         int li = this.getPosition()[0];
         int col = this.getPosition()[1];
         if(this.peutDeplacer(plato)&& plato.getPartieStatus()==0){ 
+                
                 this.removeZombie(li, col,plato);
                 col=col-1;
                 //sleep(100);
                 this.placeZombie(li, col, plato);
                 //plato.affiche();
-                //sleep(1000);
+                sleep(1000);
             }
         }
 

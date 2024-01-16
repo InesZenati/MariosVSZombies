@@ -189,7 +189,7 @@ public class Plateau {
                 if(plato[li][col].getPersonnage().getName()=="ZombieSimple"){ 
                     System.out.print("|ZS|");
                 } 
-                else if( plato[li][col].getPersonnage().getName()=="ZombieAmélioré"){
+                else if( plato[li][col].getPersonnage().getName()=="ZombieAmeliore"){
                     System.out.print("|ZA|");
                 }
                 else if (plato[li][col].getPersonnage().getName()=="SuperZombie") {
