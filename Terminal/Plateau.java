@@ -45,6 +45,10 @@ public class Plateau {
         return plato[li][col].getPersonnage();
     }
 
+    public Plateau(){
+        
+    }
+
     //Constructeur
     public Plateau(int numLi, int numCols, String niveauDeDifficulté, Joueur j) {
         this.joueur=j;
@@ -186,7 +190,7 @@ public class Plateau {
                 if(plato[li][col].getPersonnage().getName()=="ZombieSimple"){ 
                     System.out.print("|ZS|");
                 } 
-                else if( plato[li][col].getPersonnage().getName()=="ZombieAmeliore"){
+                else if( plato[li][col].getPersonnage().getName()=="ZombieAmélioré"){
                     System.out.print("|ZA|");
                 }
                 else if (plato[li][col].getPersonnage().getName()=="SuperZombie") {

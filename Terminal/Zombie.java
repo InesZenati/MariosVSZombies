@@ -87,10 +87,10 @@ public abstract class Zombie extends Personnage {
         if(this.peutDeplacer(plato)&& plato.getPartieStatus()==0){ 
                 this.removeZombie(li, col,plato);
                 col=col-1;
-                sleep(100);
+                //sleep(100);
                 this.placeZombie(li, col, plato);
-                plato.affiche();
-                sleep(1000);
+                //plato.affiche();
+                //sleep(1000);
             }
         }
 
@@ -99,13 +99,13 @@ public abstract class Zombie extends Personnage {
         int li = this.getPosition()[0];
         int col =this.getPosition()[1];
         if(this.peutDeplacer(plato)){ 
-            p.updatePlateau();
+                p.updatePlateau();
                 this.removeZombie(li, col,plato);
                 col=col-1;
-                sleep(100);
+                //sleep(100);
                 this.placeZombie(li, col, plato);
-                p.updatePlateau();
-               sleep(1000);
+                //p.updatePlateau();
+               //sleep(1000);
             }
         }
         public boolean aGagner(PlateauGUI pGui, Personnage perso){
@@ -117,7 +117,7 @@ public abstract class Zombie extends Personnage {
                 p.removeZombie(pos[0],pos[1]);
                 if(this instanceof Zombie){
                     Zombie z = (Zombie) this;
-                    sleep(1000);
+                    //sleep(1000);
                     //z.moveZombie(pGui);
                     for(int i = pos[1]+1;i<p.getNumCols();i++){
                     if(p.getCase(pos[0],i)==null){
@@ -167,6 +167,6 @@ public abstract class Zombie extends Personnage {
         }
     }
     
-} 
+}  
     
 

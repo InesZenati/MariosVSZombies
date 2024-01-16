@@ -58,10 +58,7 @@ public class ZombieThread extends Thread {
             default:
                 break;
         }
-    }
-
-    
-
+    }    
 
     public void spawnZombie(Zombie z) {
         int li = 1+ (int) (Math.random() * plato.getNumLi()-1);
