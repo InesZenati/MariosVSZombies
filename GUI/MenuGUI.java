@@ -61,12 +61,7 @@ public class MenuGUI extends JPanel {
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-          
-              int option = JOptionPane.showConfirmDialog(MenuGUI.this, "Merci d'avoir joué. Voulez-vous vraiment quitter?", "Quitter", JOptionPane.YES_NO_OPTION);
-                if (option == JOptionPane.YES_OPTION) {
                     System.exit(0);
-                }
-                
             }
         });
         

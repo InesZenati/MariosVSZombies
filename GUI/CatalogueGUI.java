@@ -1,109 +1,104 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 public class CatalogueGUI extends JPanel {
-    private JPanel menuPanel;
-    private JButton backButton; // Ajout du bouton "Back"
-
-    private static Mario selectedPersonnage;
-    private CardLayout cardLayout;
-    private JPanel cardPanel;
     private JeuGUI jeuGUI;
-
-    public JeuGUI getJeuGUI() {
-        this.selectedPersonnage = null;
-        return this.jeuGUI;
-    }
-
-    Font marioFont = loadMarioFont();
 
     public CatalogueGUI(JeuGUI jeuGUI) {
         this.jeuGUI = jeuGUI;
+        setLayout(new BorderLayout());
+        Font marioFont = loadMarioFont();
 
-        setLayout(new BorderLayout()); // pour que le panel soit divisé en 5 parties
-
-        cardLayout = jeuGUI.getCardLayout();
-
-        cardPanel = jeuGUI.getCardPanel();
-
-        // Création du menuPanel à gauche
-        menuPanel = createSideMenu();
-        add(menuPanel, BorderLayout.WEST);
-        menuPanel.setBackground(new Color(205, 55, 35, 255));
-        JButtonStyled retour = new JButtonStyled("Retour au menu");
-        add(retour, BorderLayout.SOUTH);
-        retour.addActionListener(new ActionListener() {
+        JPanel centralPanel = new JPanel(new GridBagLayout()) {
             @Override
-            public void actionPerformed(ActionEvent e) {
-               
-                cardLayout.show(cardPanel, "Menu");
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon background = new ImageIcon("fonts/menuBack.jpeg");
+                Image image = background.getImage();
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
             }
-        });
+        };
+
+        // Titre Panel
+        JPanel titlePanel = new JPanel();
+        titlePanel.setOpaque(false);
+        JLabel titleLabel = new JLabel("CATALOGUE");
+        titleLabel.setFont(marioFont.deriveFont(Font.BOLD, 30));
+        titleLabel.setForeground(Color.WHITE);
+        titlePanel.add(titleLabel);
+        titlePanel.setBorder(new EmptyBorder(10, 120, 5, 20));
+        
+        // Catalogue Panel
+        JPanel cataloguePanel = createCatalogue();
+        
+        // Bouton Panel
+        JPanel boutonPanel = new JPanel();
+        boutonPanel.setOpaque(false);
+        JButtonStyled retour = new JButtonStyled("Retour au menu");
+        retour.addActionListener(e -> jeuGUI.getCardLayout().show(jeuGUI.getCardPanel(), "Menu"));
+        boutonPanel.add(retour);
+        
+        // Mettez à jour les contraintes pour placer les éléments correctement
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.NORTH;
+        centralPanel.add(titlePanel, gbc);
+
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        centralPanel.add(cataloguePanel, gbc);
+
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.SOUTH;
+        gbc.weighty = 1.0; // Cette ligne ajoute du poids à la cellule pour prendre l'espace disponible
+        centralPanel.add(boutonPanel, gbc);
+        add(centralPanel, BorderLayout.CENTER);
     }
 
-    private JPanel createSideMenu() {
-        JPanel sideMenu = new JPanel();
+    public JPanel createCatalogue() {
+        JPanel cataloguePanel = new JPanel();
+        JPanel BasicMario = new JPanel();
+        JPanel FireMario = new JPanel();
+        JPanel BigMario = new JPanel();
+        JPanel WallBrick = new JPanel();
+        JPanel StarMario = new JPanel();
+        BasicMario.setOpaque(false);
+        BasicMario.setLayout(new BoxLayout(BasicMario, BoxLayout.X_AXIS));
+        BasicMario.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-        sideMenu.setLayout(new BoxLayout(sideMenu, BoxLayout.Y_AXIS));
+        FireMario.setOpaque(false);
+        FireMario.setLayout(new BoxLayout(FireMario, BoxLayout.X_AXIS));
+        FireMario.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-        sideMenu.add(createTowerButton("BasicMario", "BasicMario.png", 10, description("BasicMario")));
-        sideMenu.add(createTowerButton("FireMario", "FireMario.png", 20, description("FireMario")));
-        sideMenu.add(createTowerButton("WallBrick", "BasicMario.png", 25, description("WallBrick")));
-        sideMenu.add(createTowerButton("BigMario", "BigMario.png", 50, description("BigMario")));
-        sideMenu.add(createTowerButton("StarMario", "SuperMario.png", 100, description("StarMario")));
+        BigMario.setOpaque(false);
+        BigMario.setLayout(new BoxLayout(BigMario, BoxLayout.X_AXIS));
+        BigMario.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+        WallBrick.setOpaque(false);
+        WallBrick.setLayout(new BoxLayout(WallBrick, BoxLayout.X_AXIS));
+        WallBrick.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+        StarMario.setOpaque(false);
+        StarMario.setLayout(new BoxLayout(StarMario, BoxLayout.X_AXIS));
+        StarMario.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 
-        return sideMenu;
-    }
+        // Ajoutez des MarioPanels pour chaque Mario
+        BasicMario.add(new MarioPanel("BasicMario", "8$", "Type attaque", "Type defense", "Force attaque"));
+        FireMario.add(new MarioPanel("FireMario", "100$", "Type attaque", "Type defense", "Force attaque"));
+        BigMario.add(new MarioPanel("BigMario", "100$", "Type attaque", "Type defense", "Force attaque"));
+        WallBrick.add(new MarioPanel("WallBrick", "100$", "Type attaque", "Type defense", "Force attaque"));
+        StarMario.add(new MarioPanel("StarMario", "100$", "Type attaque", "Type defense", "Force attaque"));
 
-    public JButton createTowerButton(String name, String imagePath, int prix, String description) {
-        JButton mario = new JButton();
-        try {
-            ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
-            mario.setIcon(icon);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-    
-        JLabel titre = new JLabel(name);
-        JLabel price = new JLabel("$" + prix);
-        JTextArea desc = new JTextArea(description); 
-        desc.setEditable(false); 
-        JScrollPane scrollPane = new JScrollPane(desc); 
-    
-        mario.setLayout(new FlowLayout(FlowLayout.CENTER));
-    
-        mario.add(titre);
-        mario.add(price);
-        mario.add(scrollPane); 
-    
-        return mario;
-    }
-    
-    public String description(String name) {
-        String description = "";
-        switch (name) {
-            case "BasicMario":
-                description = "C'est un Mario de base il attaque a courte porté seleument le koopa devant lui \n Caractéristique : \n -Portée : 1 \n -Dégats : 1 \n -Vitesse d'attaque : 1 \n -Prix : 10$ \n -Defense = 10";
-                break;
-
-            case "FireMario":
-                description = "C'est un Mario qui peut tirer des boules de flammes il attaque a longue porté ,jusqu'a trois case ,le koopa devant lui \n Caractéristique : \n -Portée : 1 \n -Dégats : 1 \n -Vitesse d'attaque : 1 \n -Prix : 10$ \n -Defense = 10";
-                break;
-            case "WallBrick":
-                description = "C'est un Mario de defense il n'attaque pas mais vous protege du koopa devant lui tel un mur\n Caractéristique : \n -Portée : 1 \n -Dégats : 1 \n -Vitesse d'attaque : 1 \n -Prix : 10$ \n -Defense = 10";
-                break;
-            case "BigMario":
-                description = "C'est un Mario qui attaque les deux zombie devant lui en meme temps \n Caractéristique : \n -Portée : 1 \n -Dégats : 1 \n -Vitesse d'attaque : 1 \n -Prix : 10$ \n -Defense = 10";
-                break;
-            case "StarMario":
-                description = "C'est le plus puissant des Mario bien qu'il dispose d'une attaque a courte porté il est trés puissant et posséde une grande defense \n Caractéristique : \n -Portée : 1 \n -Dégats : 1 \n -Vitesse d'attaque : 1 \n -Prix : 10$ \n -Defense = 10";
-                break;
-        }
-        return description;
+        cataloguePanel.add(BasicMario);
+        cataloguePanel.add(FireMario);
+        cataloguePanel.add(BigMario);
+        cataloguePanel.add(WallBrick);
+        cataloguePanel.add(StarMario);
+        return cataloguePanel;
     }
 
     private Font loadMarioFont() {
@@ -112,11 +107,32 @@ public class CatalogueGUI extends JPanel {
             return Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(14f);
         } catch (Exception e) {
             e.printStackTrace();
-            // En cas d'erreur, utilisez la police par défaut
             return new Font("SansSerif", Font.PLAIN, 14);
         }
     }
 
+    private class MarioPanel extends JPanel {
+        public MarioPanel(String name, String price, String attackType, String defenseType, String attackStrength) {
+            setOpaque(true);
+            setBackground(new Color(205, 55, 35, 255));
+            setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+            ImageIcon icon = new ImageIcon(getClass().getResource(name+".png"));
+            Image image = icon.getImage();
+            int panelSize = 150;
+            Image scaledImage = image.getScaledInstance(panelSize, panelSize, Image.SCALE_SMOOTH);
+            JLabel label = new JLabel();
+            label.setIcon(icon);
+            add(new JLabel(new ImageIcon(scaledImage)));
+            add(new JLabel(name));
+            add(new JLabel(price));
+            add(new JLabel("Attack Type: "  ));
+            add(new JLabel("Defense Type: "  ));
+            add(new JLabel("Attack Strength: " ));
+        }
+    }
+
+   
     private class JButtonStyled extends JButton {
         public JButtonStyled(String text) {
             super(text);
@@ -139,5 +155,5 @@ public class CatalogueGUI extends JPanel {
                 }
             });
         }
-    }
+}
 }

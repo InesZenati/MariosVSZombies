@@ -62,7 +62,11 @@ public class WelcomePageGUI extends JPanel {
                 String l =playerNameField.getText();
                 Joueur j = new Joueur(l);
                 jeu.setJoueur(j);
-                jeu.getCardLayout().show(jeu.getCardPanel(), "Menu");
+                if(playerNameField.getText().trim().equals("")){
+                   //ne rien faire
+                }else{
+                    jeu.getCardLayout().show(jeu.getCardPanel(), "Menu");
+                }
             }
         });
 

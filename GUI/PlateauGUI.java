@@ -67,7 +67,7 @@ public class PlateauGUI extends JPanel{
         sideMenu.add(createTowerButton("FireMario", "FireMario.png", 20));
         sideMenu.add(createTowerButton("WallBrick", "BasicMario.png", 25)); 
         sideMenu.add(createTowerButton("BigMario", "BigMario.png", 50));
-        sideMenu.add(createTowerButton("StarMario", "SuperMario.png", 100));
+        sideMenu.add(createTowerButton("StarMario", "StarMario.png", 100));
 
         return sideMenu;
     }
@@ -117,6 +117,7 @@ public class PlateauGUI extends JPanel{
             joueurArgent.setForeground(Color.WHITE);
             JLabel joeuurScore = new JLabel("Score : "+this.getJeuGUI().getJoueur().getScore()+" points");
             GameOverGUI.getScore().setText("TON SCORE : "+this.getJeuGUI().getJoueur().getScore());
+            GameWinGUI.getScore().setText("TON SCORE : "+this.getJeuGUI().getJoueur().getScore());
             joeuurScore.setFont(marioFont.deriveFont(Font.PLAIN, 20));
             joeuurScore.setForeground(Color.WHITE);
             InfoPanel.add(joueurName);

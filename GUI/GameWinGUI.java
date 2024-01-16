@@ -6,6 +6,7 @@ import java.io.File;
 
 public class GameWinGUI extends JPanel {
     private JeuGUI jeu;
+    private static JLabel score;
 
     public GameWinGUI(JeuGUI j) {
         jeu =j;
@@ -44,12 +45,12 @@ public class GameWinGUI extends JPanel {
 
         // Joueur Panel
         
-           JPanel scorePanel = new JPanel();
-        titlePanel.setOpaque(false);
-        JLabel score = new JLabel("TON SCORE : "+jeu.getJoueur().getScore());
-        titleLabel.setFont(marioFont.deriveFont(Font.BOLD, 30));
-        titleLabel.setForeground(Color.WHITE);
-        titlePanel.add(titleLabel);
+        JPanel scorePanel = new JPanel();
+        scorePanel.setOpaque(false);
+        score = new JLabel("TON SCORE : " + jeu.getJoueur().getScore());
+        score.setFont(marioFont.deriveFont(Font.BOLD, 30));
+        score.setForeground(Color.WHITE);
+        scorePanel.add(score);
 
         // Start 
         JButtonStyled startButton = new JButtonStyled("Retour au menu");
@@ -95,6 +96,10 @@ public class GameWinGUI extends JPanel {
             // En cas d'erreur, utilisez la police par défaut
             return new Font("SansSerif", Font.PLAIN, 14);
         }
+    }
+
+    public static JLabel getScore() {
+        return score;
     }
 
     private class JButtonStyled extends JButton {

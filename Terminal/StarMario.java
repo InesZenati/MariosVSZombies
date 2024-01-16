@@ -41,7 +41,7 @@ public class StarMario extends Mario{
     }
 
      public String getImagePath(){
-        return "SuperMario.png";
+        return "StarMario.png";
     }
 
 }
