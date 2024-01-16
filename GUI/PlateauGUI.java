@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.List;
 
 
 public class PlateauGUI extends JPanel{
@@ -59,14 +60,16 @@ public class PlateauGUI extends JPanel{
 
     private JPanel createSideMenu() {
         JPanel sideMenu = new JPanel();
-
+        Plateau p = new Plateau();
+        List<Mario> l = p.listeMario();
+        
         sideMenu.setLayout(new BoxLayout(sideMenu, BoxLayout.Y_AXIS));
 
-        sideMenu.add(createTowerButton("BasicMario", "BasicMario.png", 10)); 
-        sideMenu.add(createTowerButton("FireMario", "FireMario.png", 20));
-        sideMenu.add(createTowerButton("WallBrick", "BasicMario.png", 25)); 
-        sideMenu.add(createTowerButton("BigMario", "BigMario.png", 50));
-        sideMenu.add(createTowerButton("StarMario", "StarMario.png", 100));
+        sideMenu.add(createTowerButton("BasicMario", "BasicMario.png", l.get(0).getPrix())); 
+        sideMenu.add(createTowerButton("FireMario", "FireMario.png", l.get(2).getPrix()));
+        sideMenu.add(createTowerButton("WallBrick", "BasicMario.png", l.get(1).getPrix())); 
+        sideMenu.add(createTowerButton("BigMario", "BigMario.png", l.get(3).getPrix()));
+        sideMenu.add(createTowerButton("StarMario", "StarMario.png", l.get(4).getPrix()));
 
         return sideMenu;
     }
@@ -140,11 +143,15 @@ public class PlateauGUI extends JPanel{
                 if(jeuGUI.getPlateau().getPartieStatus()==2){
                    cardLayout.show(cardPanel, "GameWin");
                    System.out.println(jeuGUI.getPlateau().getPartieStatus());
-                }
+                }else if(jeuGUI.getPlateau().getPartieStatus()==1){ 
                 cardLayout.show(cardPanel, "GameOver");
                 System.out.println(jeuGUI.getPlateau().getPartieStatus());
             }
+            System.out.println(jeuGUI.getPlateau().getPartieStatus());
+        }
         });
+    
+
 
         terminerPanel.add(terminerButton);
         return terminerPanel;
@@ -276,6 +283,7 @@ public class PlateauGUI extends JPanel{
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
                     JPanel casePanel = getCasePanel(i, j);
+                    casePanel.setBackground(Color.PINK);
     
                     // Supprimer tous les composants du panneau
                     casePanel.removeAll();
@@ -330,6 +338,7 @@ public class PlateauGUI extends JPanel{
                         }else if(jeuGUI.getPlateau().getPartieStatus()==2){//2=On a gagner
                             cardLayout.show(cardPanel, "GameWin");
                         }
+                        cardLayout.show(cardPanel, "GameOver");
                         break;
                     }
                 }

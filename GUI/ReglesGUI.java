@@ -57,10 +57,10 @@ public class ReglesGUI extends JPanel {
             regles.append("Dans ce jeu vous devez proteger votre chateau de vos ennemis le koopa redoutables");
             regles.append("\n");
             regles.append("\n");
-            regles.append("Pour cela vous diposez de plusieur Mario que vous pouvez consulter dans le catalogue");
+            regles.append("Pour cela vous diposez de plusieurs Mario que vous pouvez consulter dans le catalogue");
             regles.append("\n");
             regles.append("\n");
-            regles.append("Pour jouer c'est trés simple clique sur le boutton jouer du menu puis selectionnez le niveau et la difficultée de votre partie");
+            regles.append("Pour jouer c'est tres simple cliquez sur le boutton jouer du menu puis selectionnez le niveau et  la difficultee de votre partie");
             regles.append("\n");
             regles.append("\n");
             regles.append("Afin de placer vos Marios selctionnez un dans la barre de menu a droite puis cliquez sur la case ou vous sougaitez le placer");

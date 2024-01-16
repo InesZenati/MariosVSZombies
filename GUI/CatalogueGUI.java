@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.File;
+import java.util.List;
 
 public class CatalogueGUI extends JPanel {
     private JeuGUI jeuGUI;
@@ -67,6 +68,8 @@ public class CatalogueGUI extends JPanel {
     }
 
     public JPanel createCatalogueMario() {
+        Plateau p = new Plateau();
+        List<Mario> l = p.listeMario();
         JPanel cataloguePanelM = new JPanel();
         JPanel BasicMario = new JPanel();
         JPanel FireMario = new JPanel();
@@ -75,31 +78,31 @@ public class CatalogueGUI extends JPanel {
         JPanel StarMario = new JPanel();
         BasicMario.setOpaque(false);
         BasicMario.setLayout(new BoxLayout(BasicMario, BoxLayout.X_AXIS));
-        BasicMario.setBorder(new EmptyBorder(5, 5, 5, 5));
+        BasicMario.setBorder(new EmptyBorder(5, 10, 5, 10));
 
         FireMario.setOpaque(false);
         FireMario.setLayout(new BoxLayout(FireMario, BoxLayout.X_AXIS));
-        FireMario.setBorder(new EmptyBorder(5, 5, 5, 5));
+        FireMario.setBorder(new EmptyBorder(5, 10, 5, 10));
 
         BigMario.setOpaque(false);
         BigMario.setLayout(new BoxLayout(BigMario, BoxLayout.X_AXIS));
-        BigMario.setBorder(new EmptyBorder(5, 5, 5, 5));
+        BigMario.setBorder(new EmptyBorder(5, 10, 5, 10));
 
         WallBrick.setOpaque(false);
         WallBrick.setLayout(new BoxLayout(WallBrick, BoxLayout.X_AXIS));
-        WallBrick.setBorder(new EmptyBorder(5, 5, 5, 5));
+        WallBrick.setBorder(new EmptyBorder(5, 10, 5, 10));
 
         StarMario.setOpaque(false);
         StarMario.setLayout(new BoxLayout(StarMario, BoxLayout.X_AXIS));
-        StarMario.setBorder(new EmptyBorder(5, 5, 5, 5));
+        StarMario.setBorder(new EmptyBorder(5, 10, 5, 10));
 
 
         // Ajoutez des MarioPanels pour chaque Mario
-        BasicMario.add(new MarioPanel("BasicMario", "8$", "Type attaque", "Type defense", "Force attaque"));
-        FireMario.add(new MarioPanel("FireMario", "100$", "Type attaque", "Type defense", "Force attaque"));
-        BigMario.add(new MarioPanel("BigMario", "100$", "Type attaque", "Type defense", "Force attaque"));
-        WallBrick.add(new MarioPanel("WallBrick", "100$", "Type attaque", "Type defense", "Force attaque"));
-        StarMario.add(new MarioPanel("StarMario", "100$", "Type attaque", "Type defense", "Force attaque"));
+        BasicMario.add(new MarioPanel(l.get(0).getName(), l.get(0).getPrix()+"$", " Courte", " "+l.get(0).getInfoActuelle().getDefense(), " "+l.get(0).getInfoActuelle().getAttaque()));
+        FireMario.add(new MarioPanel(l.get(2).getName(), l.get(2).getPrix()+"$", " Longue", " "+l.get(2).getInfoActuelle().getDefense(), " "+l.get(2).getInfoActuelle().getAttaque()));
+        BigMario.add(new MarioPanel(l.get(3).getName(), l.get(3).getPrix()+"$", " Longue",  " "+l.get(3).getInfoActuelle().getDefense(), " "+l.get(3).getInfoActuelle().getAttaque()));
+        WallBrick.add(new MarioPanel(l.get(1).getName(), l.get(1).getPrix()+"$", " Courte", " "+l.get(1).getInfoActuelle().getDefense(), " "+l.get(1).getInfoActuelle().getAttaque()));
+        StarMario.add(new MarioPanel(l.get(4).getName(), l.get(4).getPrix()+"$", " Courte", " "+l.get(4).getInfoActuelle().getDefense(), " "+l.get(4).getInfoActuelle().getAttaque()));
 
         cataloguePanelM.add(BasicMario);
         cataloguePanelM.add(FireMario);
@@ -131,11 +134,15 @@ public class CatalogueGUI extends JPanel {
         Zombie.setLayout(new BoxLayout(Zombie, BoxLayout.X_AXIS));
         Zombie.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-        // Ajoutez des ZombiePanels pour chaque Zombie
-        zombie1.add(new ZombiePanel("ZombieSimple", "8$", "Type attaque", "Type defense", "Force attaque"));
-        zombie2.add(new ZombiePanel("ZombieAmeliore", "100$", "Type attaque", "Type defense", "Force attaque"));
-        zombie3.add(new ZombiePanel("SuperZombie", "100$", "Type attaque", "Type defense", "Force attaque"));
-        Zombie.add(new ZombiePanel("SuperMegaUltraZombie", "100$", "Type attaque", "Type defense", "Force attaque"));
+        Zombie1 z1 = new Zombie1(1000);
+        Zombie2 z2 = new Zombie2(1000);
+        Zombie3 z3 = new Zombie3(1000);
+        Zombie4 z4 = new Zombie4(1000);
+
+        zombie1.add(new ZombiePanel(z1.getName(), " Courte", " "+ z1.getInfoActuelle().getDefense(), " "+z1.getInfoActuelle().getAttaque()));
+        zombie2.add(new ZombiePanel(z2.getName(), " Courte", " "+ z2.getInfoActuelle().getDefense(), " "+z2.getInfoActuelle().getAttaque()));
+        zombie3.add(new ZombiePanel(z3.getName(), " Courte", " "+ z3.getInfoActuelle().getDefense(), " "+z3.getInfoActuelle().getAttaque()));
+        Zombie.add(new ZombiePanel(z4.getName(), " Courte", " "+ z4.getInfoActuelle().getDefense(), " "+z4.getInfoActuelle().getAttaque()));
 
         cataloguePanelZ.add(zombie1);
         cataloguePanelZ.add(zombie2);
@@ -187,19 +194,19 @@ private class MarioPanel extends JPanel {
         priceLabel.setBorder(new EmptyBorder(10, 0, 10, 0));
         add(priceLabel);
 
-        JLabel attackTypeLabel = new JLabel("Attack Type: "  );
+        JLabel attackTypeLabel = new JLabel("Attack Type:"+attackType  );
         attackTypeLabel.setFont(loadMarioFont().deriveFont(Font.PLAIN, 18));
         attackTypeLabel.setForeground(Color.WHITE);
         attackTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(attackTypeLabel);
 
-        JLabel defenseTypeLabel = new JLabel("Defense Type: "  );
+        JLabel defenseTypeLabel = new JLabel("Defense:"+defenseType  );
         defenseTypeLabel.setFont(loadMarioFont().deriveFont(Font.PLAIN, 18));
         defenseTypeLabel.setForeground(Color.WHITE);
         defenseTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(defenseTypeLabel);
 
-        JLabel attackStrengthLabel = new JLabel("Attack Strength: " );
+        JLabel attackStrengthLabel = new JLabel("Attack:"+attackStrength );
         attackStrengthLabel.setFont(loadMarioFont().deriveFont(Font.PLAIN, 18));
         attackStrengthLabel.setForeground(Color.WHITE);
         attackStrengthLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -212,7 +219,7 @@ private class MarioPanel extends JPanel {
 
 
     private class ZombiePanel extends JPanel {
-        public ZombiePanel(String name, String price, String attackType, String defenseType, String attackStrength) {
+        public ZombiePanel(String name, String attackType, String defenseType, String attackStrength) {
             setOpaque(true);
             setBackground(new Color(205, 55, 35, 255));
             setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -234,19 +241,19 @@ private class MarioPanel extends JPanel {
             add(imageLabel);
     
     
-            JLabel attackTypeLabel = new JLabel("Attack Type: "  );
+            JLabel attackTypeLabel = new JLabel("Attack Type: " + attackType );
             attackTypeLabel.setFont(loadMarioFont().deriveFont(Font.PLAIN, 18));
             attackTypeLabel.setForeground(Color.WHITE);
             attackTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             add(attackTypeLabel);
     
-            JLabel defenseTypeLabel = new JLabel("Defense Type: "  );
+            JLabel defenseTypeLabel = new JLabel("Defense: "  + defenseType);
             defenseTypeLabel.setFont(loadMarioFont().deriveFont(Font.PLAIN, 18));
             defenseTypeLabel.setForeground(Color.WHITE);
             defenseTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             add(defenseTypeLabel);
     
-            JLabel attackStrengthLabel = new JLabel("Attack Strength: " );
+            JLabel attackStrengthLabel = new JLabel("Attack: "+ attackStrength );
             attackStrengthLabel.setFont(loadMarioFont().deriveFont(Font.PLAIN, 18));
             attackStrengthLabel.setForeground(Color.WHITE);
             attackStrengthLabel.setAlignmentX(Component.CENTER_ALIGNMENT);

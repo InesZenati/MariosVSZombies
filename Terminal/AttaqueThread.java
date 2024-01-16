@@ -21,7 +21,9 @@ public class AttaqueThread extends Thread {
         if(plato.getMarathonOrNot()==false){
         while(plato.getPartieStatus()==0){
             update();
-            attaque();
+            if (ZombieMort()==false) {
+                attaque();
+            }
             update();
             sleep(1000);
         }     
@@ -34,6 +36,19 @@ public class AttaqueThread extends Thread {
             
         }
     }
+    }
+
+    public boolean ZombieMort() {
+        if (plato.getMarathonOrNot() == false) {
+            for (int i = 0; i < plato.getVague().size() - 1; i++) {
+                if (plato.getVague().get(i).estVivant()) {
+                    return false;
+                }
+            }
+            plato.MarioGagne();
+            return true;
+        }
+        return false;
     }
 
     public void stopThread(){

@@ -33,12 +33,12 @@ public class GameWinGUI extends JPanel {
 
         // autres trucs de la page
         JPanel centralPanel = new JPanel(new GridBagLayout());
-        centralPanel.setBackground(new Color(205, 55, 35, 255)); // Rend le fond transparent pour montrer l'image en bas
+        centralPanel.setBackground(new Color(230,54,116)); // Rend le fond transparent pour montrer l'image en bas
 
         // Titre Panel
         JPanel titlePanel = new JPanel();
         titlePanel.setOpaque(false);
-    JLabel titleLabel = new JLabel("GAME WIN");
+        JLabel titleLabel = new JLabel("GAME WIN");
         titleLabel.setFont(marioFont.deriveFont(Font.BOLD, 30));
         titleLabel.setForeground(Color.WHITE);
         titlePanel.add(titleLabel);
