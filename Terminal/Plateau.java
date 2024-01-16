@@ -110,7 +110,6 @@ public class Plateau {
         plato[li][col].supprimerPerso();;
     }
     public void removeZombie(int li, int col) {
-        this.retirer(plato[li][col].getPersonnage());
         plato[li][col].supprimerPerso();
     }
 

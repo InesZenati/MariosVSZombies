@@ -40,6 +40,7 @@ public abstract class Personnage {
         if((!perso.estVivant())){
             System.out.println(perso.getName()+"est mort");
             p.removeZombie(pos[0],pos[1]);
+            p.retirer(perso);
             if(this instanceof Zombie){
                 Zombie z = (Zombie) this;
                 sleep(1000);
