@@ -20,11 +20,25 @@ public class AttaqueThread extends Thread {
     public void run(){
         while(plato.getPartieStatus()==0){
             if (ZombieMort()==false) {
+                update();
                 attaque();
             }
             sleep(1000);    
         }
     }
+
+    public void update(){
+        switch (i) {
+            case 0:
+                plato.affiche();
+                break;
+            case 1:
+                pGui.updatePlateau();
+                break;
+            default:
+                break;
+        }
+    } 
 
     public boolean ZombieMort() {
         if (plato.getMarathonOrNot() == false) {
@@ -62,7 +76,6 @@ public class AttaqueThread extends Thread {
                 break;
             case 1:
                 n.attaque(pGui);
-                }
                 break;
             default:
                 break;
