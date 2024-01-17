@@ -5,6 +5,9 @@ public class WallBrick extends Mario{
     public void attaque(Plateau p){
         p.getJoueur().incrementerArgent(10);
     }
+    public void attaque(PlateauGUI pGui){
+        pGui.getJeuGUI().getJoueur().incrementerArgent(10);
+    }
     public boolean peutAttaquer(Plateau p){
         return true;
     }

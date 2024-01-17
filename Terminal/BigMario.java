@@ -14,7 +14,21 @@ public class BigMario extends Mario{
             }
         }
         }
-    }  
+    } 
+    public void attaque(PlateauGUI pGui){
+        Plateau p = pGui.getJeuGUI().getPlateau();
+        int [] pos = this.getPosition();
+        for(int i=1;i<3;i++){
+            if(p.getCase(pos[0], pos[1]+i)!=null){
+            if(p.getCase(pos[0], pos[1]+i).contientZombie()){
+                Personnage z1 = p.getCase(pos[0],pos[1]+i).getPersonnage();
+                z1.takeDamage(z1.getInfoActuelle().getvie()/2);
+                p.getJoueur().incrementerArgent(5);
+                this.aGagner(pGui, z1);
+            }
+        }
+        }
+    } 
     public boolean peutAttaquer(Plateau p){
        int [] pos = this.getPosition();
         int li = pos[0];

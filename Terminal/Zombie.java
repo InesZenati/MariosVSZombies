@@ -111,31 +111,7 @@ public abstract class Zombie extends Personnage {
                sleep(100);
             }
         }
-        public boolean aGagner(PlateauGUI pGui, Personnage perso){
-            Plateau p = pGui.getJeuGUI().getPlateau();
-            int [] pos = perso.getPosition();
-            if((!perso.estVivant())){
-                
-                System.out.println(perso.getName()+"est mort");
-                p.removeZombie(pos[0],pos[1]);
-                if(this instanceof Zombie){
-                    Zombie z = (Zombie) this;
-                    //sleep(1000);
-                    //z.moveZombie(pGui);
-                    for(int i = pos[1]+1;i<p.getNumCols();i++){
-                    if(p.getCase(pos[0],i)==null){
-                        break;
-                    }
-                    if(p.getCase(pos[0],i).contientZombie()){
-                        Zombie l = (Zombie) p.getCase(pos[0],i).getPersonnage();
-                        //l.moveZombie(pGui);
-                    }
-                }
-                }
-                return true;
-               }
-            return false;
-            }
+        
         
         public void placeZombie(int li, int col,Plateau plato ){   
             this.setPosition(li, col);

@@ -33,6 +33,7 @@ public abstract class Personnage {
     }
 
     public abstract void attaque (Plateau p);
+    public abstract void attaque (PlateauGUI p);
     public abstract boolean peutAttaquer(Plateau p);
 
     public boolean aGagner(Plateau p, Personnage perso){
@@ -41,21 +42,8 @@ public abstract class Personnage {
             System.out.println(perso.getName()+"est mort");
             p.removeZombie(pos[0],pos[1]);
             p.retirer(perso);
-            if(this instanceof Zombie){
-                Zombie z = (Zombie) this;
-                sleep(1000);
-                z.moveZombie(p);
-
-                for(int i = pos[1]+1;i<p.getNumCols();i++){
-                    if(p.getCase(pos[0],i)==null){
-                        break;
-                    }
-                    if(p.getCase(pos[0],i).contientZombie()){
-                        Zombie l = (Zombie) p.getPersonnageAt(pos[0],i);
-                        l.moveZombie(p);
-                    }
-                }
-            }else {
+            p.affiche();
+            if(this instanceof Mario) {
                     System.out.println("instance of");
                     Zombie z = (Zombie) perso;
                     int prix = z.getGain();
@@ -67,6 +55,26 @@ public abstract class Personnage {
            }
         return false;
         }
+        public boolean aGagner(PlateauGUI pGui, Personnage perso){
+            Plateau p = pGui.getJeuGUI().getPlateau();
+            int [] pos = perso.getPosition();
+            if((!perso.estVivant())){
+                System.out.println(perso.getName()+"est mort");
+                p.removeZombie(pos[0],pos[1]);
+                p.retirer(perso);
+                pGui.updatePlateau();
+                if(this instanceof Mario){
+                        System.out.println("instance of");
+                        Zombie z = (Zombie) perso;
+                        int prix = z.getGain();
+                        p.getJoueur().incrementerArgent(prix);
+                        p.getJoueur().incrementerScore(prix);
+                    }
+                
+                return true;
+               }
+            return false;
+            }
     
     public boolean getTour(){
         return this.tour;
