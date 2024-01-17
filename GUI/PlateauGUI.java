@@ -12,6 +12,7 @@ public class PlateauGUI extends JPanel{
     private JPanel plateauPanel;
     private JPanel menuPanel;
     private JPanel InfoPanel;
+    private JPanel terminerPanel;
     private Mario selectedPersonnage=null;
     private CardLayout cardLayout;
     private JPanel cardPanel;
@@ -33,8 +34,8 @@ public class PlateauGUI extends JPanel{
 
           // Création du menuPanel à gauche
         menuPanel = createSideMenu();
-        add(menuPanel, BorderLayout.WEST);
-         menuPanel.setBackground(new Color(205, 55, 35, 255)); 
+
+        add(menuPanel, BorderLayout.WEST);    
 
         
 
@@ -46,7 +47,7 @@ public class PlateauGUI extends JPanel{
         add(plateauPanel, BorderLayout.CENTER);
 
         // Création du terminerPanel en bas
-        JPanel terminerPanel = createTerminerPanel();
+       terminerPanel = createTerminerPanel();
         add(terminerPanel, BorderLayout.SOUTH);
 
        // plateauPanel.setBackground(new Color(205, 55, 35, 255)); 
@@ -72,6 +73,14 @@ public class PlateauGUI extends JPanel{
         sideMenu.add(createTowerButton("StarMario", "StarMario.png", l.get(4).getPrix()));
 
         return sideMenu;
+    }
+
+    public void updateterminerPanel(){
+        if(setJeu.getSelectedDecor().equals("Basic")){
+            terminerPanel.setBackground(new Color(205, 55, 35, 255));
+        }else if(setJeu.getSelectedDecor().equals("Nouveau")){
+            terminerPanel.setBackground(Color.PINK);
+        }
     }
 
     public JPanel createInfoPanel(){
@@ -103,7 +112,11 @@ public class PlateauGUI extends JPanel{
     public void updateJoueurInfo(){
         if(InfoPanel!=null){
             InfoPanel.removeAll();
-            InfoPanel.setBackground(new Color(205, 55, 35, 255)); 
+            if(setJeu.getSelectedDecor().equals("Basic")){
+                InfoPanel.setBackground(new Color(205, 55, 35, 255)); 
+            }else if(setJeu.getSelectedDecor().equals("Nouveau")){
+                InfoPanel.setBackground(Color.PINK);
+            }
         // add border
             InfoPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 10, 10));
             InfoPanel.setLayout(new BoxLayout(InfoPanel, BoxLayout.Y_AXIS));
@@ -134,7 +147,7 @@ public class PlateauGUI extends JPanel{
 
         public JPanel createTerminerPanel() {
         JPanel terminerPanel = new JPanel();
-        JButton terminerButton = new JButton("Terminer");
+        JButtonStyled terminerButton = new JButtonStyled("Terminer");
 
         // Ajoutez un ActionListener pour gérer l'action du bouton "Terminer"
         terminerButton.addActionListener(new ActionListener() {
@@ -155,6 +168,14 @@ public class PlateauGUI extends JPanel{
 
         terminerPanel.add(terminerButton);
         return terminerPanel;
+    }
+
+    public void updateSideMenu(){
+        if(setJeu.getSelectedDecor().equals("Basic")){
+            menuPanel.setBackground(new Color(205, 55, 35, 255));
+        }else if(setJeu.getSelectedDecor().equals("Nouveau")){
+            menuPanel.setBackground(Color.PINK);
+        }
     }
 
     public JButton createTowerButton(String name , String imagePath, int prix){
@@ -270,20 +291,32 @@ public class PlateauGUI extends JPanel{
 
     public void updatePlateau() {
         updateJoueurInfo();
-        if(setJeu.getSelectedDecor().equals("Basic")){
-            plateauPanel.setBackground(Color.RED);
-        }
-        else if(setJeu.getSelectedDecor().equals("Nouveau")){
+        updateSideMenu();
+        updateterminerPanel();
+        if (setJeu.getSelectedDecor().equals("Basic")) {
+            plateauPanel.setBackground(new Color(205, 55, 35, 255));
+        } else if (setJeu.getSelectedDecor().equals("Nouveau")) {
             plateauPanel.setBackground(Color.PINK);
-        }
-        else{
+        } else {
             plateauPanel.setBackground(Color.GREEN);
         }
         if (plateauPanel != null) {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
                     JPanel casePanel = getCasePanel(i, j);
-                    casePanel.setBackground(Color.PINK);
+                    if (setJeu.getSelectedDecor().equals("Basic")) {
+                        if ((i + j) % 2 == 0) {
+                            casePanel.setBackground(new Color(205, 55, 35, 255));
+                        } else {
+                            casePanel.setBackground(Color.WHITE);
+                        }
+                    } else if (setJeu.getSelectedDecor().equals("Nouveau")) {
+                        if ((i + j) % 2 == 0) {
+                            casePanel.setBackground(Color.PINK);
+                        } else {
+                            casePanel.setBackground(Color.WHITE);
+                        }
+                    }
     
                     // Supprimer tous les composants du panneau
                     casePanel.removeAll();
@@ -308,7 +341,7 @@ public class PlateauGUI extends JPanel{
     
                     // Revalider le panneau après modification
                     casePanel.revalidate();
-                    casePanel.repaint();  // Assurez-vous de redessiner le panneau pour voir les changements
+                    casePanel.repaint();
                     jeuGUI.getPlateau().affiche();
                 }
             }
@@ -316,10 +349,6 @@ public class PlateauGUI extends JPanel{
             System.out.println("error");
         }
     }
-    
-    
-
-    
     
     private JPanel getCasePanel(int li, int col) {
         return (JPanel) plateauPanel.getComponent(li * 9 + col);
@@ -389,6 +418,30 @@ public class PlateauGUI extends JPanel{
             return new Font("SansSerif", Font.PLAIN, 14);
         }
     }
+    private class JButtonStyled extends JButton {
+        public JButtonStyled(String text) {
+            super(text);
+            setFocusPainted(false);
+            setContentAreaFilled(false);
+            setOpaque(true);
+            setForeground(Color.WHITE);
+            setBackground(new Color(255, 138, 119)); // Couleur orange
+            setFont(getFont().deriveFont(Font.BOLD, 16));
+            setBorderPainted(false);
+            setCursor(new Cursor(Cursor.HAND_CURSOR));
+            setPreferredSize(new Dimension(200, 50));
+            addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    setBackground(new Color(109, 7, 26));
+                }
+
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    setBackground(new Color(255, 138, 119));
+                }
+            });
+        }
+    }
+    
     }
 
 
