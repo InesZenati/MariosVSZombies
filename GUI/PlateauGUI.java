@@ -68,7 +68,7 @@ public class PlateauGUI extends JPanel{
 
         sideMenu.add(createTowerButton("BasicMario", "BasicMario.png", l.get(0).getPrix())); 
         sideMenu.add(createTowerButton("FireMario", "FireMario.png", l.get(2).getPrix()));
-        sideMenu.add(createTowerButton("WallBrick", "BasicMario.png", l.get(1).getPrix())); 
+        sideMenu.add(createTowerButton("WallBrick", "WallBrick.png", l.get(1).getPrix())); 
         sideMenu.add(createTowerButton("BigMario", "BigMario.png", l.get(3).getPrix()));
         sideMenu.add(createTowerButton("StarMario", "StarMario.png", l.get(4).getPrix()));
 
@@ -182,7 +182,12 @@ public class PlateauGUI extends JPanel{
         JButton mario = new JButton();
         try {
             ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
-            mario.setIcon(icon);
+            Image originalImage = icon.getImage();
+            int newSize = 70; 
+            Image resizedImage = originalImage.getScaledInstance(newSize, newSize, Image.SCALE_SMOOTH);
+    
+            ImageIcon resizedIcon = new ImageIcon(resizedImage);
+            mario.setIcon(resizedIcon);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -190,7 +195,7 @@ public class PlateauGUI extends JPanel{
         JLabel titre = new JLabel(name);
         JLabel price = new JLabel("$" +prix);
 
-        mario.setLayout(new FlowLayout(FlowLayout.CENTER));//fait en sorte que les composants soient centrés et pas tt petits
+        mario.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         mario.add(titre);
         mario.add(price);   
@@ -234,7 +239,7 @@ public class PlateauGUI extends JPanel{
   
 
     public JPanel createPlateau() {
-        int taille = 100;
+        int taille = 200;
         JPanel Plateau = new JPanel();
    
         Plateau.setLayout(new GridLayout(5, 9));
@@ -328,7 +333,7 @@ public class PlateauGUI extends JPanel{
                         try {
                             ImageIcon icon = new ImageIcon(getClass().getResource(getPersonnageByName(jeuGUI.getPlateau().getPersonnageAt(i, j).getName()).getImagePath()));
                             Image image = icon.getImage();
-                            int cellSize = 100; // Set the cell size here
+                            int cellSize = 86; // Set the cell size here
                             Image scaledImage = image.getScaledInstance(cellSize, cellSize, Image.SCALE_SMOOTH);
                             JLabel label = new JLabel();
                             label.setIcon(icon);
@@ -448,4 +453,3 @@ public class PlateauGUI extends JPanel{
 
 
     
-

@@ -16,6 +16,6 @@ public class WallBrick extends Mario{
     }
 
     public String getImagePath(){
-        return "BasicMario.png";
+        return "WallBrick.png";
     }
 }
