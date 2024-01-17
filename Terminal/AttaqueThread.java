@@ -47,6 +47,7 @@ public class AttaqueThread extends Thread {
                     return false;
                 }
             }
+            update();
             plato.MarioGagne();
             return true;
         }
