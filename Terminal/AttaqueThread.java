@@ -61,12 +61,7 @@ public class AttaqueThread extends Thread {
                 n.attaque(plato);
                 break;
             case 1:
-                if(n instanceof Mario){
-                    Mario m = (Mario) n;
-                    m.attaque(plato);
-                }else if(n instanceof Zombie){
-                    Zombie z =(Zombie) n;
-                    z.attaque(pGui);
+                n.attaque(pGui);
                 }
                 break;
             default:

@@ -33,6 +33,7 @@ public abstract class Personnage {
     }
 
     public abstract void attaque (Plateau p);
+    public abstract void attaque (PlateauGUI p);
     public abstract boolean peutAttaquer(Plateau p);
 
     public boolean aGagner(Plateau p, Personnage perso){
